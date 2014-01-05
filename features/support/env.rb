@@ -7,6 +7,8 @@ require File.join(File.dirname(__FILE__), '..', '..', 'lib/quiz_app.rb')
 require 'capybara'
 require 'capybara/cucumber'
 require 'rspec'
+require 'database_cleaner'
+
 
 Capybara.app = QuizApp
 
