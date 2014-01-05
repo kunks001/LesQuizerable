@@ -11,6 +11,10 @@ class QuizApp < Sinatra::Base
     haml :index
   end
 
+  get '/admins/sign_up' do
+    haml :"admins/sign_up"
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
