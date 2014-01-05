@@ -2,4 +2,7 @@
   %head
     = bootstrap_assets
   %body
+    - if current_admin
+      Welcome, 
+      = current_admin.email
     = yield

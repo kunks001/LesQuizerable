@@ -1,7 +1,8 @@
 require 'sinatra/base'
 require 'haml'
 require 'sinatra/twitter-bootstrap'
-require 'data-mapper'
+require 'data_mapper'
+require 'dm-postgres-adapter'
 
 class QuizApp < Sinatra::Base
   env = ENV["RACK_ENV"] || "development"
@@ -11,6 +12,9 @@ class QuizApp < Sinatra::Base
   DataMapper.finalize
   DataMapper.auto_upgrade!
 
+  enable :sessions
+
+  set :session_secret, 'super secret'
   set :views, Proc.new { File.join("views") }
 
   register Sinatra::Twitter::Bootstrap::Assets
@@ -24,9 +28,18 @@ class QuizApp < Sinatra::Base
   end
 
   post '/admin/create-admin' do
-    Admin.create(:email => params[:email], 
+    admin = Admin.create(:email => params[:email], 
               :password => params[:password])
+    session[:admin_id] = admin.id
     redirect to('/')
+  end
+
+  helpers do
+
+    def current_admin    
+      @current_admin ||= Admin.get(session[:admin_id]) if session[:admin_id]
+    end
+
   end
 
   # start the server if ruby file executed directly

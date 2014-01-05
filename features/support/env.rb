@@ -9,7 +9,6 @@ require 'capybara/cucumber'
 require 'rspec'
 require 'database_cleaner'
 
-
 Capybara.app = QuizApp
 
 class QuizAppWorld
