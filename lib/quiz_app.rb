@@ -27,12 +27,12 @@ class QuizApp < Sinatra::Base
     haml :index
   end
 
-  get '/admin/create-admin' do
+  get '/admins/create-admin' do
     @admin = Admin.new
-    haml :"admin/create-admin"
+    haml :"admins/create"
   end
 
-  post '/admin/create-admin' do
+  post '/admins/create-admin' do
     @admin = Admin.new(:email => params[:email], 
               :password => params[:password],
               :password_confirmation => params[:password_confirmation]
@@ -43,8 +43,20 @@ class QuizApp < Sinatra::Base
     else
       flash.now[:errors] = @admin.errors.full_messages
       # flash[:notice] = "Sorry, your passwords don't match"
-      haml :"admin/create-admin"
+      haml :"admins/create"
     end
+  end
+
+  get '/admins/edit' do
+    if session[:admin_id]
+      haml :"admins/edit"
+    else
+      redirect to '/sessions/new'
+    end
+  end
+
+  post 'admins/edit' do
+    
   end
 
   get '/sessions/new' do
