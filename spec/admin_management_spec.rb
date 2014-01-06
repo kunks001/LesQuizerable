@@ -14,6 +14,12 @@ feature "Admin signs up" do
     expect(page).to have_content("Sorry, your passwords don't match")
   end
 
+  scenario "with an email that is already registered" do    
+    lambda { sign_up }.should change(Admin, :count).by(1)
+    lambda { sign_up }.should change(Admin, :count).by(0)
+    expect(page).to have_content("This email is already taken")
+  end
+
   def sign_up(email = "alice@example.com", 
               password = "oranges!",
               password_confirmation = "oranges!")

@@ -40,7 +40,8 @@ class QuizApp < Sinatra::Base
       session[:admin_id] = admin.id
       redirect to('/')
     else
-      flash[:notice] = "Sorry, your passwords don't match"
+      flash.now[:errors] = @user.errors.full_messages
+      # flash[:notice] = "Sorry, your passwords don't match"
       erb :"admin/create-admin"
     end
   end
