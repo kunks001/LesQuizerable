@@ -1,4 +1,4 @@
-require './lib/quiz_app'
+require './app/quiz_app'
 require 'capybara/rspec'
 require 'database_cleaner'
 require './spec/helpers/admin_helpers'
