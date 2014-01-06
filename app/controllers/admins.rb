@@ -32,25 +32,18 @@ class QuizApp < Sinatra::Base
     end
   end
 
-  get '/admins/edit' do
+  get '/admins/:id' do
     if session[:admin_id]
-      @admin = Admin.get(session[:admin_id])
+      @admin = Admin.get(params[:id])
       haml :"admins/edit"
     else
       redirect to '/sessions/new'
     end
   end
 
-  post '/admins/edit' do
-    @admin = Admin.get!(session[:admin_id])
-    if params[:password] != ""
-      @admin.update(:email => params[:email], 
-                :password => params[:password],
-                :password_confirmation => params[:password_confirmation]
-                )
-    else
-      @admin.update(:email => params[:email])
-    end
+  put '/admins/:id' do
+    @admin = Admin.get!(params[:id])
+    @admin.update(:email => params[:email])
     if @admin.save
       flash[:notice] = 'Your details have been successfully updated'
       redirect to('/')

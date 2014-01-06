@@ -1,5 +1,5 @@
 require 'data_mapper'
-require './lib/quiz_app'
+require './app/quiz_app'
 
 task :auto_migrate do  
   DataMapper.auto_migrate!
@@ -9,4 +9,12 @@ end
 task :auto_upgrade do
   DataMapper.auto_upgrade!
   puts "Auto-upgrade complete (no data loss)"
+end
+
+task :populate do  
+  Admin.create(:email => 'foo@bar.com', 
+              :password => 'foobar',
+              :password_confirmation => 'foobar'
+              )
+  puts "Population complete"
 end

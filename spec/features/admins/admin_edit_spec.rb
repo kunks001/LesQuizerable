@@ -9,13 +9,15 @@ feature "editing Admins" do
   end
 
   scenario "when not logged in" do
-  	visit '/admins/edit'
+  	visit '/admins/1'
   	expect(page.current_path).to eq '/sessions/new'
   end
 
 	scenario "when signed in as an admin" do
 		sign_in('test@test.com', 'test')
-		visit '/admins/edit'
+		visit '/admins'
+		puts page.body.inspect
+		click_link('Edit')
 		expect(page).to have_content 'Edit Details'
 		fill_in 'email', with: 'hamil@ton.com'
 		click_button 'Submit'
