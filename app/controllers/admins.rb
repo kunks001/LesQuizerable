@@ -1,6 +1,6 @@
 class QuizApp < Sinatra::Base
 
-	get '/admins' do
+  get '/admins' do
     
   end
 

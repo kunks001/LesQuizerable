@@ -9,10 +9,10 @@ class Admin
   property :password_digest, Text
 
   attr_reader :password
-	attr_accessor :password_confirmation
+  attr_accessor :password_confirmation
 
-	validates_confirmation_of :password
-	validates_uniqueness_of :email
+  validates_confirmation_of :password
+  validates_uniqueness_of :email
 
   def password=(password)
     @password = password

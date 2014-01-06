@@ -23,6 +23,9 @@ class QuizApp < Sinatra::Base
   require './app/controllers/admins'
   require './app/controllers/sessions'
 
+  require_relative 'helpers/application'
+  helpers ApplicationHelper
+
 
   use Rack::Flash
   use Rack::MethodOverride
@@ -30,15 +33,7 @@ class QuizApp < Sinatra::Base
   get '/' do
     haml :index
   end
-
-  helpers do
-
-    def current_admin    
-      @current_admin ||= Admin.get(session[:admin_id]) if session[:admin_id]
-    end
-
-  end
-
+  
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

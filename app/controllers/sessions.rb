@@ -1,6 +1,6 @@
 class QuizApp < Sinatra::Base
 
-	get '/sessions/new' do
+  get '/sessions/new' do
     haml :"sessions/new"
   end
 
