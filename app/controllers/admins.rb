@@ -1,12 +1,16 @@
 class QuizApp < Sinatra::Base
 
   get '/admins' do
-    
+    @admins = Admin.all
   end
 
   get '/admins/create-admin' do
-    @admin = Admin.new
-    haml :"admins/create"
+    if session[:admin_id]
+      @admin = Admin.new
+      haml :"admins/create"
+    else
+      redirect to '/sessions/new'
+    end
   end
 
   post '/admins/create-admin' do
