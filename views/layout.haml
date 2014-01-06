@@ -2,6 +2,9 @@
   %head
     = bootstrap_assets
   %body
+    - if flash[:notice]
+      #notice
+        = flash[:notice]
     - if current_admin
       Welcome, 
       = current_admin.email

@@ -3,6 +3,7 @@ require 'haml'
 require 'sinatra/twitter-bootstrap'
 require 'data_mapper'
 require 'dm-postgres-adapter'
+require 'rack-flash'
 
 class QuizApp < Sinatra::Base
   env = ENV["RACK_ENV"] || "development"
@@ -19,21 +20,29 @@ class QuizApp < Sinatra::Base
 
   register Sinatra::Twitter::Bootstrap::Assets
 
+  use Rack::Flash
+
   get '/' do
     haml :index
   end
 
   get '/admin/create-admin' do
+    @admin = Admin.new
     haml :"admin/create-admin"
   end
 
   post '/admin/create-admin' do
-    admin = Admin.create(:email => params[:email], 
+    @admin = Admin.new(:email => params[:email], 
               :password => params[:password],
               :password_confirmation => params[:password_confirmation]
               )
-    session[:admin_id] = admin.id
-    redirect to('/')
+    if @admin.save
+      session[:admin_id] = admin.id
+      redirect to('/')
+    else
+      flash[:notice] = "Sorry, your passwords don't match"
+      erb :"admin/create-admin"
+    end
   end
 
   helpers do
