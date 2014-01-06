@@ -46,6 +46,22 @@ class QuizApp < Sinatra::Base
     end
   end
 
+  get '/sessions/new' do
+    haml :"sessions/new"
+  end
+
+  post '/sessions' do
+    email, password = params[:email], params[:password]
+    admin = Admin.authenticate(email, password)
+    if admin
+      session[:admin_id] = admin.id
+      redirect to('/')
+    else
+      flash[:errors] = ["The email or password are incorrect"]
+      haml :"sessions/new"
+    end
+  end
+
   helpers do
 
     def current_admin    
