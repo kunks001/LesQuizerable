@@ -13,4 +13,7 @@
     - if current_admin
       Welcome, 
       = current_admin.email
+      %form{method: "post", action: "/sessions"}
+        %input{type: "hidden", name: "_method", value: "delete"}
+        %input{type: "submit", value: "Sign out"}
     = yield

@@ -21,6 +21,7 @@ class QuizApp < Sinatra::Base
   register Sinatra::Twitter::Bootstrap::Assets
 
   use Rack::Flash
+  use Rack::MethodOverride
 
   get '/' do
     haml :index
@@ -37,12 +38,12 @@ class QuizApp < Sinatra::Base
               :password_confirmation => params[:password_confirmation]
               )
     if @admin.save
-      session[:admin_id] = admin.id
+      session[:admin_id] = @admin.id
       redirect to('/')
     else
-      flash.now[:errors] = @user.errors.full_messages
+      flash.now[:errors] = @admin.errors.full_messages
       # flash[:notice] = "Sorry, your passwords don't match"
-      erb :"admin/create-admin"
+      haml :"admin/create-admin"
     end
   end
 
@@ -60,6 +61,12 @@ class QuizApp < Sinatra::Base
       flash[:errors] = ["The email or password are incorrect"]
       haml :"sessions/new"
     end
+  end
+
+  delete '/sessions' do
+    session[:admin_id] = nil
+    flash[:notice] = "Good bye!"
+    redirect to '/'
   end
 
   helpers do
