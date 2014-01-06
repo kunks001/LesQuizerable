@@ -1,7 +1,12 @@
 class QuizApp < Sinatra::Base
 
   get '/admins' do
-    @admins = Admin.all
+    if session[:admin_id]
+      @admins = Admin.all
+      haml :"admins/index"
+    else
+      redirect to '/sessions/new'
+    end
   end
 
   get '/admins/create-admin' do
@@ -23,7 +28,6 @@ class QuizApp < Sinatra::Base
       redirect to('/')
     else
       flash.now[:errors] = @admin.errors.full_messages
-      # flash[:notice] = "Sorry, your passwords don't match"
       haml :"admins/create"
     end
   end

@@ -1,6 +1,6 @@
 - @admins.each do |admin|
-	= admin.email
-	%a{ href: "admins/#{admin.id}/edit", class: "edit" }
-		Edit
-	%a{ href: "", class: "edit" }
-		Delete
+  = admin.email
+  %a{ href: "admins/#{admin.id}/edit", class: "edit" }
+    Edit
+  %a{ href: "", class: "delete" }
+    Delete

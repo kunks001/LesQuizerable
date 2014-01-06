@@ -16,7 +16,8 @@ class QuizApp < Sinatra::Base
   enable :sessions
 
   set :session_secret, 'super secret'
-  set :views, Proc.new { File.join("views") }
+  set :views, Proc.new { File.join("./app/views") }
+  set :public_folder, 'public'
 
   register Sinatra::Twitter::Bootstrap::Assets
 

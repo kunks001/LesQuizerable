@@ -21,7 +21,7 @@ feature "listing Admins" do
 		visit '/admins'
 		expect(page).to have_content 'test@test.com'
 		expect(page).to have_content 'test-two@test.com'
-		expect(page).to have_link 'Edit'
-		expect(page).to have_link 'Delete'
+		expect(page).to have_css '.edit'
+		expect(page).to have_css '.delete'
 	end
 end
