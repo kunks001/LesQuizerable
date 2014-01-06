@@ -8,11 +8,17 @@ feature "Admin signs up" do
     expect(Admin.first.email).to eq("alice@example.com")        
   end
 
+  scenario "with a password that doesn't match" do
+    lambda { sign_up('a@a.com', 'pass', 'wrong') }.should change(Admin, :count).by(0)    
+  end
+
   def sign_up(email = "alice@example.com", 
-              password = "oranges!")
+              password = "oranges!",
+              password_confirmation = "oranges!")
     visit '/admin/create-admin'
     fill_in :email, :with => email
     fill_in :password, :with => password
+    fill_in :password_confirmation, :with => password_confirmation
     click_button "Create Admin"
   end
 

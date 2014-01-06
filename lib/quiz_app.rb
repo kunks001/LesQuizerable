@@ -29,7 +29,9 @@ class QuizApp < Sinatra::Base
 
   post '/admin/create-admin' do
     admin = Admin.create(:email => params[:email], 
-              :password => params[:password])
+              :password => params[:password],
+              :password_confirmation => params[:password_confirmation]
+              )
     session[:admin_id] = admin.id
     redirect to('/')
   end
