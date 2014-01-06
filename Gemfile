@@ -7,7 +7,7 @@ gem 'haml'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'database_cleaner'
-gem 'bcrypt'
+gem 'bcrypt-ruby'
 
 group :develment do
 	gem 'shotgun'
@@ -17,5 +17,6 @@ group :test do
 
   gem 'cucumber-sinatra'
   gem 'rspec'
+  gem 'capybara'
   
 end
