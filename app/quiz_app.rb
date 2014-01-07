@@ -10,6 +10,7 @@ class QuizApp < Sinatra::Base
 
   DataMapper.setup(:default, "postgres://localhost/lesquizerables_#{env}")
   require './app/models/admin'
+  require './app/models/quiz'
   DataMapper.finalize
   DataMapper.auto_upgrade!
 
@@ -22,6 +23,7 @@ class QuizApp < Sinatra::Base
   register Sinatra::Twitter::Bootstrap::Assets
 
   require './app/controllers/admins'
+  require './app/controllers/quizzes'
   require './app/controllers/sessions'
 
   require_relative 'helpers/application'
