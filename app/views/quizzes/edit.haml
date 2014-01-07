@@ -1,0 +1,17 @@
+%h2 
+  Edit Quiz
+
+%form{action: "/quizzes/#{@quiz.id}/edit", method: "POST"}
+  %label Title
+  %input{type: "text", "..." => "", name: "title", value: "#{@quiz.title}"}
+  - @questions.each do |question|
+    - q_num = 0
+    .question
+      %label Question
+      %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][question_text]", value: "#{question.keys.first.question_text}"}
+      .answer
+        - answers = question.values.flatten!
+        - answers.each do |answer|
+          %label Answer
+          %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][answer][#{answer.id}][response]", value: "#{answer.response}"}
+  %input{type: "submit", value: "Submit"}

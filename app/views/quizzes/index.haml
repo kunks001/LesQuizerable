@@ -5,5 +5,5 @@
     - question.answers.each do |answer|
       = answer.response
       = answer.correctness
-  %a{ href: "quizzes/#{quiz.id}", class: "edit" } Edit
+  %a{ href: "quizzes/#{quiz.id}/edit", class: "edit" } Edit
   %a{ href: "", class: "delete" } Delete

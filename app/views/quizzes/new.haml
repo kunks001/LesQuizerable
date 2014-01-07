@@ -10,15 +10,17 @@
       %label Answer
       %input{type: "text", "..." => "", name: "[question][0][answer][0][response]"}
       %label Correct Answer?
-      %input{type: "checkbox", name: "question[2][answer][0][correctness]"}
+      %input{type: "checkbox", name: "question[0][answer][0][correctness]"}
+    .answer
       %label Answer
       %input{type: "text", "..." => "", name: "[question][0][answer][1][response]"}
       %label Correct Answer?
-      %input{type: "checkbox", name: "question[2][answer][1][correctness]"}
+      %input{type: "checkbox", name: "question[0][answer][1][correctness]"}
+    .answer
       %label Answer
       %input{type: "text", "..." => "", name: "[question][0][answer][2][response]"}
       %label Correct Answer?
-      %input{type: "checkbox", name: "question[2][answer][2][correctness]"}
+      %input{type: "checkbox", name: "question[d][answer][2][correctness]"}
   .question
     %label Question
     %input{type: "text", "..." => "", name: "[question][1][question_text]"}
@@ -26,15 +28,17 @@
       %label Answer
       %input{type: "text", "..." => "", name: "[question][1][answer][0][response]"}
       %label Correct Answer?
-      %input{type: "checkbox", name: "question[2][answer][0][correctness]"}
+      %input{type: "checkbox", name: "question[1][answer][0][correctness]"}
+    .answer
       %label Answer
       %input{type: "text", "..." => "", name: "[question][1][answer][1][response]"}
       %label Correct Answer?
-      %input{type: "checkbox", name: "question[2][answer][1][correctness]"}
+      %input{type: "checkbox", name: "question[1][answer][1][correctness]"}
+    .answer
       %label Answer
       %input{type: "text", "..." => "", name: "[question][1][answer][2][response]"}
       %label Correct Answer?
-      %input{type: "checkbox", name: "question[2][answer][2][correctness]"}
+      %input{type: "checkbox", name: "question[1][answer][2][correctness]"}
   .question
     %label Question
     %input{type: "text", "..." => "", name: "[question][2][question_text]"}
@@ -43,10 +47,12 @@
       %input{type: "text", "..." => "", name: "[question][2][answer][0][response]"}
       %label Correct Answer?
       %input{type: "checkbox", name: "question[2][answer][0][correctness]"}
+    .answer
       %label Answer
       %input{type: "text", "..." => "", name: "[question][2][answer][1][response]"}
       %label Correct Answer?
       %input{type: "checkbox", name: "question[2][answer][1][correctness]"}
+    .answer
       %label Answer
       %input{type: "text", "..." => "", name: "[question][2][answer][2][response]"}
       %label Correct Answer?
