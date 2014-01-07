@@ -9,16 +9,16 @@ class QuizApp < Sinatra::Base
     end
   end
 
-  get '/admins/create-admin' do
+  get '/admins/new' do
     if session[:admin_id]
       @admin = Admin.new
-      haml :"admins/create"
+      haml :"admins/new"
     else
       redirect to '/sessions/new'
     end
   end
 
-  post '/admins/create-admin' do
+  post '/admins/new' do
     @admin = Admin.new(:email => params[:email], 
               :password => params[:password],
               :password_confirmation => params[:password_confirmation]
@@ -28,7 +28,7 @@ class QuizApp < Sinatra::Base
       redirect to('/')
     else
       flash.now[:errors] = @admin.errors.full_messages
-      haml :"admins/create"
+      haml :"admins/new"
     end
   end
 

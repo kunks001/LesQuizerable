@@ -22,7 +22,7 @@ feature "Creating a new admin" do
 
     scenario "with a password that doesn't match" do
       lambda { sign_up('a@a.com', 'pass', 'wrong') }.should change(Admin, :count).by(0)
-      expect(current_path).to eq('/admins/create-admin')   
+      expect(current_path).to eq('/admins/new')   
       expect(page).to have_content("Password does not match the confirmation")
     end
 
