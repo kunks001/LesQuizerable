@@ -42,15 +42,42 @@ class QuizApp < Sinatra::Base
   end
 
   put '/admins/:id' do
-    @admin = Admin.get!(params[:id])
-    @admin.update(:email => params[:email])
-    if @admin.save
-      flash[:notice] = 'Your details have been successfully updated'
-      redirect to('/')
+    # raise sdf
+    email = params[:email]
+    password = params[:password]
+    password_confirmation = params[:password_confirmation]
+
+    # admin = Admin.authenticate(current_admin.email, params[:current_password])
+
+    # if admin
+      user = Admin.get!(params[:id])
+      update_admin(user,email,password,password_confirmation)
+
+      if user.save
+        flash[:notice] = 'Your details have been successfully updated'
+        redirect to('/')
+      else
+        flash[:error] = 'Sorry, update failed. Please try again.'
+        haml :"admins/edit"
+      end
+    # else
+    #   haml :"admins/edit"
+    # end
+  end
+
+  def update_admin(user,email,password,password_confirmation)
+    if (password == "") && (email == "")
+    elsif password == ""
+      user.update(:email => email)
     else
-      flash[:error] = 'Sorry, update failed. Please try again.'
-      haml :"admins/edit"
+      user.update(:email => email, 
+                  :password => password,
+                  :password_confirmation => password_confirmation)
     end
+  end
+
+  def current_admin    
+    @current_admin ||= Admin.get(session[:admin_id]) if session[:admin_id]
   end
   
 end
