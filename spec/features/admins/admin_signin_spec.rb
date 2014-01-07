@@ -1,11 +1,9 @@
 require 'spec_helper'
 
-feature "Admin signs in" do
+feature "Admin signin" do
 
   before(:each) do
-    Admin.create(:email => "test@test.com", 
-                :password => 'test', 
-                :password_confirmation => 'test')
+    FactoryGirl.create(:admin)
   end
 
   after(:each) do
@@ -15,7 +13,7 @@ feature "Admin signs in" do
   scenario "with correct credentials" do
     visit '/'
     expect(page).not_to have_content("Welcome, test@test.com")
-    sign_in('test@test.com', 'test')
+    sign_in('test@test.com', 'foobar')
     expect(page).to have_content("Welcome, test@test.com")
   end
 

@@ -1,19 +1,17 @@
 require 'spec_helper'
 
-feature 'Admin signs out' do
+feature 'Admin signout' do
 
   before(:each) do
-    Admin.create(:email => "test@test.com", 
-                :password => 'test', 
-                :password_confirmation => 'test')
+    FactoryGirl.create(:admin)
   end
 
   after(:each) do
     reset_session
   end
 
-  scenario 'while being signed in' do
-    sign_in('test@test.com', 'test')
+  scenario 'while signed in' do
+    sign_in('test@test.com', 'foobar')
     click_button "Sign out"
     expect(page).to have_content("Good bye!") # where does this message go?
     expect(page).not_to have_content("Welcome, test@test.com")

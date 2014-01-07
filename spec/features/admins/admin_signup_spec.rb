@@ -10,10 +10,8 @@ feature "Creating a new admin" do
   context "when logged in" do
 
     before(:each) do
-      Admin.create(:email => "test@test.com", 
-                  :password => 'test', 
-                  :password_confirmation => 'test')
-      sign_in('test@test.com','test')
+      FactoryGirl.create(:admin)
+      sign_in('test@test.com','foobar')
     end
 
     after(:each) do

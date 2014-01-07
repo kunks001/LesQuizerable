@@ -19,5 +19,6 @@ group :test do
   gem 'cucumber-sinatra'
   gem 'rspec'
   gem 'capybara'
+  gem 'factory_girl'
   
 end
