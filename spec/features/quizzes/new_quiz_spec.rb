@@ -18,10 +18,17 @@ feature "Making a new Quiz" do
                 :password_confirmation => 'test')
   	end
 
-  	scenario "should be possible" do
+  	scenario "with correct information' page" do
   		sign_in('test@test.com', 'test')
   		visit '/quizzes/new'
   		expect(page).to have_content 'New Quiz'
+      fill_in 'Title', :with => 'Awesome Quiz!'
+      first('.question').fill_in('question[][question_text]'), :with => 'Great question'
+      first('.answer').fill_in('question[][answer][][response]'), :with => 'Great answer'
+      click_button 'Submit'
+
+      expect(current_path).to eq '/quizzes'
+      expect(page).to have_content 'Awesome Quiz!'
 	  end
 
   end

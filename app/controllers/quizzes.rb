@@ -17,5 +17,21 @@ class QuizApp < Sinatra::Base
 			redirect to '/sessions/new'
 		end
 	end
+
+	post '/quizzes/new' do
+		@quiz = Quiz.new(:title => params[:title])
+		@quiz.questions = params[:question]
+		@quiz.questions.each do |q|
+			q.answers = params[:answer].map {|a| Answer.new(response: a["response"]) }
+		end
+		# @quiz = params[:quiz]
+		# raise "#{@quiz.questions}"
+		if @quiz.save
+			redirect to '/quizzes'
+		else
+			flash.now[:errors] = ["Sorry, your Quiz was unable to save. Please try again"]
+			haml :"quizzes/new"
+		end
+	end
 		
 end

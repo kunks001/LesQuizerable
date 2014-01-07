@@ -1,46 +1,33 @@
 %h2 
   New Quiz
-%form{action: '/quizzes', method: "POST"}
+%form{action: '/quizzes/new', method: "POST"}
   %label Title
-  %input{type: "text", name: "title"}
-  - 3.times do
-    %label Question
-    %input{type: "text", name: "question[][question_text]"}
-    - 4.times do
-      %label Answer
-      %input{type: "text", name: "question[][answer][][response]"}
-      %label Correct Answer?
-      %input{type: "checkbox", name: "question[][answer][][correctness]"}
+  %input{type: "text", "..." => "", name: "title"}
+  %label Question
+  %input{type: "text", "..." => "", name: "question[][question_text]"}
+  %label Answer
+  %input{type: "text", "..." => "", name: "[answer][][response]"}
+  / %label Question
+  / %input{type: "text", "..." => "", name: "question[1][question_text]"}
+  / %label Question
+  / %input{type: "text", "..." => "", name: "question[2][question_text]"}
+  / %label Answer
+  / %input{type: "text", "..." => "", name: "question[0][answer][0][response]"}
+  / %label Correct Answer?
+  / %input{type: "checkbox", name: "question[0][answer][0][correctness]"}
   %input{type: "submit", value: "Submit"}
-
-/ - 3.times do
-/   %fieldset
-/     %li
-/       %label Name
-/       %input{type: "text", name: "question[][question_text]"}
-/     - 4.times do
-/       %li
-/         %label Answer
-/         %input{type: "text", name: "question[][answer][][response]"}
-/         %label Correct Answer?
-/         %input{type: "checkbox", name: "question[][answer][][correctness]"}
-
-
-/ params == {"game"=>[{"name"=>"Connect 4", "difficulty"=>"Easy", "players"=>"2"}, {"name"=>"Go Fish", "difficulty"=>"Easy", "players"=>"4"}, {"name"=>"Monopoly", "difficulty"=>"Easy", "players"=>"4"}, {"name"=>"Chess", "difficulty"=>"Hard", "players"=>"2"}, {"name"=>"Settlers of Catan", "difficulty"=>"Medium", "players"=>"4"}]}
 
 / %h2 
 /   New Quiz
-/ %form{action: '/quizzes' method: "POST"}
+/ %form{action: '/quizzes/new', method: "POST"}
 /   %label Title
-/   %input{name: "title"}
-/ - 5.times do
-/   %fieldset
-/     %li
-/       %label Name
-/       %input{name: "game[][name]"}
-/     %li
-/       %label Difficulty
-/       %input{name: "game[][difficulty]"}
-/     %li
-/       %label Players
-/       %input{name: "game[][players]"}
+/   %input{type: "text", "..." => "", name: "title"}
+/   - 3.times do
+/     %label Question
+/     %input{type: "text", "..." => "", name: "question[][question_text]"}
+/     - 4.times do
+/       %label Answer
+/       %input{type: "text", "..." => "", name: "question[][answer][][response]"}
+/       %label Correct Answer?
+/       %input{type: "checkbox", name: "question[][answer][][correctness]"}
+/   %input{type: "submit", value: "Submit"}
