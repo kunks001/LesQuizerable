@@ -9,47 +9,46 @@
     .answer
       %label Answer
       %input{type: "text", "..." => "", name: "[question][0][answer][0][response]"}
+      %label Correct Answer?
+      %input{type: "checkbox", name: "question[2][answer][0][correctness]"}
       %label Answer
       %input{type: "text", "..." => "", name: "[question][0][answer][1][response]"}
+      %label Correct Answer?
+      %input{type: "checkbox", name: "question[2][answer][1][correctness]"}
       %label Answer
       %input{type: "text", "..." => "", name: "[question][0][answer][2][response]"}
-  %label Question
-  %input{type: "text", "..." => "", name: "[question][1][question_text]"}
-  %label Answer
-  %input{type: "text", "..." => "", name: "[question][1][answer][0][response]"}
-  %label Answer
-  %input{type: "text", "..." => "", name: "[question][1][answer][1][response]"}
-  %label Answer
-  %input{type: "text", "..." => "", name: "[question][1][answer][2][response]"}
-  %label Question
-  %input{type: "text", "..." => "", name: "[question][2][question_text]"}
-  %label Answer
-  %input{type: "text", "..." => "", name: "[question][2][answer][0][response]"}
-  %label Answer
-  %input{type: "text", "..." => "", name: "[question][2][answer][1][response]"}
-  %label Answer
-  %input{type: "text", "..." => "", name: "[question][2][answer][2][response]"}
-  / %label Question
-  / %input{type: "text", "..." => "", name: "question[1][question_text]"}
-  / %label Question
-  / %input{type: "text", "..." => "", name: "question[2][question_text]"}
-  / %label Answer
-  / %input{type: "text", "..." => "", name: "question[0][answer][0][response]"}
-  / %label Correct Answer?
-  / %input{type: "checkbox", name: "question[0][answer][0][correctness]"}
+      %label Correct Answer?
+      %input{type: "checkbox", name: "question[2][answer][2][correctness]"}
+  .question
+    %label Question
+    %input{type: "text", "..." => "", name: "[question][1][question_text]"}
+    .answer
+      %label Answer
+      %input{type: "text", "..." => "", name: "[question][1][answer][0][response]"}
+      %label Correct Answer?
+      %input{type: "checkbox", name: "question[2][answer][0][correctness]"}
+      %label Answer
+      %input{type: "text", "..." => "", name: "[question][1][answer][1][response]"}
+      %label Correct Answer?
+      %input{type: "checkbox", name: "question[2][answer][1][correctness]"}
+      %label Answer
+      %input{type: "text", "..." => "", name: "[question][1][answer][2][response]"}
+      %label Correct Answer?
+      %input{type: "checkbox", name: "question[2][answer][2][correctness]"}
+  .question
+    %label Question
+    %input{type: "text", "..." => "", name: "[question][2][question_text]"}
+    .answer
+      %label Answer
+      %input{type: "text", "..." => "", name: "[question][2][answer][0][response]"}
+      %label Correct Answer?
+      %input{type: "checkbox", name: "question[2][answer][0][correctness]"}
+      %label Answer
+      %input{type: "text", "..." => "", name: "[question][2][answer][1][response]"}
+      %label Correct Answer?
+      %input{type: "checkbox", name: "question[2][answer][1][correctness]"}
+      %label Answer
+      %input{type: "text", "..." => "", name: "[question][2][answer][2][response]"}
+      %label Correct Answer?
+      %input{type: "checkbox", name: "question[2][answer][2][correctness]"}
   %input{type: "submit", value: "Submit"}
-
-/ %h2 
-/   New Quiz
-/ %form{action: '/quizzes/new', method: "POST"}
-/   %label Title
-/   %input{type: "text", "..." => "", name: "title"}
-/   - 3.times do
-/     %label Question
-/     %input{type: "text", "..." => "", name: "question[][question_text]"}
-/     - 4.times do
-/       %label Answer
-/       %input{type: "text", "..." => "", name: "question[][answer][][response]"}
-/       %label Correct Answer?
-/       %input{type: "checkbox", name: "question[][answer][][correctness]"}
-/   %input{type: "submit", value: "Submit"}
