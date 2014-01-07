@@ -1,0 +1,4 @@
+- @quizzes.each do |quiz|
+  = quiz.title
+  %a{ href: "quizzes/#{quiz.id}", class: "edit" } Edit
+  %a{ href: "", class: "delete" } Delete
