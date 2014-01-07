@@ -22,9 +22,9 @@ feature "Making a new Quiz" do
   		sign_in('test@test.com', 'test')
   		visit '/quizzes/new'
   		expect(page).to have_content 'New Quiz'
-      fill_in 'Title', :with => 'Awesome Quiz!'
-      # first('.question').fill_in('question[0][question_text]'), :with => 'Great question'
-      # first('.answer').fill_in('question[0][answer][1][response]'), :with => 'Great answer'
+      fill_in 'title', :with => 'Awesome Quiz!'
+      first('.question').fill_in '[question][0][question_text]', :with => 'Great question'
+      first('.answer').fill_in '[question][0][answer][0][response]', :with => 'Great answer'
       click_button 'Submit'
 
       expect(current_path).to eq '/quizzes'

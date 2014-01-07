@@ -19,7 +19,6 @@ class QuizApp < Sinatra::Base
 	end
 
 	post '/quizzes/new' do
-		raise 'sdf'
 		@quiz = Quiz.new(:title => params[:title])
 		@quiz.questions = params[:question]
 		@quiz.questions.each do |q|
