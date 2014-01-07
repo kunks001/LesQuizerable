@@ -16,6 +16,10 @@ feature "Creating a new admin" do
       sign_in('test@test.com','test')
     end
 
+    after(:each) do
+      reset_session
+    end
+
     scenario "with a password that doesn't match" do
       lambda { sign_up('a@a.com', 'pass', 'wrong') }.should change(Admin, :count).by(0)
       expect(current_path).to eq('/admins/create-admin')   

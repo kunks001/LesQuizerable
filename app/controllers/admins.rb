@@ -46,9 +46,9 @@ class QuizApp < Sinatra::Base
     password = params[:password]
     password_confirmation = params[:password_confirmation]
 
-    # admin = Admin.authenticate(current_admin.email, params[:current_password])
+    admin = Admin.authenticate(current_admin.email, params[:current_password])
 
-    # if admin
+    if admin
       user = Admin.get!(params[:id])
       update_admin(user,email,password,password_confirmation)
 
@@ -59,9 +59,13 @@ class QuizApp < Sinatra::Base
         flash[:error] = 'Sorry, update failed. Please try again.'
         haml :"admins/edit"
       end
-    # else
-    #   haml :"admins/edit"
-    # end
+    else
+      redirect to 'admins'
+    end
+  end
+
+  get '/reset-session' do
+    session[:admin_id] = nil
   end
   
 end

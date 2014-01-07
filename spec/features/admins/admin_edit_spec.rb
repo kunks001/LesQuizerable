@@ -8,6 +8,10 @@ feature "editing Admins" do
                 :password_confirmation => 'test')
   end
 
+  after(:each) do
+    reset_session
+  end
+
   scenario "when not logged in" do
     visit '/admins/1'
     expect(page.current_path).to eq '/sessions/new'
@@ -19,6 +23,7 @@ feature "editing Admins" do
     click_link('Edit')
     expect(page).to have_content 'Edit Details'
     fill_in 'email', with: 'hamil@ton.com'
+    fill_in 'current_password', with: 'test'
     click_button 'Submit'
     expect(current_path).to eq '/'
     expect(page).to have_content 'Your details have been successfully updated'

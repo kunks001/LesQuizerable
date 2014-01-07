@@ -11,6 +11,10 @@ feature "listing Admins" do
                 :password_confirmation => 'test')
   end
 
+  after(:each) do
+    reset_session
+  end
+
   scenario "when not logged in" do
   	visit '/admins'
   	expect(page.current_path).to eq '/sessions/new'

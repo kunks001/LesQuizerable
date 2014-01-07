@@ -8,6 +8,10 @@ feature 'Admin signs out' do
                 :password_confirmation => 'test')
   end
 
+  after(:each) do
+    reset_session
+  end
+
   scenario 'while being signed in' do
     sign_in('test@test.com', 'test')
     click_button "Sign out"

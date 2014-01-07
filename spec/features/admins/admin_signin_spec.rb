@@ -8,6 +8,10 @@ feature "Admin signs in" do
                 :password_confirmation => 'test')
   end
 
+  after(:each) do
+    reset_session
+  end
+
   scenario "with correct credentials" do
     visit '/'
     expect(page).not_to have_content("Welcome, test@test.com")

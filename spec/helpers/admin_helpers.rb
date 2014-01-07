@@ -16,4 +16,8 @@ module AdminHelpers
     fill_in :password_confirmation, :with => password_confirmation
     click_button "Submit"
   end
+
+  def reset_session
+  	visit '/reset-session'
+  end
 end
