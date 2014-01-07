@@ -14,8 +14,8 @@ class QuizApp < Sinatra::Base
   DataMapper.auto_upgrade!
 
   enable :sessions
-
   set :session_secret, 'super secret'
+  
   set :views, Proc.new { File.join("./app/views") }
   set :public_folder, 'public'
 
