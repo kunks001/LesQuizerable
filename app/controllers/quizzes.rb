@@ -41,5 +41,13 @@ class QuizApp < Sinatra::Base
       haml :"quizzes/new"
     end
   end
-    
+
+  get '/quizzes/:id/edit' do
+    if session[:admin_id]
+      @quiz = Quiz.get(params[:id])
+      haml :"quizzes/edit"
+    else
+      redirect to '/sessions/new'
+    end
+  end
 end
