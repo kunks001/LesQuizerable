@@ -16,7 +16,6 @@ feature "editing Admins" do
 	scenario "when signed in as an admin" do
 		sign_in('test@test.com', 'test')
 		visit '/admins'
-		puts page.body.inspect
 		click_link('Edit')
 		expect(page).to have_content 'Edit Details'
 		fill_in 'email', with: 'hamil@ton.com'

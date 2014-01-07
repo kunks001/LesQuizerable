@@ -5,8 +5,16 @@ class Admin
   include DataMapper::Resource
 
   property :id, Serial
-  property :email, String, :unique => true, :message => "This email is already taken"
-  property :password_digest, Text
+  # property :email, String, :unique => true, :message => "This email is already taken"
+  property :email, String,  :required => true,
+                            :unique => true, 
+                            :format => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i,
+                            :messages => {
+                              :is_unique => "The email you have entered is already taken. Please try again",
+                              :format    => "The email you have entered is not valid. Please try again"
+                            }
+  property :password_digest, Text,  :required => true, 
+                                    :message => "Please enter your password"
 
   attr_reader :password
   attr_accessor :password_confirmation

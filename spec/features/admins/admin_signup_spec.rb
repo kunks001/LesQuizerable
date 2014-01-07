@@ -25,7 +25,7 @@ feature "Creating a new admin" do
     scenario "with an email that is already registered" do    
       lambda { sign_up }.should change(Admin, :count).by(1)
       lambda { sign_up }.should change(Admin, :count).by(0)
-      expect(page).to have_content("This email is already taken")
+      expect(page).to have_content("The email you have entered is already taken")
     end
   end
 
