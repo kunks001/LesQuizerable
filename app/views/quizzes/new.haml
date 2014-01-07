@@ -4,9 +4,29 @@
   %label Title
   %input{type: "text", "..." => "", name: "title"}
   %label Question
-  %input{type: "text", "..." => "", name: "question[][question_text]"}
+  %input{type: "text", "..." => "", name: "[question][0][question_text]"}
   %label Answer
-  %input{type: "text", "..." => "", name: "[answer][][response]"}
+  %input{type: "text", "..." => "", name: "[question][0][answer][0][response]"}
+  %label Answer
+  %input{type: "text", "..." => "", name: "[question][0][answer][1][response]"}
+  %label Answer
+  %input{type: "text", "..." => "", name: "[question][0][answer][2][response]"}
+  %label Question
+  %input{type: "text", "..." => "", name: "[question][1][question_text]"}
+  %label Answer
+  %input{type: "text", "..." => "", name: "[question][1][answer][0][response]"}
+  %label Answer
+  %input{type: "text", "..." => "", name: "[question][1][answer][1][response]"}
+  %label Answer
+  %input{type: "text", "..." => "", name: "[question][1][answer][2][response]"}
+  %label Question
+  %input{type: "text", "..." => "", name: "[question][2][question_text]"}
+  %label Answer
+  %input{type: "text", "..." => "", name: "[question][2][answer][0][response]"}
+  %label Answer
+  %input{type: "text", "..." => "", name: "[question][2][answer][1][response]"}
+  %label Answer
+  %input{type: "text", "..." => "", name: "[question][2][answer][2][response]"}
   / %label Question
   / %input{type: "text", "..." => "", name: "question[1][question_text]"}
   / %label Question

@@ -19,6 +19,7 @@ class QuizApp < Sinatra::Base
 	end
 
 	post '/quizzes/new' do
+		raise 'sdf'
 		@quiz = Quiz.new(:title => params[:title])
 		@quiz.questions = params[:question]
 		@quiz.questions.each do |q|
@@ -29,7 +30,8 @@ class QuizApp < Sinatra::Base
 		if @quiz.save
 			redirect to '/quizzes'
 		else
-			flash.now[:errors] = ["Sorry, your Quiz was unable to save. Please try again"]
+			flash.now[:errors] = ["Sorry,
+			your Quiz was unable to save. Please try again"]
 			haml :"quizzes/new"
 		end
 	end
