@@ -11,6 +11,7 @@ class QuizApp < Sinatra::Base
   DataMapper.setup(:default, "postgres://localhost/lesquizerables_#{env}")
   require './app/models/admin'
   require './app/models/quiz'
+  require './app/models/question'
   DataMapper.finalize
   DataMapper.auto_upgrade!
 

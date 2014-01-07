@@ -3,8 +3,7 @@ require 'spec_helper'
 feature "listing Quizzes" do
 
 	before(:each) do
-    Quiz.create(title: "Pub Quiz")
-    Quiz.create(title: "Why aren't I at the pub?")
+    FactoryGirl.create(:quiz)
     Admin.create(:email => "test@test.com", 
                 :password => 'foobar', 
                 :password_confirmation => 'foobar')
@@ -22,8 +21,8 @@ feature "listing Quizzes" do
   scenario "when signed in as an admin" do
 		sign_in('test@test.com', 'foobar')
 		visit '/quizzes'
-		expect(page).to have_content 'Pub Quiz'
-    expect(page).to have_content "Why aren't I at the pub?"
+		expect(page).to have_content 'Example Quiz'
+    expect(page).to have_content "Example Question"
 		expect(page).to have_css '.edit'
 		expect(page).to have_css '.delete'
 	end
