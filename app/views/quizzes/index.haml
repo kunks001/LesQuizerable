@@ -2,5 +2,7 @@
   = quiz.title
   - quiz.questions.each do |question|
     = question.question_text
+    - question.answers.each do |answer|
+      = answer.response
   %a{ href: "quizzes/#{quiz.id}", class: "edit" } Edit
   %a{ href: "", class: "delete" } Delete

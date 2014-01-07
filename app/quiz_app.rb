@@ -12,6 +12,7 @@ class QuizApp < Sinatra::Base
   require './app/models/admin'
   require './app/models/quiz'
   require './app/models/question'
+  require './app/models/answer'
   DataMapper.finalize
   DataMapper.auto_upgrade!
 
