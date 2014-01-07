@@ -56,11 +56,14 @@ class QuizApp < Sinatra::Base
         flash[:notice] = 'Your details have been successfully updated'
         redirect to('/')
       else
-        flash[:error] = 'Sorry, update failed. Please try again.'
+        flash.now[:errors] = ['Sorry, update failed. Please try again.']
+        @admin = user
         haml :"admins/edit"
       end
     else
-      redirect to 'admins'
+      @admin = Admin.get(params[:id])
+      flash.now[:errors] = ['Incorrect authentication, please try again']
+      haml :"admins/edit"
     end
   end
 
