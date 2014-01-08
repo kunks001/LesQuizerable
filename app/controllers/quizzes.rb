@@ -80,4 +80,24 @@ class QuizApp < Sinatra::Base
     quiz.destroy
     redirect to '/quizzes'
   end
+
+  post '/upload' do
+    awskey     = settings.access_key_id
+    awssecret  = settings.secret_access_key
+    bucket     = 'MakersQuizApp'
+    file       = params[:file][:tempfile]
+    filename   = params[:file][:filename]
+    AWS::S3::Base.establish_connection!(
+      :access_key_id     => awskey,
+      :secret_access_key => awssecret
+    )
+    AWS::S3::S3Object.store(
+      filename,
+      open(file.path),
+      bucket,
+      :access => :public_read
+    )
+    url = "https://#{bucket}.s3.amazonaws.com/#{filename}"
+    return url
+  end
 end

@@ -4,8 +4,15 @@ require 'sinatra/twitter-bootstrap'
 require 'data_mapper'
 require 'dm-postgres-adapter'
 require 'rack-flash'
+require 'aws/s3'
+require "sinatra/base"
+require "sinatra/config_file"
 
 class QuizApp < Sinatra::Base
+  register Sinatra::ConfigFile
+
+  config_file '../config/config.yml'
+
   env = ENV["RACK_ENV"] || "development"
 
   DataMapper.setup(:default, "postgres://localhost/lesquizerables_#{env}")
@@ -30,7 +37,6 @@ class QuizApp < Sinatra::Base
 
   require_relative 'helpers/application'
   helpers ApplicationHelper
-
 
   use Rack::Flash
   use Rack::MethodOverride

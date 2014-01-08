@@ -9,6 +9,8 @@ gem 'dm-postgres-adapter'
 gem 'database_cleaner'
 gem 'bcrypt-ruby'
 gem 'rack-flash3'
+gem 'aws-s3'
+gem 'sinatra-contrib'
 
 group :develment do
 	gem 'shotgun'

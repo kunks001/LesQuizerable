@@ -1,5 +1,13 @@
 %h2 
   New Quiz
+
+%form{action: "/upload", method: "post", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
+  %div
+    %input{type: "file", name: "file", value: "", id: "file"}
+  %div
+    %input{type: "submit", value: "Upload"}
+
+
 %form{action: '/quizzes/new', method: "POST"}
   %label Title
   %input{type: "text", "..." => "", name: "title"}
