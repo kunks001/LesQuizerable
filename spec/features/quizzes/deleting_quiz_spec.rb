@@ -6,12 +6,16 @@ feature 'deleting a quiz' do
     FactoryGirl.create(:admin)
     FactoryGirl.create(:quiz)
   end
+
+  after(:each) do
+    reset_session
+  end
   
   scenario 'when signed in' do
-    sign_in("foo@bar.com", "foobar")
+    sign_in("test@test.com", "foobar")
     visit '/quizzes'
-    click_button 'Delete'
-    expect(page).current_path.to eq '/quizzes'
+    click_button "Delete Quiz"
+    expect(current_path).to eq '/quizzes'
     expect(page).to_not have_content 'Example Quiz'
     expect(page).to_not have_content 'Example Question'
     expect(page).to_not have_content 'correct answer'

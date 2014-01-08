@@ -1,9 +1,16 @@
+%h2
+  Quizzes
+
 - @quizzes.each do |quiz|
-  = quiz.title
-  - quiz.questions.each do |question|
-    = question.question_text
-    - question.answers.each do |answer|
-      = answer.response
-      = answer.correctness
-  %a{ href: "quizzes/#{quiz.id}/edit", class: "edit" } Edit
-  %a{ href: "", class: "delete" } Delete
+  .quiz
+    = quiz.title
+    - quiz.questions.each do |question|
+      = question.question_text
+      - question.answers.each do |answer|
+        = answer.response
+        = answer.correctness
+    %a{ href: "quizzes/#{quiz.id}/edit", class: "edit" } Edit
+    %form{method: "post", action: "/quizzes"}
+      %input{type: "hidden", name: "_method", value: "delete"}
+      %input{type: "hidden", name: "quiz_id", value: "#{quiz.id}"}
+      %input{type: "submit", value: "Delete Quiz"}

@@ -26,7 +26,7 @@ class QuizApp < Sinatra::Base
     if @admin.save
       session[:admin_id] = @admin.id
       redirect to('/')
-    else
+    else  
       flash.now[:errors] = @admin.errors.full_messages
       haml :"admins/new"
     end

@@ -74,4 +74,10 @@ class QuizApp < Sinatra::Base
       haml :"quizzes/edit"
     end
   end
+
+  delete '/quizzes' do
+    quiz = Quiz.get(params[:quiz_id])
+    quiz.destroy
+    redirect to '/quizzes'
+  end
 end

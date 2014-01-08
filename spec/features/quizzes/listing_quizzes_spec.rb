@@ -26,6 +26,6 @@ feature "listing Quizzes" do
     expect(page).to have_content 'correct answer'
     expect(page).to have_content 'wrong answer'
     expect(page).to have_css '.edit'
-    expect(page).to have_css '.delete'
+    expect(page).to have_button 'Delete Quiz'
   end
 end
