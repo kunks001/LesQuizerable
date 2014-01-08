@@ -4,9 +4,7 @@ feature "listing Quizzes" do
 
   before(:each) do
     FactoryGirl.create(:quiz)
-    Admin.create(:email => "test@test.com", 
-                :password => 'foobar', 
-                :password_confirmation => 'foobar')
+    FactoryGirl.create(:admin)
   end
 
   after(:each) do

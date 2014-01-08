@@ -9,4 +9,10 @@ FactoryGirl.define do
     password "foobar"
     password_confirmation "foobar"
   end
+
+  factory :admin_two, :class => Admin do
+    email "foo@bar.com"
+    password "foobar"
+    password_confirmation "foobar"
+  end
 end
