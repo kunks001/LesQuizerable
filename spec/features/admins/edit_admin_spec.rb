@@ -2,9 +2,7 @@ require 'spec_helper'
 
 feature "editing admin profile" do
 
-  before(:each) do
-    FactoryGirl.create(:admin)
-  end
+  let!(:admin) { FactoryGirl.create(:admin) }
 
   let!(:super_admin) {FactoryGirl.create(:super_admin)}
 

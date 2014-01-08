@@ -2,9 +2,7 @@ require 'spec_helper'
 
 feature 'Admin signout' do
 
-  before(:each) do
-    FactoryGirl.create(:admin)
-  end
+  let!(:admin) { FactoryGirl.create(:admin) }
 
   after(:each) do
     reset_session

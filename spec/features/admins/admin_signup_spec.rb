@@ -2,10 +2,8 @@ require 'spec_helper'
 
 feature "Creating a new admin" do
 
-  before(:each) do
-    FactoryGirl.create(:admin)
-    FactoryGirl.create(:super_admin)
-  end
+  let!(:admin) { FactoryGirl.create(:admin) }
+  let!(:super_admin) { FactoryGirl.create(:super_admin) }
 
   after(:each) do
     reset_session
