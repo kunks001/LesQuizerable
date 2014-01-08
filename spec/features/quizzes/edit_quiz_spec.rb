@@ -2,10 +2,8 @@ require 'spec_helper'
 
 feature 'editing a quiz' do
 
-  before(:each) do
-    FactoryGirl.create(:admin)
-    FactoryGirl.create(:quiz)
-  end
+  let!(:admin) { FactoryGirl.create(:admin) }
+  let!(:quiz) { FactoryGirl.create(:quiz) }
 
   after(:each) do
     reset_session

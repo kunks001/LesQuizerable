@@ -2,10 +2,8 @@ require 'spec_helper'
 
 feature "listing Quizzes" do
 
-  before(:each) do
-    FactoryGirl.create(:quiz)
-    FactoryGirl.create(:admin)
-  end
+  let!(:admin) { FactoryGirl.create(:admin) }
+  let!(:quiz) { FactoryGirl.create(:quiz) }
 
   after(:each) do
     reset_session

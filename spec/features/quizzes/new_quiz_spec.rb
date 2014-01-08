@@ -2,37 +2,27 @@ require 'spec_helper'
 
 feature "Making a new Quiz" do
 
-  context "when logged out" do
+  let!(:admin) { FactoryGirl.create(:admin) }
+
+  after(:each) do
+    reset_session
+  end
   
-    scenario "should redirect the user to the signin page" do
-      visit '/quizzes/new'
-      expect(current_path).to eq '/sessions/new'        
-    end
+  scenario "when logged out" do
+    visit '/quizzes/new'
+    expect(current_path).to eq '/sessions/new'        
   end
 
-  context "when logged in" do
+  scenario "with correct information' page" do
+    sign_in('test@test.com', 'foobar')
+    visit '/quizzes/new'
+    expect(page).to have_content 'New Quiz'
+    fill_in 'title', :with => 'Awesome Quiz!'
+    first('.question').fill_in '[question][0][question_text]', :with => 'Great question'
+    first('.answer').fill_in '[question][0][answer][0][response]', :with => 'Great answer'
+    click_button 'Submit'
 
-    before(:each) do
-    Admin.create(:email => "test@test.com", 
-                :password => 'test', 
-                :password_confirmation => 'test')
-    end
-
-    after(:each) do
-      reset_session
-    end
-
-    scenario "with correct information' page" do
-      sign_in('test@test.com', 'test')
-      visit '/quizzes/new'
-      expect(page).to have_content 'New Quiz'
-      fill_in 'title', :with => 'Awesome Quiz!'
-      first('.question').fill_in '[question][0][question_text]', :with => 'Great question'
-      first('.answer').fill_in '[question][0][answer][0][response]', :with => 'Great answer'
-      click_button 'Submit'
-
-      expect(current_path).to eq '/quizzes'
-      expect(page).to have_content 'Awesome Quiz!'
-    end
+    expect(current_path).to eq '/quizzes'
+    expect(page).to have_content 'Awesome Quiz!'
   end
 end
