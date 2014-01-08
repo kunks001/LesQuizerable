@@ -32,7 +32,7 @@ class QuizApp < Sinatra::Base
     end
   end
 
-  get '/admins/:id' do
+  get '/admins/:id/edit' do
     if session[:admin_id]
       @admin = Admin.get(params[:id])
       haml :"admins/edit"
@@ -41,7 +41,7 @@ class QuizApp < Sinatra::Base
     end
   end
 
-  put '/admins/:id' do
+  put '/admins/:id/edit' do
     email = params[:email]
     password = params[:password]
     password_confirmation = params[:password_confirmation]

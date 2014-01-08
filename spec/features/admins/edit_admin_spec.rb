@@ -11,7 +11,7 @@ feature "editing Admins" do
   end
 
   scenario "when not logged in" do
-    visit '/admins/1'
+    visit '/admins/1/edit'
     expect(page.current_path).to eq '/sessions/new'
   end
 

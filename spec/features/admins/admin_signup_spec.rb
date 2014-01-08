@@ -3,7 +3,7 @@ require 'spec_helper'
 feature "Creating a new admin" do
   
   scenario "when logged out" do
-    visit '/admins/create-admin'
+    visit '/admins/new'
     expect(current_path).to eq '/sessions/new'        
   end
 
