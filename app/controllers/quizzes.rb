@@ -93,13 +93,17 @@ class QuizApp < Sinatra::Base
       :access_key_id     => awskey,
       :secret_access_key => awssecret
     )
-    AWS::S3::S3Object.store(
+    
+    ok_response = AWS::S3::S3Object.store(
       filename,
       open(file.path),
       bucket,
       :access => :public_read
-    )
-    url = "https://#{bucket}.s3.amazonaws.com/#{filename}"
-    return url
+    ).response
+
+    if ok_response.code == '200'
+      redirect to '/quizzes'
+    end
+
   end
 end

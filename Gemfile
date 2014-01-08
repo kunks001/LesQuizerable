@@ -22,5 +22,6 @@ group :test do
   gem 'rspec'
   gem 'capybara'
   gem 'factory_girl'
+  gem 'launchy'
   
 end
