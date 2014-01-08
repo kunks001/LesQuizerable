@@ -75,6 +75,12 @@ class QuizApp < Sinatra::Base
     end
   end
 
+  delete '/admins' do
+    admin = Admin.get(params[:admin_id])
+    admin.destroy
+    redirect to '/admins'
+  end
+
   get '/reset-session' do
     session[:admin_id] = nil
   end
