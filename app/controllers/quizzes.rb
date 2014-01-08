@@ -81,6 +81,8 @@ class QuizApp < Sinatra::Base
     redirect to '/quizzes'
   end
 
+#### REQUIRES US-STANDARD BUCKET FOR SOME REASON
+
   post '/upload' do
     awskey     = settings.access_key_id
     awssecret  = settings.secret_access_key
