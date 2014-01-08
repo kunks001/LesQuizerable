@@ -12,13 +12,15 @@ task :auto_upgrade do
 end
 
 task :populate do  
+  Admin.all.each {|a| a.destroy }
+  Admin.create(:email => 'test@test.com', 
+              :password => 'foobar',
+              :password_confirmation => 'foobar',
+              :super_admin => false
+              )
   Admin.create(:email => 'foo@bar.com', 
               :password => 'foobar',
-              :password_confirmation => 'foobar'
-              )
-  Admin.create(:email => 'bar@foo.com', 
-              :password => 'foobar',
-              :password_confirmation => 'foobar'
+              :password_confirmation => 'foobar',
               :super_admin => true
               )
   puts "Population complete"

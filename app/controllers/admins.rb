@@ -2,6 +2,7 @@ class QuizApp < Sinatra::Base
 
   get '/admins' do
     if session[:admin_id]
+      @current_admin = Admin.get(session[:admin_id])
       @admins = Admin.all
       haml :"admins/index"
     else
@@ -37,8 +38,12 @@ class QuizApp < Sinatra::Base
 
   get '/admins/:id/edit' do
     if session[:admin_id]
-      @admin = Admin.get(params[:id])
-      haml :"admins/edit"
+      if (current_admin.super_admin? || (current_admin.id == params[:id].to_i))
+        @admin = Admin.get(params[:id])
+        haml :"admins/edit"
+      else
+        redirect to '/sessions/new'
+      end
     else
       redirect to '/sessions/new'
     end

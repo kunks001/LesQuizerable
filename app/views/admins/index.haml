@@ -1,4 +1,9 @@
 - @admins.each do |admin|
-  = admin.email
-  %a{ href: "admins/#{admin.id}/edit", class: "edit" } Edit
-  %a{ href: "", class: "delete" } Delete
+  .admin
+    = admin.email
+    - if (admin == @current_admin) || @current_admin.super_admin
+      .edit
+        %a{ href: "admins/#{admin.id}/edit", class: "edit" } Edit
+    - if @current_admin.super_admin
+      .delete
+        %a{ href: "", class: "delete" } Delete
