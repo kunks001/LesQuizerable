@@ -15,12 +15,17 @@ class Admin
                             }
   property :password_digest, Text,  :required => true, 
                                     :message => "Please enter your password"
+  property :super_admin, Boolean, :default => false
 
   attr_reader :password
   attr_accessor :password_confirmation
 
   validates_confirmation_of :password
   validates_uniqueness_of :email
+
+  def super_admin?
+    self.super_admin
+  end
 
   def password=(password)
     @password = password

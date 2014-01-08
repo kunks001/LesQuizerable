@@ -4,6 +4,7 @@ feature "Creating a new admin" do
 
   before(:each) do
     FactoryGirl.create(:admin)
+    FactoryGirl.create(:super_admin)
   end
 
   after(:each) do
@@ -17,20 +18,26 @@ feature "Creating a new admin" do
 
   ### TODO: refactor signin lambda duplicates
 
-  scenario "when logged in" do
+  scenario "when logged in as a normal admin" do
     sign_in('test@test.com','foobar')  
+    # lambda { sign_up }.should change(Admin, :count).by(1)
+    lambda { sign_up }.should change(Admin, :count).by(0)
+  end
+
+  scenario "when logged in as a super admin" do
+    sign_in('foo@bar.com','foobar')  
     lambda { sign_up }.should change(Admin, :count).by(1)
   end
 
   scenario "when logged in, but with a password that doesn't match" do
-    sign_in('test@test.com','foobar')
+    sign_in('foo@bar.com','foobar')
     lambda { sign_up('a@a.com', 'pass', 'wrong') }.should change(Admin, :count).by(0)
     expect(current_path).to eq('/admins/new')   
     expect(page).to have_content("Password does not match the confirmation")
   end
 
   scenario "when logged in, with an email that is already registered" do 
-    sign_in('test@test.com','foobar')   
+    sign_in('foo@bar.com','foobar')   
     lambda { sign_up }.should change(Admin, :count).by(1)
     lambda { sign_up }.should change(Admin, :count).by(0)
     expect(page).to have_content("The email you have entered is already taken")

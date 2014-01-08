@@ -16,5 +16,10 @@ task :populate do
               :password => 'foobar',
               :password_confirmation => 'foobar'
               )
+  Admin.create(:email => 'bar@foo.com', 
+              :password => 'foobar',
+              :password_confirmation => 'foobar'
+              :super_admin => true
+              )
   puts "Population complete"
 end

@@ -19,16 +19,19 @@ class QuizApp < Sinatra::Base
   end
 
   post '/admins/new' do
-    @admin = Admin.new(:email => params[:email], 
-              :password => params[:password],
-              :password_confirmation => params[:password_confirmation]
-              )
-    if @admin.save
-      session[:admin_id] = @admin.id
-      redirect to('/')
-    else  
-      flash.now[:errors] = @admin.errors.full_messages
-      haml :"admins/new"
+    if current_admin.super_admin?
+      @admin = Admin.new(:email => params[:email], 
+                :password => params[:password],
+                :password_confirmation => params[:password_confirmation]
+                )
+      if @admin.save
+        redirect to('/')
+      else  
+        flash.now[:errors] = @admin.errors.full_messages
+        haml :"admins/new"
+      end
+    else 
+      redirect to '/quizzes'
     end
   end
 
