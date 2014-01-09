@@ -40,10 +40,12 @@ class Admin
     end
   end
 
-  def update_fields(params)
-    fields = [:email, :password, :password_confirmation]
-    fields.each { |f| params.delete(f) if params[f] == "" }
-    fields.each { |f| self.update(f => params[f]) if params[f] != nil }
+  def update_fields_with_auth(params, current_password, current_admin)
+    if Admin.authenticate(current_admin.email, params[:current_password])
+      fields = [:email, :password, :password_confirmation]
+      fields.each { |f| params.delete(f) if params[f] == "" }
+      fields.each { |f| self.update(f => params[f]) if params[f] != nil }
+    end
   end
 
 end
