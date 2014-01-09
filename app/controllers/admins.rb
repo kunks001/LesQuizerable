@@ -35,14 +35,6 @@ class QuizApp < Sinatra::Base
       haml :"admins/edit"
     end
 
-    # before '/:id/edit' do
-    #   unless Admin.authenticate(current_admin.email, params[:current_password])
-    #     @admin = Admin.get(params[:id])
-    #     flash.now[:errors] = ['Incorrect authentication, please try again']
-    #     haml :"admins/edit"
-    #   end
-    # end
-
     put '/:id/edit' do
       admin = Admin.get!(params[:id])
       admin.update_fields_with_auth(params, params[:current_password], current_admin)
