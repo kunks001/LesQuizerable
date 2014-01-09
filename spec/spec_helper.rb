@@ -4,6 +4,8 @@ require 'capybara/rspec'
 require 'database_cleaner'
 require './spec/helpers/admin_helpers'
 require 'factory_girl'
+Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
+
 
 FactoryGirl.definition_file_paths = %w{./factories ./test/factories ./spec/factories}
 FactoryGirl.find_definitions

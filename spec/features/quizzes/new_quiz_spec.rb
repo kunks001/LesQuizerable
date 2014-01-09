@@ -31,10 +31,10 @@ feature "Making a new Quiz" do
     visit '/quizzes/new'
     fill_in 'title', with: 'Awesome Quiz!'
     attach_file('file',File.join(File.dirname(__FILE__), 'images/image.jpg'))
-    click_button 'Upload'
+    click_button 'Submit'
     expect(current_path).to eq '/quizzes'
-    click_button 'Awesome Quiz!'
-    expect(pic['alt']).not_to eq 'Missing'
+    expect(page).to have_content 'Awesome Quiz'
+    expect(page).to have_image "https://s3.amazonaws.com/MakersQuizApp/image.jpg"
   end
 
 end

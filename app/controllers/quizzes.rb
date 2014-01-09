@@ -19,12 +19,22 @@ class QuizApp < Sinatra::Base
   end
 
   post '/quizzes/new' do
+    # raise 'sdf'
     @quiz = Quiz.new(:title => params[:title])
 
     hash = params[:question]
     hash.each do |key, value|
       text = value["question_text"]
       @q = Question.new(question_text: text)
+      if value["file"]
+        file  = value["file"][:tempfile]
+        filename = value["file"][:filename]
+      # raise "#{file} - #{filename}"
+      # upload(image)
+        upload(file, filename)
+      end
+
+      @q.image = Image.create(:filename => filename)
       answers = value["answer"]
       answers.each do |key, value|
         r = value["response"]
@@ -39,6 +49,39 @@ class QuizApp < Sinatra::Base
       flash.now[:errors] = ["Sorry, your Quiz was unable to save. Please try again"]
       haml :"quizzes/new"
     end
+  end
+
+  # post '/upload' do
+  def upload(file,filename)
+    # raise "#{file} - #{filename}"
+    # raise "#{image}"
+    awskey     = settings.access_key_id
+    awssecret  = settings.secret_access_key
+    bucket     = 'MakersQuizApp'
+    # file       = params[:file][:tempfile]
+    # filename   = params[:file][:filename]
+
+    # file = file
+    # filename = filename
+    AWS::S3::Base.establish_connection!(
+      :access_key_id     => awskey,
+      :secret_access_key => awssecret
+    )
+    
+    ok_response = AWS::S3::S3Object.store(
+      filename,
+      # image_info.last,
+      open(file.path),
+      # open(image_info.first.path),
+      bucket,
+      :access => :public_read
+    ).response
+
+    # if ok_response.code == '200'
+    #   redirect to '/quizzes'
+    # end
+
+    ok_response
   end
 
   get '/quizzes/:id/edit' do
@@ -83,27 +126,30 @@ class QuizApp < Sinatra::Base
 
 #### REQUIRES US-STANDARD BUCKET FOR SOME REASON
 
-  post '/upload' do
-    awskey     = settings.access_key_id
-    awssecret  = settings.secret_access_key
-    bucket     = 'MakersQuizApp'
-    file       = params[:file][:tempfile]
-    filename   = params[:file][:filename]
-    AWS::S3::Base.establish_connection!(
-      :access_key_id     => awskey,
-      :secret_access_key => awssecret
-    )
+  # post '/upload' do
+  #   awskey     = settings.access_key_id
+  #   awssecret  = settings.secret_access_key
+  #   bucket     = 'MakersQuizApp'
+  #   file       = params[:file][:tempfile]
+  #   filename   = params[:file][:filename]
+  #   AWS::S3::Base.establish_connection!(
+  #     :access_key_id     => awskey,
+  #     :secret_access_key => awssecret
+  #   )
     
-    ok_response = AWS::S3::S3Object.store(
-      filename,
-      open(file.path),
-      bucket,
-      :access => :public_read
-    ).response
+  #   ok_response = AWS::S3::S3Object.store(
+  #     filename,
+  #     open(file.path),
+  #     bucket,
+  #     :access => :public_read
+  #   ).response
 
-    if ok_response.code == '200'
-      redirect to '/quizzes'
-    end
+  #   if ok_response.code == '200'
+  #     redirect to '/quizzes'
+  #   end
 
-  end
+    # url = "https://#{bucket}.s3.amazonaws.com/#{filename}"
+    # return url
+
+  # end
 end

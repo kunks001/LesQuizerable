@@ -20,6 +20,7 @@ class QuizApp < Sinatra::Base
   require './app/models/quiz'
   require './app/models/question'
   require './app/models/answer'
+  require './app/models/image'
   DataMapper.finalize
   DataMapper.auto_upgrade!
 
