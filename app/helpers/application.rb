@@ -40,9 +40,16 @@ module ApplicationHelper
       @q.image = Image.create(:filename => filename)
       answers = value["answer"]
       answers.each do |key, value|
+        if value["file"]
+          file  = value["file"][:tempfile]
+          filename = value["file"][:filename]
+          upload(file, filename)
+        end
         r = value["response"]
         value["correctness"] == "on" ? c = true : c = false
-        @q.answers << Answer.new(:response => r, :correctness => c)
+        @a = Answer.new(:response => r, :correctness => c)
+        @a.image = Image.create(:filename => filename)
+        @q.answers << @a
       end
       quiz.questions << @q
     end
