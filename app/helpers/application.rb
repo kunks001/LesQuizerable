@@ -4,6 +4,10 @@ module ApplicationHelper
     @current_admin ||= Admin.get(session[:admin_id]) if session[:admin_id]
   end
 
+  def authenticate
+    session[:admin_id] != nil
+  end
+
   def update_admin(user,email,password,password_confirmation)
     if (password == "") && (email == "")
     elsif (password == "") && (email != "")

@@ -7,6 +7,7 @@ require 'rack-flash'
 require 'aws/s3'
 require "sinatra/base"
 require "sinatra/config_file"
+require "sinatra/namespace"
 
 class QuizApp < Sinatra::Base
   env = ENV["RACK_ENV"] || "development"
@@ -29,6 +30,7 @@ class QuizApp < Sinatra::Base
   config_file '../config/config.yml'
 
   register Sinatra::Twitter::Bootstrap::Assets
+  register Sinatra::Namespace
 
   Dir["./app/controllers/*.rb"].each {|file| require file }
   require_relative 'helpers/application'
