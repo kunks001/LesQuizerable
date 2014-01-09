@@ -33,7 +33,7 @@ feature "Making a new Quiz" do
     attach_file('file',File.join(File.dirname(__FILE__), 'images/image.jpg'))
     click_button 'Submit'
     expect(current_path).to eq '/quizzes'
-    expect(page).to have_content 'Awesome Quiz'
+    click_link 'Awesome Quiz!'
     expect(page).to have_image "https://s3.amazonaws.com/MakersQuizApp/image.jpg"
   end
 
@@ -44,6 +44,5 @@ feature "Making a new Quiz" do
   #   click_button 'Add Question'
   #   expect(page.all(".question").count).to eq 2
   # end
-
 
 end

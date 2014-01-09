@@ -27,6 +27,7 @@ feature 'editing a quiz' do
     first('.answer').fill_in '[question][3][answer][10][response]', :with => 'Great answer'
     click_button 'Submit'
     expect(current_path).to eq '/quizzes'
+    click_link 'Awesome Quiz!'
     expect(page).to have_content 'Awesome Quiz!'
     expect(page).to have_content 'Great question'
     expect(page).to have_content 'answer'

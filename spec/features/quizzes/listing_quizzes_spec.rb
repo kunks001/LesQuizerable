@@ -18,9 +18,6 @@ feature "listing Quizzes" do
     sign_in('test@test.com', 'foobar')
     visit '/quizzes'
     expect(page).to have_content 'Example Quiz'
-    expect(page).to have_content 'Example Question'
-    expect(page).to have_content 'correct answer'
-    expect(page).to have_content 'wrong answer'
     expect(page).to have_css '.edit'
     expect(page).to have_button 'Delete Quiz'
   end

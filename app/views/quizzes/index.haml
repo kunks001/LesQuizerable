@@ -3,15 +3,8 @@
 
 - @quizzes.each do |quiz|
   .quiz
-    = quiz.title
-    - quiz.questions.each do |question|
-      = question.question_text
-      - if question.image
-        - image = question.image.filename
-        %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
-      - question.answers.each do |answer|
-        = answer.response
-        = answer.correctness
+    %a{href: "quizzes/#{quiz.id}"} 
+      = quiz.title
     %a{ href: "quizzes/#{quiz.id}/edit", class: "edit" } Edit
     %form{method: "post", action: "/quizzes"}
       %input{type: "hidden", name: "_method", value: "delete"}

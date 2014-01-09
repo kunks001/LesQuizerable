@@ -51,5 +51,10 @@ class QuizApp < Sinatra::Base
       quiz.destroy
       redirect to '/quizzes'
     end
+
+    get '/:id' do
+      @quiz = Quiz.get(params[:id])
+      haml :"quizzes/show"
+    end
   end
 end
