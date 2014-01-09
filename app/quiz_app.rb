@@ -8,6 +8,7 @@ require 'aws/s3'
 require "sinatra/base"
 require "sinatra/config_file"
 require "sinatra/namespace"
+require 'active_support/core_ext/hash'
 
 class QuizApp < Sinatra::Base
   env = ENV["RACK_ENV"] || "development"

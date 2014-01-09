@@ -155,6 +155,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   aws-s3
   bcrypt-ruby
   capybara

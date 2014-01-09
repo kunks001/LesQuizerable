@@ -5,7 +5,6 @@ class Admin
   include DataMapper::Resource
 
   property :id, Serial
-  # property :email, String, :unique => true, :message => "This email is already taken"
   property :email, String,  :required => true,
                             :unique => true, 
                             :format => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i,
@@ -34,11 +33,17 @@ class Admin
 
   def self.authenticate(email, password)
   admin = first(:email => email)
-  if admin && BCrypt::Password.new(admin.password_digest) == password
-    admin
-  else
-    nil
+    if admin && BCrypt::Password.new(admin.password_digest) == password
+      admin
+    else
+      nil
+    end
   end
-end
+
+  def update_fields(params)
+    fields = [:email, :password, :password_confirmation]
+    fields.each { |f| params.delete(f) if params[f] == "" }
+    fields.each { |f| self.update(f => params[f]) if params[f] != nil }
+  end
 
 end

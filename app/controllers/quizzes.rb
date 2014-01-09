@@ -2,7 +2,7 @@ class QuizApp < Sinatra::Base
 
   namespace '/quizzes' do
 
-    before { redirect to 'sessions/new' if authenticate == false }
+    before { redirect to 'sessions/new' if current_admin == nil }
 
     get '' do
         @quizzes = Quiz.all

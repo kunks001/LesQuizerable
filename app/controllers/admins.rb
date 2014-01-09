@@ -2,7 +2,7 @@ class QuizApp < Sinatra::Base
 
   namespace '/admins' do
 
-    before { redirect to 'sessions/new' if authenticate == false }
+    before { redirect to 'sessions/new' if current_admin == nil }
 
     get '' do
       @current_admin = Admin.get(session[:admin_id])
@@ -36,16 +36,10 @@ class QuizApp < Sinatra::Base
     end
 
     put '/:id/edit' do
-      email = params[:email]
-      password = params[:password]
-      password_confirmation = params[:password_confirmation]
-
-      admin = Admin.authenticate(current_admin.email, params[:current_password])
-
-      if admin
-        user = Admin.get!(params[:id])
-        update_admin(user,email,password,password_confirmation)
-        if user.save
+      if Admin.authenticate(current_admin.email, params[:current_password])
+        admin = Admin.get!(params[:id])
+        admin.update_fields(params)
+        if admin.save
           flash[:notice] = 'Your details have been successfully updated'
           redirect to('/')
         else

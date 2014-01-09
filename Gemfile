@@ -11,6 +11,7 @@ gem 'bcrypt-ruby'
 gem 'rack-flash3'
 gem 'aws-s3'
 gem 'sinatra-contrib'
+gem 'activesupport'
 
 group :develment do
 	gem 'shotgun'
