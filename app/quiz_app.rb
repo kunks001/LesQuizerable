@@ -9,39 +9,30 @@ require "sinatra/base"
 require "sinatra/config_file"
 
 class QuizApp < Sinatra::Base
-  register Sinatra::ConfigFile
-
-  config_file '../config/config.yml'
-
   env = ENV["RACK_ENV"] || "development"
 
   DataMapper.setup(:default, "postgres://localhost/lesquizerables_#{env}")
-  require './app/models/admin'
-  require './app/models/quiz'
-  require './app/models/question'
-  require './app/models/answer'
-  require './app/models/image'
+  Dir["./app/models/*.rb"].each {|file| require file }
   DataMapper.finalize
   DataMapper.auto_upgrade!
 
   enable :sessions
   set :session_secret, 'super secret'
-  
   set :views, Proc.new { File.join("./app/views") }
   set :public_folder, Proc.new { File.join(root, 'public') }
   set :static, true
 
-  register Sinatra::Twitter::Bootstrap::Assets
-
-  require './app/controllers/admins'
-  require './app/controllers/quizzes'
-  require './app/controllers/sessions'
-
-  require_relative 'helpers/application'
-  helpers ApplicationHelper
-
   use Rack::Flash
   use Rack::MethodOverride
+
+  register Sinatra::ConfigFile
+  config_file '../config/config.yml'
+
+  register Sinatra::Twitter::Bootstrap::Assets
+
+  Dir["./app/controllers/*.rb"].each {|file| require file }
+  require_relative 'helpers/application'
+  helpers ApplicationHelper
 
   get '/' do
     haml :index

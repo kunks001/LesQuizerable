@@ -18,4 +18,24 @@ module ApplicationHelper
     end
   end
 
+  def upload(file,filename)
+    awskey     = settings.access_key_id
+    awssecret  = settings.secret_access_key
+    bucket     = 'MakersQuizApp'
+
+    AWS::S3::Base.establish_connection!(
+      :access_key_id     => awskey,
+      :secret_access_key => awssecret
+    )
+    
+    ok_response = AWS::S3::S3Object.store(
+      filename,
+      open(file.path),
+      bucket,
+      :access => :public_read
+    ).response
+
+    ok_response
+  end
+
 end

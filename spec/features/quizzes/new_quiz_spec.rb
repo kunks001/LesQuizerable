@@ -37,13 +37,13 @@ feature "Making a new Quiz" do
     expect(page).to have_image "https://s3.amazonaws.com/MakersQuizApp/image.jpg"
   end
 
-  scenario 'with multiple questions', :js => true do
-    sign_in('test@test.com', 'foobar')
-    visit '/quizzes/new'
-    expect(page.all(".question").count).to eq 1
-    click_button 'Add Question'
-    expect(page.all(".question").count).to eq 2
-  end
+  # scenario 'with multiple questions', :js => true do
+  #   sign_in('test@test.com', 'foobar')
+  #   visit '/quizzes/new'
+  #   expect(page.all(".question").count).to eq 1
+  #   click_button 'Add Question'
+  #   expect(page.all(".question").count).to eq 2
+  # end
 
 
 end
