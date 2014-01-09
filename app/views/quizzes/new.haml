@@ -12,16 +12,19 @@
       .answer
         %label Answer
         %input{type: "text", "..." => "", name: "[question][0][answer][0][response]"}
+        %input{type: "file", name: "[question][0][answer][0][file]", value: "", id: "answer_image"}
         %label Correct Answer?
         %input{type: "checkbox", name: "question[0][answer][0][correctness]"}
       .answer
         %label Answer
         %input{type: "text", "..." => "", name: "[question][0][answer][1][response]"}
+        %input{type: "file", name: "[question][0][answer][1][file]", value: "", id: "answer_image"}
         %label Correct Answer?
         %input{type: "checkbox", name: "question[0][answer][1][correctness]"}
       .answer
         %label Answer
         %input{type: "text", "..." => "", name: "[question][0][answer][2][response]"}
+        %input{type: "file", name: "[question][0][answer][2][file]", value: "", id: "answer_image"}
         %label Correct Answer?
         %input{type: "checkbox", name: "question[d][answer][2][correctness]"}
     .question

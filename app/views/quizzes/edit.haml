@@ -8,10 +8,10 @@
     - q_num = 0
     .question
       %label Question
-      %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][question_text]", value: "#{question.keys.first.question_text}"}
+      %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][question_text]", value: "#{question.keys.first.question_text}", class: "question_input"}
       .answer
         - answers = question.values.flatten!
         - answers.each do |answer|
-          %label Answer
-          %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][answer][#{answer.id}][response]", value: "#{answer.response}"}
+          %label Answers
+          %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][answer][#{answer.id}][response]", value: "#{answer.response}", class: "answer_input"}
   %input{type: "submit", value: "Submit"}

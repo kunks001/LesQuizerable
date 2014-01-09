@@ -37,6 +37,18 @@ feature "Making a new Quiz" do
     expect(page).to have_image "https://s3.amazonaws.com/MakersQuizApp/image.jpg"
   end
 
+  scenario 'with a picture answer' do
+    sign_in('test@test.com', 'foobar')
+    visit '/quizzes/new'
+    fill_in 'title', with: 'Awesome Quiz!'
+    first('.question').fill_in '[question][0][question_text]', :with => 'Great question'
+    attach_file('answer_image',File.join(File.dirname(__FILE__), 'images/answer-image.jpg'))
+    click_button 'Submit'
+    expect(current_path).to eq '/quizzes'
+    click_link 'Awesome Quiz!'
+    expect(page).to have_image "https://s3.amazonaws.com/MakersQuizApp/answer-image.jpg"
+  end
+
   # scenario 'with multiple questions', :js => true do
   #   sign_in('test@test.com', 'foobar')
   #   visit '/quizzes/new'

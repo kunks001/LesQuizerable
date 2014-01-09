@@ -32,4 +32,5 @@ feature 'editing a quiz' do
     expect(page).to have_content 'Great question'
     expect(page).to have_content 'answer'
   end
+  
 end
