@@ -17,3 +17,13 @@
 //       });
 //      });
 // })
+
+// $(function() {
+$(document).ready(function() {
+  $(".add_question").click(function(event){
+    event.preventDefault(); 
+    var Target = $('.question:last');
+    var CloneTarget = $(Target).clone();
+    $('#questions').append(CloneTarget);
+  });
+});

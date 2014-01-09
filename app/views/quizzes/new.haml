@@ -11,25 +11,26 @@
 %form{action: '/quizzes/new', method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
   %label Title
   %input{type: "text", "..." => "", name: "title"} 
-  .question
-    %label Question
-    %input{type: "text", "..." => "", name: "[question][0][question_text]"}
-    %input{type: "file", name: "[question][0]file", value: "", id: "file"}
-    .answer
-      %label Answer
-      %input{type: "text", "..." => "", name: "[question][0][answer][0][response]"}
-      %label Correct Answer?
-      %input{type: "checkbox", name: "question[0][answer][0][correctness]"}
-    .answer
-      %label Answer
-      %input{type: "text", "..." => "", name: "[question][0][answer][1][response]"}
-      %label Correct Answer?
-      %input{type: "checkbox", name: "question[0][answer][1][correctness]"}
-    .answer
-      %label Answer
-      %input{type: "text", "..." => "", name: "[question][0][answer][2][response]"}
-      %label Correct Answer?
-      %input{type: "checkbox", name: "question[d][answer][2][correctness]"}
+  #questions
+    .question
+      %label Question
+      %input{type: "text", "..." => "", name: "[question][0][question_text]"}
+      %input{type: "file", name: "[question][0]file", value: "", id: "file"}
+      .answer
+        %label Answer
+        %input{type: "text", "..." => "", name: "[question][0][answer][0][response]"}
+        %label Correct Answer?
+        %input{type: "checkbox", name: "question[0][answer][0][correctness]"}
+      .answer
+        %label Answer
+        %input{type: "text", "..." => "", name: "[question][0][answer][1][response]"}
+        %label Correct Answer?
+        %input{type: "checkbox", name: "question[0][answer][1][correctness]"}
+      .answer
+        %label Answer
+        %input{type: "text", "..." => "", name: "[question][0][answer][2][response]"}
+        %label Correct Answer?
+        %input{type: "checkbox", name: "question[d][answer][2][correctness]"}
   / .question
   /   %label Question
   /   %input{type: "text", "..." => "", name: "[question][1][question_text]"}
@@ -67,3 +68,6 @@
   /     %label Correct Answer?
   /     %input{type: "checkbox", name: "question[2][answer][2][correctness]"}
   %input{type: "submit", value: "Submit"}
+
+%button{ class: "add_question", value: "Add Question"}
+  Add Question

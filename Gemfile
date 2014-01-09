@@ -23,5 +23,6 @@ group :test do
   gem 'capybara'
   gem 'factory_girl'
   gem 'launchy'
+  gem 'selenium-webdriver'
   
 end
