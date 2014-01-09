@@ -16,29 +16,23 @@ class QuizApp < Sinatra::Base
     end
 
     post '/new' do
-      if current_admin.super_admin?
-        @admin = Admin.new(:email => params[:email], 
-                  :password => params[:password],
-                  :password_confirmation => params[:password_confirmation]
-                  )
-        if @admin.save
-          redirect to('/')
-        else  
-          flash.now[:errors] = @admin.errors.full_messages
-          haml :"admins/new"
-        end
-      else 
-        redirect to '/quizzes'
+      redirect to '/quizzes' unless current_admin.super_admin?
+      @admin = Admin.new(:email => params[:email], 
+                :password => params[:password],
+                :password_confirmation => params[:password_confirmation]
+                )
+      if @admin.save
+        redirect to('/')
+      else  
+        flash.now[:errors] = @admin.errors.full_messages
+        haml :"admins/new"
       end
     end
 
     get '/:id/edit' do
-      if (current_admin.super_admin? || (current_admin.id == params[:id].to_i))
-        @admin = Admin.get(params[:id])
-        haml :"admins/edit"
-      else
-        redirect to '/sessions/new'
-      end
+      redirect to '/sessions/new' unless editable_by_admin_with(params[:id])
+      @admin = Admin.get(params[:id])
+      haml :"admins/edit"
     end
 
     put '/:id/edit' do
@@ -51,7 +45,6 @@ class QuizApp < Sinatra::Base
       if admin
         user = Admin.get!(params[:id])
         update_admin(user,email,password,password_confirmation)
-
         if user.save
           flash[:notice] = 'Your details have been successfully updated'
           redirect to('/')
@@ -74,7 +67,7 @@ class QuizApp < Sinatra::Base
     end
   
   end
-  
+
   get '/reset-session' do
     session[:admin_id] = nil
   end
