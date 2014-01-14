@@ -7,6 +7,10 @@ class Quiz
   property :id, Serial
   property :title, String
 
+  def correct_answer_ids
+    questions.map { |q| q.correct_answer.first.id }
+  end
+
   def upload_image(value)
     file  = value["file"][:tempfile]
     filename = value["file"][:filename]

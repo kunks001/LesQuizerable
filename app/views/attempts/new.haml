@@ -1,0 +1,11 @@
+%form{action: "/attempts/#{@quiz.id}", method: "POST"}
+  - @quiz.questions.each do |question|
+    = question.query
+    - if question.image
+      - image = question.image.filename
+      %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
+    - question.answers.each do |answer|
+      %label
+        = answer.response
+        %input{type: "radio", name: "answer_ids[#{question.id}]", value: "#{answer.id}"}
+  %input{type: "submit", value: "Submit"}
