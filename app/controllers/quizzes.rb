@@ -17,7 +17,7 @@ class QuizApp < Sinatra::Base
     post '/new' do
       quiz = Quiz.new(:title => params[:title])
       hash = params[:question]
-      save_questions_and_answers(hash,quiz)
+      quiz.save_questions_and_answers(hash,quiz)
       if quiz.save
         redirect to '/quizzes'
       else
@@ -37,7 +37,7 @@ class QuizApp < Sinatra::Base
       quiz = Quiz.get(params[:id])
       quiz.update(:title => params[:title])
       hash = params[:question]
-      edit_questions_and_answers(hash,quiz)
+      quiz.edit_questions_and_answers(hash,quiz)
       if quiz.save
         redirect to '/quizzes'
       else

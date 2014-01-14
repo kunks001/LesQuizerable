@@ -32,5 +32,17 @@ feature 'editing a quiz' do
     expect(page).to have_content 'Great question'
     expect(page).to have_content 'answer'
   end
+
+  scenario 'with a picture question' do
+    sign_in('test@test.com', 'foobar')
+    visit '/quizzes'
+    click_link 'Edit'
+    fill_in 'title', with: 'Awesome Quiz!'
+    first('.question').attach_file('file',File.join(File.dirname(__FILE__), 'images/edited-image.jpg'))
+    click_button 'Submit'
+    expect(current_path).to eq '/quizzes'
+    click_link 'Awesome Quiz!'
+    expect(page).to have_image "https://s3.amazonaws.com/MakersQuizApp/edited-image.jpg"
+  end
   
 end
