@@ -1,10 +1,10 @@
 class Quiz
 
-	include DataMapper::Resource
+  include DataMapper::Resource
 
-	has n, :questions, :through => Resource, constraint: :destroy
+  has n, :questions, :through => Resource, constraint: :destroy
 
-	property :id, Serial
+  property :id, Serial
   property :title, String
 
   def upload_image(value)
@@ -40,39 +40,36 @@ class Quiz
     end
   end
 
+  def prepare_to_update_image(q,value)
+    upload_image(value)
+    update_or_create_image(q,value)
+  end
+
+  def update_or_create_image(q,value)
+    if q.image
+      q.image.update(:filename => value["file"][:filename])
+    else
+      q.image = Image.create(:filename => value["file"][:filename])
+    end
+  end
+
+  def update_answers(answers)
+    answers.each do |key, value|
+      answer = Answer.get(key.to_i)
+      r = value["response"]
+      answer.update(:response => r)
+      prepare_to_update_image(answer, value) if value["file"]
+    end
+  end
+
   def edit_questions_and_answers(hash,quiz)
     hash.each do |key, value|
-      @q = Question.get(key.to_i)
-      @q.update(:question_text => value["question_text"])
-      if value["file"]
-        upload_image(value)
-        if @q.image
-       		@q.image.update(:filename => filename)
-       	else
-       		@q.image = Image.create(:filename => value["file"][:filename])
-       	end
+      q = Question.get(key.to_i)
+      q.update(:question_text => value["question_text"])
+      prepare_to_update_image(q,value) if value["file"]
+      if q.save
+        update_answers(value["answer"])
       end
-      if @q.save
-	      answers = value["answer"]
-	      answers.each do |key, value|
-	        @answer = Answer.get(key.to_i)
-	        r = value["response"]
-	        if value["file"]
-	          upload_image(value)
-	          if @answer.image
-	            @answer.image.update(:filename => filename)
-	            @answer.save
-	            @answer.update(:response => r)
-	          else
-	            @answer.image = Image.create(:filename => filename)
-	            @answer.save
-	            @answer.update(:response => r)
-	          end
-	        end
-	      end
-	    else
-	    	puts "failure!"
-	    end
     end
   end
 
