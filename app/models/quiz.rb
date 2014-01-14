@@ -7,28 +7,30 @@ class Quiz
 	property :id, Serial
   property :title, String
 
+  def upload(value)
+    file  = value["file"][:tempfile]
+    filename = value["file"][:filename]
+    ApplicationHelper::upload(file, filename)
+  end
+
 
   def save_questions_and_answers(hash,quiz)
     hash.each do |key, value|
       text = value["question_text"]
       @q = Question.new(question_text: text)
       if value["file"]
-        file  = value["file"][:tempfile]
-        filename = value["file"][:filename]
-        ApplicationHelper::upload(file, filename)
+        upload(value)
+        @q.image = Image.create(:filename => value["file"][:filename])
       end
-      @q.image = Image.create(:filename => filename)
       answers = value["answer"]
       answers.each do |key, value|
-        if value["file"]
-          file  = value["file"][:tempfile]
-          filename = value["file"][:filename]
-          ApplicationHelper::upload(file, filename)
-        end
         r = value["response"]
         value["correctness"] == "on" ? c = true : c = false
         @a = Answer.new(:response => r, :correctness => c)
-        @a.image = Image.create(:filename => filename)
+        if value["file"]
+          upload(value)
+          @a.image = Image.create(:filename => value["file"][:filename])
+        end
         @q.answers << @a
       end
       quiz.questions << @q
