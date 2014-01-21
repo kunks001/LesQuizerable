@@ -19,7 +19,8 @@
   .row
     %div{class: "span8 offset2 quiz_snippet"}
       - q = quiz.questions.first
-      = q.question_text
-      - if q.image
-        - image = q.image.filename
-        %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
+      - if q
+        = q.question_text
+        - if q.image
+          - image = q.image.filename
+          %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}

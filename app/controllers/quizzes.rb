@@ -15,21 +15,11 @@ class QuizApp < Sinatra::Base
     end
 
     post '/new' do
-      params[:displayed] == "on" ? c = true : c = false
-
-      if c == true
-        q = Quiz.first(:displayed => true)
-        if q
-          q.update(:displayed => false)
-          q.save
-        end
-      end
-
-      quiz = Quiz.new(:title => params[:title], 
-                      :displayed => c)
+      quiz = Quiz.new(:title => params[:title])
       hash = params[:question]
       quiz.save_questions_and_answers(hash,quiz)
       if quiz.save
+        quiz.show_on_homepage(Quiz.all) if params[:displayed] == "on"
         redirect to '/quizzes'
       else
         flash.now[:errors] = ["Sorry, your Quiz was unable to save. Please try again"]
@@ -45,21 +35,11 @@ class QuizApp < Sinatra::Base
     end
 
     post '/:id/edit' do
-      params[:displayed] == "on" ? c = true : c = false
-
-      if c == true
-        q = Quiz.first(:displayed => true)
-        if q
-          q.update(:displayed => false)
-          q.save
-        end
-      end
-
       quiz = Quiz.get(params[:id])
-      quiz.update(:title => params[:title],
-                  :displayed => true)
+      quiz.update(:title => params[:title])
       hash = params[:question]
       quiz.edit_questions_and_answers(hash,quiz)
+      quiz.show_on_homepage(Quiz.all) if params[:displayed] == "on"
       if quiz.save
         redirect to '/quizzes'
       else
