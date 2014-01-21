@@ -1,6 +1,6 @@
-%h2 
-  New Quiz
 .col-md-8.col-md-offset-2
+  %h2 
+    New Quiz
   %form{action: '/quizzes/new', method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
     %ul
       %li
@@ -21,8 +21,6 @@
           %input{type: "file", name: "[question][0]file", value: "", id: "file"}
         .answer
           %ul
-            %li
-              %label Answer
             %li 
               %input{type: "text", "..." => "", name: "[question][0][answer][0][response]", class: "answer_text"}
           .file_input
@@ -34,8 +32,6 @@
         .answer
           %ul
             %li
-              %label Answer
-            %li
               %input{type: "text", "..." => "", name: "[question][0][answer][1][response]", class: "answer_text"}
           .file_input
             %input{type: "file", name: "[question][0][answer][1][file]", value: ""}
@@ -46,8 +42,6 @@
         .answer
           %ul
             %li
-              %label Answer
-            %li
               %input{type: "text", "..." => "", name: "[question][0][answer][2][response]", class: "answer_text"}
           .file_input
             %input{type: "file", name: "[question][0][answer][2][file]", value: ""}
@@ -55,7 +49,10 @@
             %label Correct Answer?
           .correct_answer_checkbox
           %input{type: "checkbox", name: "question[0][answer][2][correctness]"}
-    %input{type: "submit", value: "Submit"}
-
-  %button{ class: "add_question", value: "Add Question"}
-    Add Question
+        .add_answer_container
+          %button{ type: "button", class: "add_answer btn btn-primary", value: "Add Answer"}
+            Add Answer
+    .add_question_container
+      %button{ type: "button", class: "add_question btn btn-primary", value: "Add Question"}
+        Add Question
+    %input{type: "submit", value: "Create Quiz!", class: "btn btn-success create_quiz"}

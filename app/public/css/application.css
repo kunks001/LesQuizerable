@@ -35,8 +35,9 @@ body {
 }
 
 #padding {
-  height: 50px;
+  height: 60px;
   width: 100%;
+  background-color: white;
 }
 
 .nav>li {
@@ -46,27 +47,33 @@ body {
 
 .white_background {
   width: 100%;
-  height: 100%;
+  height: 90px;
   background-color: white;
+  overflow: visible;
 }
 
 
 /*NEW QUIZ FORM*/
 
 #title {
-  width: 60%;
+  width: 80%;
 }
 
 .quiz_title {
-  font-size: 22;
+  font-size: 28;
 }
 
-#questions {
+/*#questions {
   margin-top: 20px;
-}
+}*/
 
 .question {
   margin-left: 10%;
+  margin-top: 20px;
+}
+
+.question label {
+  font-size: 24;
 }
 
 .question label {
@@ -74,7 +81,7 @@ body {
 }
 
 .question_text {
-  width: 66.666%;
+  width: 88.888%;
   display: inline-block;
   /*margin-left: 10%;*/
 }
@@ -83,20 +90,47 @@ body {
   display: inline-block;
 }
 
-.correct_answer {
-  display: inline-block;
-  white-space:nowrap;  
-}
-
 .correct_answer_checkbox {
   display: inline-block;
 }
 
 .answer {
   margin-top: 15px;
-  margin-left: 10%;
+  margin-left: 11.111%;
+}
+
+.answer label {
+  font-size: 20
+}
+
+
+.correct_answer {
+  display: inline-block;
+  white-space:nowrap;  
+}
+
+.correct_answer label {
+  font-size: 12;
 }
 
 .answer_text {
-  width: 75%;
+  width: 100%;
 }
+
+.add_answer {
+  margin-top: 20px;
+  width: 22.2222%;
+  margin-left: 11.1111%;
+}
+
+.add_question {
+  margin-top: 20px;
+  width: 20%;
+  margin-left: 10%;
+}
+
+.create_quiz {
+  margin-top: 20px;
+  width: 20%;
+}
+
