@@ -43,6 +43,8 @@ $(document).ready(function() {
     var CloneTarget = $(Target).clone();
     console.log(CloneTarget)
 
+// DOESN'T WORK!!!
+
     CloneTarget.find('input, select').attr('name', function(i, val) {
         return val.replace(/\d+/, function(n) {
             return ++n;
