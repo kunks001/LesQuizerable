@@ -1,6 +1,5 @@
 require 'sinatra/base'
 require 'haml'
-require 'sinatra/twitter-bootstrap'
 require 'data_mapper'
 require 'dm-postgres-adapter'
 require 'rack-flash'
@@ -33,8 +32,6 @@ class QuizApp < Sinatra::Base
 
   register Sinatra::ConfigFile
   config_file '../config/config.yml'
-
-  register Sinatra::Twitter::Bootstrap::Assets
   register Sinatra::Namespace
 
   Dir["./app/controllers/*.rb"].each {|file| require file }

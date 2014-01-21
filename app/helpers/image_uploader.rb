@@ -21,6 +21,6 @@ module ImageUploadHelper
         :access => :public_read
       ).response
       ok_response
-    end
+    end 
   end
 end
