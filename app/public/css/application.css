@@ -6,7 +6,7 @@ body {
   line-height: 30px;
 }
 
-/*NAV BAR*/
+/****************** NAV BAR *********************/
 
 .nav {
   padding-top: 10px;
@@ -59,31 +59,26 @@ body {
   width: 80%;
 }
 
-.quiz_title {
+.quiz_title_field {
   font-size: 28;
 }
 
-/*#questions {
-  margin-top: 20px;
-}*/
-
-.question {
+.question_fields {
   margin-left: 10%;
   margin-top: 20px;
 }
 
-.question label {
+.question_fields label {
   font-size: 24;
 }
 
-.question label {
+.question_fields label {
   width: 10%;
 }
 
 .question_text {
   width: 88.888%;
   display: inline-block;
-  /*margin-left: 10%;*/
 }
 
 .file_input {
@@ -94,15 +89,14 @@ body {
   display: inline-block;
 }
 
-.answer {
+.answer_fields {
   margin-top: 15px;
   margin-left: 11.111%;
 }
 
-.answer label {
+.answer_fields label {
   font-size: 20
 }
-
 
 .correct_answer {
   display: inline-block;
@@ -134,3 +128,50 @@ body {
   width: 20%;
 }
 
+/*********************** SHOW QUIZ PAGE ********************/
+
+.quiz_title {
+  text-align: center;
+  font-size: 40;
+  padding-bottom: 30px;
+}
+
+.show_quiz img {
+  width: 100%;
+}
+
+.show_question_text {
+  text-align: center;
+  font-size: 25;
+}
+
+.show_answer {
+  width: 33%;
+  padding: 1%;
+  position: relative;
+  float: left;
+}
+
+.show_answer_image {
+  width: 100%;
+}
+
+.show_answer_text {
+  font-size: 14;
+}
+
+.edit_and_delete_buttons {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.edit_button {
+  display: inline-block;
+  padding: 1%;
+}
+
+.delete_button {
+  display: inline-block;
+  padding: 1%;
+}

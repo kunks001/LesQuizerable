@@ -21,8 +21,7 @@
 $(document).ready(function() {
   $(".add_question").click(function(event){
     event.preventDefault(); 
-    var Target = $('.question:last');
-    console.log(Target)
+    var Target = $('.question_fields:last');
     var CloneTarget = $(Target).clone();
 
     CloneTarget.find('input, select').attr('name', function(i, val) {
@@ -38,10 +37,8 @@ $(document).ready(function() {
 $(document).ready(function() {
   $(".add_answer").click(function(){
     event.preventDefault(); 
-    var Target = $(this).parent().parent().children(".answer").last();
-    console.log(Target)
+    var Target = $(this).parent().parent().children(".answer_fields").last();
     var CloneTarget = $(Target).clone();
-    console.log(CloneTarget)
 
 // DOESN'T WORK!!!
 

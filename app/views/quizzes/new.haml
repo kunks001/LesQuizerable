@@ -4,14 +4,14 @@
   %form{action: '/quizzes/new', method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
     %ul
       %li
-        %label.quiz_title Title
+        %label.quiz_title_field Title
       %li
         %input{type: "text", "..." => "", name: "title", id: "title"}
       %li
         %label Display Quiz on Landing Page?
         %input{type: "checkbox", name: "displayed"}
     #questions
-      .question
+      .question_fields
         %ul
           %li
             %label Question
@@ -19,7 +19,7 @@
             %input{type: "text", "..." => "", name: "[question][0][question_text]", class: "question_text"}
         .file_input
           %input{type: "file", name: "[question][0]file", value: "", id: "file"}
-        .answer
+        .answer_fields
           %ul
             %li 
               %input{type: "text", "..." => "", name: "[question][0][answer][0][response]", class: "answer_text"}
@@ -29,7 +29,7 @@
             %label Correct Answer?
           .correct_answer_checkbox
             %input{type: "checkbox", name: "question[0][answer][0][correctness]"}
-        .answer
+        .answer_fields
           %ul
             %li
               %input{type: "text", "..." => "", name: "[question][0][answer][1][response]", class: "answer_text"}
@@ -39,7 +39,7 @@
             %label Correct Answer?
           .correct_answer_checkbox
           %input{type: "checkbox", name: "question[0][answer][1][correctness]"}
-        .answer
+        .answer_fields
           %ul
             %li
               %input{type: "text", "..." => "", name: "[question][0][answer][2][response]", class: "answer_text"}
