@@ -19,7 +19,7 @@ class QuizApp < Sinatra::Base
   delete '/sessions' do
     session[:admin_id] = nil
     flash[:notice] = "Good bye!"
-    redirect to '/'
+    redirect to '/quizzes'
   end
   
 end

@@ -1,12 +1,25 @@
-%h2
-  Quizzes
+.row
+  %div{class: "span8 offset2"}
+    %h2
+      Quizzes
 
 - @quizzes.each do |quiz|
-  .quiz
-    %a{href: "quizzes/#{quiz.id}"} 
-      = quiz.title
-    %a{ href: "quizzes/#{quiz.id}/edit", class: "edit" } Edit
-    %form{method: "post", action: "/quizzes"}
-      %input{type: "hidden", name: "_method", value: "delete"}
-      %input{type: "hidden", name: "quiz_id", value: "#{quiz.id}"}
-      %input{type: "submit", value: "Delete Quiz"}
+  .row
+    %div{class: "span8 offset2"}
+      .quiz
+        %a{href: "quizzes/#{quiz.id}", class: "quiz_link"} 
+          %h1
+            = quiz.title
+        .buttons
+          %a{ href: "quizzes/#{quiz.id}/edit", class: "edit" } Edit
+          %form{method: "post", action: "/quizzes"}
+            %input{type: "hidden", name: "_method", value: "delete"}
+            %input{type: "hidden", name: "quiz_id", value: "#{quiz.id}"}
+            %input{type: "submit", value: "Delete Quiz", class: "delete"}
+  .row
+    %div{class: "span8 offset2 quiz_snippet"}
+      - q = quiz.questions.first
+      = q.question_text
+      - if q.image
+        - image = q.image.filename
+        %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}

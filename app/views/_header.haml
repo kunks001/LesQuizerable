@@ -17,7 +17,7 @@
                 / - if current_admin
                 %form{method: "post", action: "/sessions"}
                   %input{type: "hidden", name: "_method", value: "delete"}
-                  %input{type: "submit", value: "Sign out"}
+                  %input.nav{type: "submit", value: "Sign out"}
             - else
               %li
                 %a.nav(href="/sessions/new")
