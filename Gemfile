@@ -12,6 +12,7 @@ gem 'rack-flash3'
 gem 'aws-s3'
 gem 'sinatra-contrib'
 gem 'activesupport'
+gem 'sinatra-partial'
 
 group :develment do
 	gem 'shotgun'

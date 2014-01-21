@@ -1,8 +1,78 @@
-Please sign in.
+#padding
+.row
+  %div{class: "span6 offset3"}
+    %form{method: "post", action: "/sessions"}
+      %fieldset{class: "inset-inputs text-left"}
+        %legend
+          %span{class: "indicator"}
+            Sign In
+        %div{class: "control-group string required"}
+          %label{class: "string required control-label", for: "email"}
+            Email
+        %div{class: "controls"}
+          %input{class: "string required", size: "50", type: "text", name: 'email'}
 
-%form{method: "post", action: "/sessions"}
-  Email: 
-  %input{type: "text", name: 'email'}
-  Password: 
-  %input{type: "password", name: 'password'}
-  %input{type: "submit", value: "Sign in"}
+        %div{class: "control-group string required"}
+          %label{class: "string required control-label", for: "email"}
+            Password
+        %div{class: "controls"}
+          %input{class: "string required", size: "50", type: "password", name: 'password'}
+
+          / Password: 
+          / %input{type: "password", name: 'password'}
+        %input{type: "submit", value: "Sign in"}
+
+/       <fieldset class="inset-inputs text-left">
+/       <legend>
+/       <span class="indicator">
+/       1</span>
+/        Your details</legend>
+/        <div class="control-group string required">
+/       <label class="string required control-label" for="application_first_name">
+/       First name</label>
+/       <div class="controls">
+/       <input class="string required" id="application_first_name" name="application[first_name]" size="50" type="text">
+/       </div>
+/       </div>
+
+/ <div class="control-group string required">
+/ <label class="string required control-label" for="application_last_name">
+/ Last name</label>
+/ <div class="controls">
+/ <input class="string required" id="application_last_name" name="application[last_name]" size="50" type="text">
+/ </div>
+/ </div>
+
+/ <div class="control-group tel required">
+/ <label class="tel required control-label" for="application_phone">
+/ Phone</label>
+/ <div class="controls">
+/ <input class="string tel required" id="application_phone" name="application[phone]" size="50" type="tel">
+/ </div>
+/ </div>
+
+/ <div class="control-group email required">
+/ <label class="email required control-label" for="application_email">
+/ Email</label>
+/ <div class="controls">
+/ <input class="string email required" id="application_email" name="application[email]" size="50" type="email">
+/ </div>
+/ </div>
+
+/ <div class="control-group string optional">
+/ <label class="string optional control-label" for="application_twitter_handle">
+/ Twitter</label>
+/ <div class="controls">
+/ <input class="string optional" id="application_twitter_handle" name="application[twitter_handle]" size="50" type="text">
+/ </div>
+/ </div>
+
+/ <div class="control-group string optional">
+/ <label class="string optional control-label" for="application_dob">
+/ Birthday</label>
+/ <div class="controls">
+/ <input class="string optional" id="application_dob" name="application[dob]" placeholder="dd/mm/yyyy" size="50" type="text">
+/ </div>
+/ </div>
+
+/ </fieldset>

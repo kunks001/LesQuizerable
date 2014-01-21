@@ -9,6 +9,7 @@ require "sinatra/base"
 require "sinatra/config_file"
 require "sinatra/namespace"
 require 'active_support/core_ext/hash'
+require 'sinatra/partial'
 
 class QuizApp < Sinatra::Base
   env = ENV["RACK_ENV"] || "development"
@@ -23,6 +24,9 @@ class QuizApp < Sinatra::Base
   set :views, Proc.new { File.join("./app/views") }
   set :public_folder, Proc.new { File.join(root, 'public') }
   set :static, true
+  set :partial_template_engine, :haml
+
+  register Sinatra::Partial
 
   use Rack::Flash
   use Rack::MethodOverride
