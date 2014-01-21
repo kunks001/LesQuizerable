@@ -1,5 +1,11 @@
 module ImageUploadHelper  
-  class << self 
+  class << self
+    def prepare_and_upload_image(value)
+      file  = value["file"][:tempfile]
+      filename = value["file"][:filename]
+      upload(file, filename)
+    end
+
     def upload(file,filename)
       awskey     = QuizApp.settings.access_key_id
       awssecret  = QuizApp.settings.secret_access_key
@@ -15,12 +21,6 @@ module ImageUploadHelper
         :access => :public_read
       ).response
       ok_response
-    end
-
-    def prepare_and_upload_image(value)
-      file  = value["file"][:tempfile]
-      filename = value["file"][:filename]
-      upload(file, filename)
     end
   end
 end
