@@ -12,6 +12,7 @@ gem 'aws-s3'
 gem 'sinatra-contrib'
 gem 'activesupport'
 gem 'sinatra-partial'
+gem 'sinatra-jsonp'
 
 group :develment do
 	gem 'shotgun'

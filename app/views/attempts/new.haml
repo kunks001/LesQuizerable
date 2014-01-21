@@ -1,15 +1,26 @@
-%form{action: "/attempts/#{@quiz.id}", method: "POST"}
-  = @quiz.title
-  - @quiz.questions.each do |question|
-    = question.question_text
-    - if question.image
-      - image = question.image.filename
-      %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
-    - question.answers.each do |answer|
-      %label
-        = answer.response
-        %input{type: "radio", name: "answer_ids[#{question.id}]", value: "#{answer.id}"}
-        - if answer.image
-          - image = answer.image.filename
-          %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
-  %input{type: "submit", value: "Submit"}
+.col-md-12
+  %form{id: "attempts_form", name: "/attempts/#{@quiz.id}"}
+    .show_quiz
+      .quiz_title
+        = @quiz.title
+      - @quiz.questions.each do |question|
+        - if question.image
+          .row
+            .col-md-6.col-md-offset-3
+              - image = question.image.filename
+              %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
+        .show_question_text
+          = question.question_text
+        .col-md-10.col-md-offset-1
+          - question.answers.each do |answer|
+            .show_answer
+              - if answer.image
+                - image = answer.image.filename
+                %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
+              %label
+                = answer.response
+                %input{type: "radio", name: "answer_ids[#{question.id}]", value: "#{answer.id}"}
+    .col-md-12
+      .edit_and_delete_buttons
+        %input{type: "submit", value: "Submit", class: "btn btn-success", id: "submit_quiz"}
+      #user_score

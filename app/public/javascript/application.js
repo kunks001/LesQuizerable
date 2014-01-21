@@ -1,22 +1,26 @@
-// $(document).ready(function() {
-// $(".submit_password").click(function() {
-//         var id = $(this).attr('id');
-//         var newdesignation =  $('#newdesignation'+ id).val();
-//         var newcompany =  $('#newcompany'+ id).val();
-//         var newphone = $('#newphone'+ id).val();
-//         var newemail = $('#newemail'+ id).val();
-//         var newremarks = $('#newremarks'+ id).val();
-//         $.ajax({
-//         type: "GET",
-//         url: "/update/data",
-//         data: { 'id' : id, 'designation' : newdesignation, 'company' : newcompany, 'phone' : newphone,  'email' : newemail,  'remarks' : newremarks },
-//         success: function(){
-//         window.location.reload();
-//         }
+$(document).ready(function() {
+  $("form#attempts_form").on('submit', function(event) {
+    event.preventDefault();
 
-//       });
-//      });
-// })
+    $form = $(this).closest( '#attempts_form' );
+    // alert('the action is: ' + $form.attr('action'));
+
+    $.ajax({
+      url: $form.attr('name'),
+      dataType: "json",
+      data: $("#attempts_form").serialize(),
+      type: "POST",
+      success: function( score ){
+      // window.location.reload();
+        // alert( msg )
+        document.getElementById('user_score').innerHTML = score
+      },
+      error: function(){
+        alert("Not Successful")
+      }
+    });
+  });
+});
 
 $(document).ready(function() {
   $(".add_question").click(function(event){

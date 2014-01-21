@@ -9,6 +9,8 @@ require "sinatra/config_file"
 require "sinatra/namespace"
 require 'active_support/core_ext/hash'
 require 'sinatra/partial'
+require "sinatra/jsonp"
+require 'json'
 
 class QuizApp < Sinatra::Base
   env = ENV["RACK_ENV"] || "development"
@@ -39,13 +41,15 @@ class QuizApp < Sinatra::Base
   require_relative 'helpers/application'
   helpers ImageUploadHelper
   helpers ApplicationHelper
+  helpers Sinatra::Jsonp
 
   get '/' do
     @quiz = Quiz.first(:displayed => true)
     if @quiz
-      redirect to "/attempts/#{@quiz.id}/new"
+      haml :"attempts/new"
+    else
+      haml :"quizzes/no_quiz"
     end
-    haml :index
   end
   
   # start the server if ruby file executed directly
