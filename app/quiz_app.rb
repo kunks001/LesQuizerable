@@ -38,6 +38,8 @@ class QuizApp < Sinatra::Base
   helpers ApplicationHelper
 
   get '/' do
+    @quiz = Quiz.first(:displayed => true)
+    redirect to "/attempts/#{@quiz.id}/new"
     haml :index
   end
   

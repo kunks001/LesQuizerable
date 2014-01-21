@@ -2,6 +2,7 @@ class QuizApp < Sinatra::Base
  
   get '/attempts/:id/new' do
     @quiz = Quiz.get(params[:id])
+    # @questions = @quiz.questions
     haml :"attempts/new"
   end
  

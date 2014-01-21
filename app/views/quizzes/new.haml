@@ -4,6 +4,8 @@
 %form{action: '/quizzes/new', method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
   %label Title
   %input{type: "text", "..." => "", name: "title"} 
+  %label Display Quiz on Landing Page?
+  %input{type: "checkbox", name: "displayed"}
   #questions
     .question
       %label Question
@@ -26,7 +28,7 @@
         %input{type: "text", "..." => "", name: "[question][0][answer][2][response]"}
         %input{type: "file", name: "[question][0][answer][2][file]", value: ""}
         %label Correct Answer?
-        %input{type: "checkbox", name: "question[d][answer][2][correctness]"}
+        %input{type: "checkbox", name: "question[0][answer][2][correctness]"}
   %input{type: "submit", value: "Submit"}
 
 %button{ class: "add_question", value: "Add Question"}

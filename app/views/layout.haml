@@ -3,7 +3,31 @@
     = bootstrap_assets
     %script{type: "text/javascript", src: "https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"}
     %script{src: "/javascript/application.js"}
+    %link(rel="stylesheet" type="text/css" href="/css/reset.css")
+    %link(rel="stylesheet" type="text/css" href="/css/application.css")
   %body
+    %header{class: "navbar navbar-fixed-top navbar-inverse"}
+      %div{class: "navbar-inner"}
+        %div{class: "container"}
+          / link_to "sample app", '#', id: "logo" %
+          %nav
+            %ul{class: "nav pull-right"}
+              - if current_admin
+                %li
+                  %a.nav(href="/quizzes")
+                    Quizzes
+                %li
+                  %a.nav(href="/quizzes/new")
+                    New Quiz
+                %li 
+                  / - if current_admin
+                  %form{method: "post", action: "/sessions"}
+                    %input{type: "hidden", name: "_method", value: "delete"}
+                    %input{type: "submit", value: "Sign out"}
+              - else
+                %li
+                  %a.nav(href="/sessions/new")
+                    Sign In
     - if flash[:errors] && !flash[:errors].empty?
       Sorry, there were the following problems with the form. 
       %ul{ id: "errors" }
@@ -15,7 +39,7 @@
     - if current_admin
       Welcome, 
       = current_admin.email
-      %form{method: "post", action: "/sessions"}
-        %input{type: "hidden", name: "_method", value: "delete"}
-        %input{type: "submit", value: "Sign out"}
+    /   %form{method: "post", action: "/sessions"}
+    /     %input{type: "hidden", name: "_method", value: "delete"}
+    /     %input{type: "submit", value: "Sign out"}
     = yield

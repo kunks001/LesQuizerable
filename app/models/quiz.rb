@@ -6,6 +6,7 @@ class Quiz
 
   property :id, Serial
   property :title, String
+  property :displayed, Boolean, :default => false
 
   def correct_answer_ids
     questions.map { |q| q.correct_answer.first.id }

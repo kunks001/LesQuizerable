@@ -4,6 +4,8 @@
 %form{action: "/quizzes/#{@quiz.id}/edit", method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
   %label Title
   %input{type: "text", "..." => "", name: "title", value: "#{@quiz.title}"}
+  %label Display Quiz on Landing Page?
+  %input{type: "checkbox", name: "displayed"}
   - @questions.each do |question|
     - q_num = 0
     .question

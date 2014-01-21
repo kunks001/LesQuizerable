@@ -1,6 +1,7 @@
 %form{action: "/attempts/#{@quiz.id}", method: "POST"}
+  = @quiz.title
   - @quiz.questions.each do |question|
-    = question.query
+    = question.question_text
     - if question.image
       - image = question.image.filename
       %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
@@ -8,4 +9,7 @@
       %label
         = answer.response
         %input{type: "radio", name: "answer_ids[#{question.id}]", value: "#{answer.id}"}
+        - if answer.image
+          - image = answer.image.filename
+          %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
   %input{type: "submit", value: "Submit"}

@@ -15,7 +15,18 @@ class QuizApp < Sinatra::Base
     end
 
     post '/new' do
-      quiz = Quiz.new(:title => params[:title])
+      params[:displayed] == "on" ? c = true : c = false
+
+      if c == true
+        q = Quiz.first(:displayed => true)
+        if q
+          q.update(:displayed => false)
+          q.save
+        end
+      end
+
+      quiz = Quiz.new(:title => params[:title], 
+                      :displayed => c)
       hash = params[:question]
       quiz.save_questions_and_answers(hash,quiz)
       if quiz.save
@@ -34,8 +45,19 @@ class QuizApp < Sinatra::Base
     end
 
     post '/:id/edit' do
+      params[:displayed] == "on" ? c = true : c = false
+
+      if c == true
+        q = Quiz.first(:displayed => true)
+        if q
+          q.update(:displayed => false)
+          q.save
+        end
+      end
+
       quiz = Quiz.get(params[:id])
-      quiz.update(:title => params[:title])
+      quiz.update(:title => params[:title],
+                  :displayed => true)
       hash = params[:question]
       quiz.edit_questions_and_answers(hash,quiz)
       if quiz.save
