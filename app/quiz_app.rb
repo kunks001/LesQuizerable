@@ -43,15 +43,6 @@ class QuizApp < Sinatra::Base
   helpers ApplicationHelper
   helpers Sinatra::Jsonp
 
-  get '/' do
-    @quiz = Quiz.first(:displayed => true)
-    if @quiz
-      haml :"attempts/new"
-    else
-      haml :"quizzes/no_quiz"
-    end
-  end
-  
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

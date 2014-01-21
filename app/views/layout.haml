@@ -7,7 +7,10 @@
     %link(rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css")
     %link(rel="stylesheet" type="text/css" href="/css/bootstrap.min.css")
   %body
-    = partial :_header
+    - if @homepage == true
+      = partial :_home_page_header
+    - else
+      = partial :_header
     #padding
     #content
       - if flash[:errors] && !flash[:errors].empty?
