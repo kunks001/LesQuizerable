@@ -12,14 +12,8 @@ class Quiz
     questions.map { |q| q.correct_answer.first.id }
   end
 
-  def upload_image(value)
-    file  = value["file"][:tempfile]
-    filename = value["file"][:filename]
-    ApplicationHelper::upload(file, filename)
-  end
-
   def create_image(object,value)
-    upload_image(value)
+    ImageUploadHelper::prepare_and_upload_image(value)
     object.image = Image.create(:filename => value["file"][:filename])
   end
 

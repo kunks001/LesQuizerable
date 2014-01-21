@@ -38,7 +38,9 @@ class QuizApp < Sinatra::Base
   register Sinatra::Namespace
 
   Dir["./app/controllers/*.rb"].each {|file| require file }
+  Dir["./app/helpers/*.rb"].each {|file| require file }
   require_relative 'helpers/application'
+  helpers ImageUploadHelper
   helpers ApplicationHelper
 
   get '/' do
