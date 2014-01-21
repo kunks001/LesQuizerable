@@ -1,24 +1,25 @@
-%header{class: "navbar navbar-fixed-top"}
-  %div{class: "navbar-inner"}
-    %div{class: "container"}
-      .container-fluid
-        %nav
-          %a{href:"http://makersacademy.com/", id: "brand"}
-            %img{alt: "Makers Academy", src: "http://www.makersacademy.com/assets/logo-43ae9a0b913c32a0dfbdc76ec5d7a655.png"}
-          %ul{class: "nav pull-right"}
-            - if current_admin
-              %li
-                %a.nav(href="/quizzes")
-                  Quizzes
-              %li
-                %a.nav(href="/quizzes/new")
-                  New Quiz
-              %li 
-                / - if current_admin
-                %form{method: "post", action: "/sessions"}
-                  %input{type: "hidden", name: "_method", value: "delete"}
-                  %input.nav{type: "submit", value: "Sign out"}
-            - else
-              %li
-                %a.nav(href="/sessions/new")
-                  Sign In
+.navbar.navbar-fixed-top
+  .white_background
+    %div{class: "navbar-inner"}
+      %div{class: "container"}
+        .container-fluid
+          %nav
+            %a{href:"http://makersacademy.com/", id: "brand"}
+              %img{alt: "Makers Academy", src: "http://www.makersacademy.com/assets/logo-43ae9a0b913c32a0dfbdc76ec5d7a655.png"}
+            %ul{class: "nav pull-right"}
+              - if current_admin
+                %li
+                  %a.nav(href="/quizzes")
+                    Quizzes
+                %li
+                  %a.nav(href="/quizzes/new")
+                    New Quiz
+                %li 
+                  / - if current_admin
+                  %form{method: "post", action: "/sessions"}
+                    %input{type: "hidden", name: "_method", value: "delete"}
+                    %input.nav{type: "submit", value: "Sign out"}
+              - else
+                %li
+                  %a.nav(href="/sessions/new")
+                    Sign In

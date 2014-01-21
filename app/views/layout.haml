@@ -8,6 +8,7 @@
     %link(rel="stylesheet" type="text/css" href="/css/bootstrap.min.css")
   %body
     = partial :_header
+    #padding
     #content
       - if flash[:errors] && !flash[:errors].empty?
         Sorry, there were the following problems with the form. 
@@ -17,7 +18,4 @@
       - if flash[:notice]
         #notice
           = flash[:notice]
-      - if current_admin
-        Welcome, 
-        = current_admin.email
       = yield

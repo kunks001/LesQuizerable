@@ -1,35 +1,61 @@
 %h2 
   New Quiz
+.col-md-8.col-md-offset-2
+  %form{action: '/quizzes/new', method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
+    %ul
+      %li
+        %label.quiz_title Title
+      %li
+        %input{type: "text", "..." => "", name: "title", id: "title"}
+      %li
+        %label Display Quiz on Landing Page?
+        %input{type: "checkbox", name: "displayed"}
+    #questions
+      .question
+        %ul
+          %li
+            %label Question
+          %li
+            %input{type: "text", "..." => "", name: "[question][0][question_text]", class: "question_text"}
+        .file_input
+          %input{type: "file", name: "[question][0]file", value: "", id: "file"}
+        .answer
+          %ul
+            %li
+              %label Answer
+            %li 
+              %input{type: "text", "..." => "", name: "[question][0][answer][0][response]", class: "answer_text"}
+          .file_input
+            %input{type: "file", name: "[question][0][answer][0][file]", value: "", id: "answer_image"}
+          .correct_answer
+            %label Correct Answer?
+          .correct_answer_checkbox
+            %input{type: "checkbox", name: "question[0][answer][0][correctness]"}
+        .answer
+          %ul
+            %li
+              %label Answer
+            %li
+              %input{type: "text", "..." => "", name: "[question][0][answer][1][response]", class: "answer_text"}
+          .file_input
+            %input{type: "file", name: "[question][0][answer][1][file]", value: ""}
+          .correct_answer
+            %label Correct Answer?
+          .correct_answer_checkbox
+          %input{type: "checkbox", name: "question[0][answer][1][correctness]"}
+        .answer
+          %ul
+            %li
+              %label Answer
+            %li
+              %input{type: "text", "..." => "", name: "[question][0][answer][2][response]", class: "answer_text"}
+          .file_input
+            %input{type: "file", name: "[question][0][answer][2][file]", value: ""}
+          .correct_answer
+            %label Correct Answer?
+          .correct_answer_checkbox
+          %input{type: "checkbox", name: "question[0][answer][2][correctness]"}
+    %input{type: "submit", value: "Submit"}
 
-%form{action: '/quizzes/new', method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
-  %label Title
-  %input{type: "text", "..." => "", name: "title"} 
-  %label Display Quiz on Landing Page?
-  %input{type: "checkbox", name: "displayed"}
-  #questions
-    .question
-      %label Question
-      %input{type: "text", "..." => "", name: "[question][0][question_text]"}
-      %input{type: "file", name: "[question][0]file", value: "", id: "file"}
-      .answer
-        %label Answer
-        %input{type: "text", "..." => "", name: "[question][0][answer][0][response]"}
-        %input{type: "file", name: "[question][0][answer][0][file]", value: "", id: "answer_image"}
-        %label Correct Answer?
-        %input{type: "checkbox", name: "question[0][answer][0][correctness]"}
-      .answer
-        %label Answer
-        %input{type: "text", "..." => "", name: "[question][0][answer][1][response]"}
-        %input{type: "file", name: "[question][0][answer][1][file]", value: ""}
-        %label Correct Answer?
-        %input{type: "checkbox", name: "question[0][answer][1][correctness]"}
-      .answer
-        %label Answer
-        %input{type: "text", "..." => "", name: "[question][0][answer][2][response]"}
-        %input{type: "file", name: "[question][0][answer][2][file]", value: ""}
-        %label Correct Answer?
-        %input{type: "checkbox", name: "question[0][answer][2][correctness]"}
-  %input{type: "submit", value: "Submit"}
-
-%button{ class: "add_question", value: "Add Question"}
-  Add Question
+  %button{ class: "add_question", value: "Add Question"}
+    Add Question
