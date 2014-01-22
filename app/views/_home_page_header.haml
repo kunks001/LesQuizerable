@@ -1,25 +1,37 @@
 .navbar.navbar-fixed-top
   .white_background
     %div{class: "navbar-inner"}
-      %div{class: "container"}
-        .container-fluid
-          %nav
-            %a{href:"http://makersacademy.com/", id: "brand"}
-              %img{alt: "Makers Academy", src: "http://www.makersacademy.com/assets/logo-43ae9a0b913c32a0dfbdc76ec5d7a655.png"}
-            %ul{class: "nav pull-right"}
-              / - if current_admin
-              /   %li
-              /     %a.nav(href="/quizzes")
-              /       Quizzes
-              /   %li
-              /     %a.nav(href="/quizzes/new")
-              /       New Quiz
-              /   %li 
-              /     / - if current_admin
-              /     %form{method: "post", action: "/sessions"}
-              /       %input{type: "hidden", name: "_method", value: "delete"}
-              /       %input.nav{type: "submit", value: "Sign out"}
-              / - else
-              /   %li
-              /     %a.nav(href="/sessions/new")
-              /       Sign In
+      .container-fluid
+        %nav
+          %a{href:"http://makersacademy.com/", id: "brand"}
+            %img{alt: "Makers Academy", src: "http://www.makersacademy.com/assets/logo-43ae9a0b913c32a0dfbdc76ec5d7a655.png"}
+          %ul{class: "nav pull-right"}
+            %a{href: "http://makersacademy.com/apply", class: "btn btn-apply pull-right top-apply"}
+              Apply
+          .links_container
+            %ul{class: "pull-right"}
+              %li{ class: "visible-desktop"}
+                %a{ href: "http://www.twitter.com/MakersAcademy", target: "_blank"}
+                  .m-icon-twitter
+              %li
+                %a{href: "http://blog.makersacademy.com/"}
+                  BLOG
+              %li
+                %a{href: "http://makersacademy.com/info/faq"}
+                  FAQ
+            / - if current_admin
+            /   %li
+            /     %a.nav(href="/quizzes")
+            /       Quizzes
+            /   %li
+            /     %a.nav(href="/quizzes/new")
+            /       New Quiz
+            /   %li 
+            /     / - if current_admin
+            /     %form{method: "post", action: "/sessions"}
+            /       %input{type: "hidden", name: "_method", value: "delete"}
+            /       %input.nav{type: "submit", value: "Sign out"}
+            / - else
+            /   %li
+            /     %a.nav(href="/sessions/new")
+            /       Sign In

@@ -30,14 +30,13 @@ body {
 
 #brand {
   position: absolute;
-  left: 30px;
+  /*left: 3%;*/
   margin-top: -4px;
+  padding-top: 10px;
 }
 
-#padding {
-  height: 60px;
-  width: 100%;
-  background-color: white;
+#brand img {
+  height: 48px;
 }
 
 .nav>li {
@@ -47,13 +46,102 @@ body {
 
 .white_background {
   width: 100%;
-  height: 90px;
+  height: 60px;
   background-color: white;
   overflow: visible;
 }
 
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: 0 auto;
+  max-width: 1160px;
+}
 
-/*NEW QUIZ FORM*/
+.navbar-inner {
+  position: relative;
+  height: 40px;
+/*padding: 10px 0;*/
+}
+
+#sign_out_button {
+  height: 40px;
+}
+
+
+/****************** HOME PAGE NAV BAR *********************/
+
+.top-apply {
+  text-transform: uppercase;
+  margin-top: -13px;
+  margin-bottom: -13px;
+  height: 72px;
+  line-height: 60px;
+}
+
+.btn-apply{
+color: rgb(255,255,255);
+background-color: rgb(183, 30, 43);
+background-image: linear-gradient(rgb(191, 33, 48), rgb(171, 25, 36));
+background-repeat: repeat-x;
+-webkit-box-shadow: rgba(0, 0, 0, 0.247059) 0px 1px 2px, rgba(255, 255, 255, 0.0470588) 0px 0px 0px 1px inset, rgb(203, 40, 57) 0px 1px 0px 0px inset;
+box-shadow: rgba(0, 0, 0, 0.247059) 0px 1px 2px, rgba(255, 255, 255, 0.0470588) 0px 0px 0px 1px inset, rgb(203, 40, 57) 0px 1px 0px 0px inset;
+border: 1px solid rgb(122, 13, 19);
+border-image-source: initial;
+border-image-slice: initial;
+border-image-width: initial;
+border-image-outset: initial;
+border-image-repeat: initial;
+text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0px;
+padding: 5px 30px;
+font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+font-weight: bold;
+font-size: 12;
+}
+
+.m-icon-twitter {
+width: 25px;
+height: 20px;
+background: url(../images/twitter-nav.jpg);
+background-position: 0 -20px;
+position: absolute;
+top: 18px;
+}
+
+.m-icon-twitter:hover {
+  background-position: 0 0;
+}
+
+.links_container {
+  position: relative;
+  margin: 0px 17px 0px 0px;
+  width: 160px;
+  float: right;
+  /*float: right;*/
+  /*display: inline-block;*/
+}
+
+.links_container li {
+  float: right;
+  padding: 10px 15px 10px 15px;
+  margin-top: 3px;
+}
+
+.links_container li a{
+  color: #AF1729;
+  font-family: "futura-pt",Futura,'Helvetica Neue',Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+  line-height: 30px;
+  font-size: 14px;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.visible-desktop {
+ margin-left: -15px;
+ margin-right: 9px;
+}
+
+/******************* NEW QUIZ FORM ***********************/
 
 #title {
   width: 80%;
@@ -65,7 +153,11 @@ body {
 
 .question_fields {
   margin-left: 10%;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+form ul {
+  margin-bottom: 0px;
 }
 
 .question_fields label {
@@ -74,6 +166,10 @@ body {
 
 .question_fields label {
   width: 10%;
+}
+
+.question_fields .file_input {
+  margin-bottom: 5px;
 }
 
 .question_text {
@@ -87,15 +183,20 @@ body {
 
 .correct_answer_checkbox {
   display: inline-block;
+  margin-top: -5px;
 }
 
 .answer_fields {
-  margin-top: 15px;
+  margin-top: 5px;
   margin-left: 11.111%;
 }
 
 .answer_fields label {
   font-size: 20
+}
+
+.answer_fields ul {
+  margin-bottom: 0px;
 }
 
 .correct_answer {
@@ -126,6 +227,27 @@ body {
 .create_quiz {
   margin-top: 20px;
   width: 20%;
+}
+
+#new_quiz_form input {
+  height: 30px;
+}
+
+.display_quiz_label {
+  font-size: 14;
+}
+
+.correct_answer_label {
+  font-size: 20.5;
+}
+
+.checkbox {
+  height: 14px;
+}
+
+.display_checkbox {
+  height: 18px;
+  margin-top: 3px;
 }
 
 /*********************** SHOW QUIZ PAGE ********************/
@@ -180,4 +302,25 @@ body {
 
 .results_of_quiz {
 
+}
+
+.faded_quiz_background {
+  background-color: rgba(255,255,255,0.7);
+  margin-top: 70px;
+  padding-top: 20px;
+}
+
+.show_background_image {
+  position: absolute;
+  background: url(../images/background-test-for-web.jpg) no-repeat 0 0 fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/******************* Sign in page *****************/
+
+.sign_in_box {
+  padding-top: 90px;
 }
