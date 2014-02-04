@@ -4,7 +4,7 @@
       .container-fluid
         %nav
           %a{href:"http://makersacademy.com/", id: "brand"}
-            %img{alt: "Makers Academy", src: "http://www.makersacademy.com/assets/logo-43ae9a0b913c32a0dfbdc76ec5d7a655.png"}
+            %img{alt: "Makers Academy", src: "http://www.makersacademy.com/images/logo.png"}
           %ul{class: "nav pull-right"}
             %a{href: "http://makersacademy.com/apply", class: "btn btn-apply pull-right top-apply"}
               Apply
@@ -19,19 +19,3 @@
               %li
                 %a{href: "http://makersacademy.com/info/faq"}
                   FAQ
-            / - if current_admin
-            /   %li
-            /     %a.nav(href="/quizzes")
-            /       Quizzes
-            /   %li
-            /     %a.nav(href="/quizzes/new")
-            /       New Quiz
-            /   %li 
-            /     / - if current_admin
-            /     %form{method: "post", action: "/sessions"}
-            /       %input{type: "hidden", name: "_method", value: "delete"}
-            /       %input.nav{type: "submit", value: "Sign out"}
-            / - else
-            /   %li
-            /     %a.nav(href="/sessions/new")
-            /       Sign In

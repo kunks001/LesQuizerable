@@ -11,7 +11,7 @@ feature 'Admin signout' do
   scenario 'while signed in' do
     sign_in('test@test.com', 'foobar')
     click_button "Sign out"
-    expect(page).to have_content("Good bye!")
+    expect(page).to have_content("Please sign in")
     expect(page).not_to have_content("Welcome, test@test.com")
   end
 

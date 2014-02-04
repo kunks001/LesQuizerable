@@ -26,5 +26,6 @@ group :test do
   gem 'factory_girl'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'poltergeist'
   
 end

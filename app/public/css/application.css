@@ -312,7 +312,7 @@ form ul {
 
 .show_background_image {
   position: absolute;
-  background: url(../images/background-test-for-web.jpg) no-repeat 0 0 fixed;
+  background: url(../images/background-test.jpg) no-repeat 0 0 fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

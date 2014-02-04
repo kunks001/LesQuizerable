@@ -9,7 +9,7 @@ class QuizApp < Sinatra::Base
     admin = Admin.authenticate(email, password)
     if admin
       session[:admin_id] = admin.id
-      redirect to('/')
+      redirect to('/quizzes')
     else
       flash[:errors] = ["The email or password are incorrect"]
       haml :"sessions/new"
@@ -18,7 +18,6 @@ class QuizApp < Sinatra::Base
 
   delete '/sessions' do
     session[:admin_id] = nil
-    # flash[:notice] = "Good bye!"
     redirect to '/quizzes'
   end
   

@@ -4,7 +4,7 @@ feature "Attempts" do
   let(:admin) { FactoryGirl.create(:admin) }
   let(:quiz) { FactoryGirl.create(:quiz) }
 
-  scenario 'when taking a quiz' do
+  scenario 'when taking a quiz', js: true do
     sign_in("test@test.com","foobar")
     visit "/attempts/#{quiz.id}/new"
     choose 'correct answer'

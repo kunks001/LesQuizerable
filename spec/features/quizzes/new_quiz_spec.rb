@@ -18,9 +18,9 @@ feature "Making a new Quiz" do
     visit '/quizzes/new'
     expect(page).to have_content 'New Quiz'
     fill_in 'title', :with => 'Awesome Quiz!'
-    first('.question').fill_in '[question][0][question_text]', :with => 'Great question'
-    first('.answer').fill_in '[question][0][answer][0][response]', :with => 'Great answer'
-    click_button 'Submit'
+    first('.question_fields').fill_in '[question][0][question_text]', :with => 'Great question'
+    first('.answer_fields').fill_in '[question][0][answer][0][response]', :with => 'Great answer'
+    click_button 'Create Quiz!'
 
     expect(current_path).to eq '/quizzes'
     expect(page).to have_content 'Awesome Quiz!'
@@ -31,7 +31,7 @@ feature "Making a new Quiz" do
     visit '/quizzes/new'
     fill_in 'title', with: 'Awesome Quiz!'
     attach_file('file',File.join(File.dirname(__FILE__), 'images/image.jpg'))
-    click_button 'Submit'
+    click_button 'Create Quiz!'
     expect(current_path).to eq '/quizzes'
     click_link 'Awesome Quiz!'
     expect(page).to have_image "https://s3.amazonaws.com/MakersQuizApp/image.jpg"
@@ -41,9 +41,9 @@ feature "Making a new Quiz" do
     sign_in('test@test.com', 'foobar')
     visit '/quizzes/new'
     fill_in 'title', with: 'Awesome Quiz!'
-    first('.question').fill_in '[question][0][question_text]', :with => 'Great question'
+    first('.question_fields').fill_in '[question][0][question_text]', :with => 'Great question'
     attach_file('answer_image',File.join(File.dirname(__FILE__), 'images/answer-image.jpg'))
-    click_button 'Submit'
+    click_button 'Create Quiz!'
     expect(current_path).to eq '/quizzes'
     click_link 'Awesome Quiz!'
     expect(page).to have_image "https://s3.amazonaws.com/MakersQuizApp/answer-image.jpg"

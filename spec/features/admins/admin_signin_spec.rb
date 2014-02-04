@@ -12,7 +12,7 @@ feature "Admin signin" do
     visit '/'
     expect(page).not_to have_content("Welcome, test@test.com")
     sign_in('test@test.com', 'foobar')
-    expect(page).to have_content("Welcome, test@test.com")
+    expect(page.current_path).to eq '/quizzes'
   end
 
   scenario "with incorrect credentials" do
