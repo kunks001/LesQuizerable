@@ -44,14 +44,13 @@ $(document).ready(function() {
     var Target = $(this).parent().parent().children(".answer_fields").last();
     var CloneTarget = $(Target).clone();
 
-// DOESN'T WORK!!!
-
     CloneTarget.find('input, select').attr('name', function(i, val) {
-        return val.replace(/\d+/, function(n) {
+        return val.replace(/\d+(?=[^\d+]*$)/, function(n) {
             return ++n;
         });
     });
 
-    $(this).parent().prepend(CloneTarget);
+    $(this).parent().parent().append(CloneTarget);
+    $(this).parent().appendTo('.question_fields');
   });
 });
