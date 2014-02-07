@@ -17,15 +17,6 @@ class Quiz
     self.update(displayed: true); self.save
   end
 
-  def save_questions_and_answers(hash,quiz)
-    hash.each do |key, value|
-      q = Question.new(question_text: value["question_text"])
-      create_image(q,value) if value["file"]
-      create_answers(q,value["answer"])
-      quiz.questions << q
-    end
-  end
-
   def create_image(object,value)
     ImageUploadHelper::prepare_and_upload_image(value)
     object.image = Image.create(:filename => value["file"][:filename])
@@ -42,6 +33,15 @@ class Quiz
 
   def correct?(value)
     value == "on" ? c = true : c = false
+  end
+
+  def save_questions_and_answers(hash,quiz)
+    hash.each do |key, value|
+      q = Question.new(question_text: value["question_text"])
+      create_image(q,value) if value["file"]
+      create_answers(q,value["answer"])
+      quiz.questions << q
+    end
   end
 
   def edit_questions_and_answers(hash,quiz)

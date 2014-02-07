@@ -1,7 +1,7 @@
 body {
   /*width: 100%;*/
   color: rgb(94, 94, 94);
-  font-family: proxima-nova, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 30px;
 }
@@ -11,7 +11,7 @@ body {
 .nav {
   padding-top: 10px;
   color: #777;
-  font-family: proxima-nova, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 30px;
   text-decoration: none;
@@ -262,30 +262,53 @@ form ul {
   width: 100%;
 }
 
-.show_question_text {
-  text-align: center;
-  font-size: 25;
+.question-text {
+  margin-left: 15px;
+  margin-bottom: 0.5em;
+  color: #AF1729;
 }
 
-.show_answer {
-  width: 33%;
-  padding: 1%;
-  position: relative;
-  float: left;
+.answer-response {
+  font-weight: lighter;
+  line-height: 1.5em;
+  font-size: 0.8em;
+  padding-top: 5px;
+  color: #000;
 }
 
-.show_answer_image {
+.answer-image {
   width: 100%;
 }
 
-.show_answer_text {
-  font-size: 14;
+.answer-input {
+  margin-bottom: 15px;
 }
 
-.edit_and_delete_buttons {
+.row img {
+  width: 100%;
+}
+
+.question-row {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.submit-quiz-button {
   position: relative;
   width: 100%;
   text-align: center;
+}
+
+#show-score-container {
+  height: 200px;
+}
+
+#show-score {
+  text-align: center;
+  width: 100%;
+  padding-top: 2.5em;
+  font-size: 2em;
+  color: #AF1729;
 }
 
 .edit_button {
@@ -300,25 +323,57 @@ form ul {
 
 /******************* Attempts page *****************/
 
-.results_of_quiz {
-
+.quiz-title{
+  color: #fff;
+  text-align: right;
+  font-size: 0.9em;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  font-weight: lighter;
+  height: 6em;
+  margin-bottom: -3em;
+  background-color: rgba(0,0,0,0.3);
 }
 
-.faded_quiz_background {
-  background-color: rgba(255,255,255,0.7);
-  margin-top: 70px;
+.quiz-background {
+  background-color: #fff;
   padding-top: 20px;
 }
 
-.show_background_image {
-  position: absolute;
-  background: url(../images/background-test.jpg) no-repeat 0 0 fixed;
+.background-lining {
+  height: 5px;
+  width: 100%;
+  background-color: #AF1729;
+}
+
+.banner_image {
+  background: url(../images/coding-pingpong.jpg) no-repeat 0 -50 fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: 600px;
 }
 
+#banner-text-container {
+  padding-top: 28em;
+  max-width: 100%;
+}
+
+#banner-text {
+  line-height: 1.5em;
+  font-weight: lighter;
+  font-size: 2em;
+  color:#fff;
+  background-color: rgba(0,0,0,0.2);
+  padding-left:10px;
+  padding-right: 10px;
+}
+
+.dark-geometric {
+  background: url(../images/dark_geometric.png) repeat 0 0 fixed;
+}
 /******************* Sign in page *****************/
 
 .sign_in_box {

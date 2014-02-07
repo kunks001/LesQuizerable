@@ -13,10 +13,10 @@ $(document).ready(function() {
       success: function( score ){
       // window.location.reload();
         // alert( msg )
-        document.getElementById('user_score').innerHTML = score
+        document.getElementById('show-score').innerHTML = score
       },
       error: function(){
-        alert("Not Successful")
+        alert("You've got to answer some questions first!")
       }
     });
   });
