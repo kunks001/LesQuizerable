@@ -15,7 +15,7 @@ require 'json'
 class QuizApp < Sinatra::Base
   env = ENV["RACK_ENV"] || "development"
 
-  DataMapper.setup(:default, "postgres://localhost/lesquizerables_#{env}")
+  DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/lesquizerables_#{env}")
   Dir["./app/models/*.rb"].each {|file| require file }
   DataMapper.finalize
   DataMapper.auto_upgrade!

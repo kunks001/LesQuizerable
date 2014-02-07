@@ -380,6 +380,15 @@ form ul {
   padding-top: 90px;
 }
 
+.sign-in-banner-image {
+  height: 100%;
+  background: url(../images/coding-pingpong.jpg) no-repeat 0 -50 fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 /******************* Admin pages *****************/
 
 .admin_banner_image {
