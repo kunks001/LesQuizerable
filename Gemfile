@@ -15,7 +15,7 @@ gem 'sinatra-partial'
 gem 'sinatra-jsonp'
 gem 'pg'
 
-group :develment do
+group :development do
 	gem 'shotgun'
 end
 
