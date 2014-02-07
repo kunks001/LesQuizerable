@@ -379,3 +379,37 @@ form ul {
 .sign_in_box {
   padding-top: 90px;
 }
+
+/******************* Admin pages *****************/
+
+.admin_banner_image {
+  background: url(../images/coding-pingpong.jpg) no-repeat 0 -50 fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 300px;
+}
+
+.quiz-index-title {
+  color: #fff;
+  font-weight: lighter;
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.quiz-index-text {
+  color: #AF1729;
+  text-decoration: none;
+  margin-top: 0;
+}
+
+.question-image {
+  margin-bottom: 40px;
+}
+
+
+.quiz-index-text:hover {
+  text-decoration: none;
+}
+
