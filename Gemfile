@@ -13,6 +13,7 @@ gem 'sinatra-contrib'
 gem 'activesupport'
 gem 'sinatra-partial'
 gem 'sinatra-jsonp'
+gem 'pg'
 
 group :develment do
 	gem 'shotgun'
