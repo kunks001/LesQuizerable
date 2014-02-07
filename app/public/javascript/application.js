@@ -26,7 +26,7 @@ $(document).ready(function() {
   $(".add_question").click(function(event){
     event.preventDefault(); 
     var Target = $('.question_fields:last');
-    var CloneTarget = $(Target).clone();
+    var CloneTarget = $(Target).clone( true );
 
     CloneTarget.find('input, select').attr('name', function(i, val) {
         return val.replace(/\d+/, function(n) {
@@ -42,7 +42,7 @@ $(document).ready(function() {
   $(".add_answer").click(function(){
     event.preventDefault(); 
     var Target = $(this).parent().parent().children(".answer_fields").last();
-    var CloneTarget = $(Target).clone();
+    var CloneTarget = $(Target).clone( true );
 
     CloneTarget.find('input, select').attr('name', function(i, val) {
         return val.replace(/\d+(?=[^\d+]*$)/, function(n) {
@@ -51,6 +51,22 @@ $(document).ready(function() {
     });
 
     $(this).parent().parent().append(CloneTarget);
-    $(this).parent().appendTo('.question_fields');
+    $(this).parent().appendTo('.some-div');
+  });
+});
+
+
+$(function() {
+  $('.remove_question').click(function(event) {
+    event.preventDefault();
+    $(this).parent().parent().remove('.question_fields');
+  });
+});
+
+$(function() {
+  $('.remove_answer').click(function(event) {
+    event.preventDefault();
+    alert("you sure?");
+    $(this).parent().parent().remove('.answer_fields');
   });
 });

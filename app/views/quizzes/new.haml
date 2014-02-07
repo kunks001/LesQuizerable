@@ -1,61 +1,78 @@
-.col-md-8.col-md-offset-2
-  %h2 
-    New Quiz
-  %form{action: '/quizzes/new', method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data", id: "new_quiz_form"}
-    %ul
-      %li
-        %label.quiz_title_field Title
-      %li
-        %input{type: "text", "..." => "", name: "title", id: "title"}
-      %li
-        %label.display_quiz_label Display Quiz on Landing Page?
-        %input{type: "checkbox", name: "displayed", class: "display_checkbox"}
-    #questions
-      .question_fields
-        %ul
-          %li
-            %label Question
-          %li
-            %input{type: "text", "..." => "", name: "[question][0][question_text]", class: "question_text", id: "question_text"}
-        .file_input
-          %input{type: "file", name: "[question][0]file", value: "", id: "file"}
-        .answer_fields
-          %ul
-            %li 
-              %input{type: "text", "..." => "", name: "[question][0][answer][0][response]", class: "answer_text"}
-          .file_input
-            %input{type: "file", name: "[question][0][answer][0][file]", value: "", id: "answer_image"}
-          .correct_answer
-            %label.correct_answer_label 
-              Correct Answer?
-          .correct_answer_checkbox
-            %input{type: "checkbox", name: "question[0][answer][0][correctness]", class: "checkbox"}
-        .answer_fields
-          %ul
-            %li
-              %input{type: "text", "..." => "", name: "[question][0][answer][1][response]", class: "answer_text"}
-          .file_input
-            %input{type: "file", name: "[question][0][answer][1][file]", value: ""}
-          .correct_answer
-            %label.correct_answer_label 
-              Correct Answer?
-          .correct_answer_checkbox
-            %input{type: "checkbox", name: "question[0][answer][1][correctness]", class: "checkbox"}
-        .answer_fields
-          %ul
-            %li
-              %input{type: "text", "..." => "", name: "[question][0][answer][2][response]", class: "answer_text"}
-          .file_input
-            %input{type: "file", name: "[question][0][answer][2][file]", value: ""}
-          .correct_answer
-            %label.correct_answer_label 
-              Correct Answer?
-          .correct_answer_checkbox
-            %input{type: "checkbox", name: "question[0][answer][2][correctness]", class: "checkbox"}
-        .add_answer_container
-          %button{ type: "button", class: "add_answer btn btn-primary", value: "Add Answer"}
-            Add Answer
-    .add_question_container
-      %button{ type: "button", class: "add_question btn btn-primary", value: "Add Question"}
-        Add Question
-    %input{type: "submit", value: "Create Quiz!", class: "btn btn-success create_quiz"}
+.col-md-12.admin_banner_image
+.col-md-12.dark-geometric
+  .col-md-10.col-md-offset-1
+    .row
+      %h2
+        .quiz-index-title
+          Create Quiz
+
+    %form{action: '/quizzes/new', method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data", id: "new_quiz_form"}
+      %ul
+        %li
+          %label.quiz_title_field Title
+        %li
+          %input{type: "text", "..." => "", name: "title", id: "title"}
+        %li
+          %label.display_quiz_label Display Quiz on Landing Page?
+          %input{type: "checkbox", name: "displayed", class: "display_checkbox"}
+      #questions
+        .question_fields
+          .some-div
+            %ul
+              %li
+                %label Question
+              %li
+                %input{type: "text", "..." => "", name: "[question][0][question_text]", class: "question_text", id: "question_text"}
+            .file_input
+              %input{type: "file", name: "[question][0]file", value: "", id: "file"}
+            .answer_fields
+              %ul
+                %li 
+                  %input{type: "text", "..." => "", name: "[question][0][answer][0][response]", class: "answer_text"}
+              .file_input
+                %input{type: "file", name: "[question][0][answer][0][file]", value: "", id: "answer_image"}
+              .correct_answer
+                %label.correct_answer_label 
+                  Correct Answer?
+              .correct_answer_checkbox
+                %input{type: "checkbox", name: "question[0][answer][0][correctness]", class: "checkbox"}
+              .add_answer_container
+                %button{ href: "#", class: "remove_answer btn btn-danger", name: "remove_answer" }
+                  Remove Answer
+            .answer_fields
+              %ul
+                %li
+                  %input{type: "text", "..." => "", name: "[question][0][answer][1][response]", class: "answer_text"}
+              .file_input
+                %input{type: "file", name: "[question][0][answer][1][file]", value: ""}
+              .correct_answer
+                %label.correct_answer_label 
+                  Correct Answer?
+              .correct_answer_checkbox
+                %input{type: "checkbox", name: "question[0][answer][1][correctness]", class: "checkbox"}
+              .add_answer_container
+                %button{ href: "#", class: "remove_answer btn btn-danger", name: "remove_answer" }
+                  Remove Answer
+            .answer_fields
+              %ul
+                %li
+                  %input{type: "text", "..." => "", name: "[question][0][answer][2][response]", class: "answer_text"}
+              .file_input
+                %input{type: "file", name: "[question][0][answer][2][file]", value: ""}
+              .correct_answer
+                %label.correct_answer_label 
+                  Correct Answer?
+              .correct_answer_checkbox
+                %input{type: "checkbox", name: "question[0][answer][2][correctness]", class: "checkbox"}
+              .add_answer_container
+                %button{ href: "#", class: "remove_answer btn btn-danger", name: "remove_answer" }
+                  Remove Answer
+            .add_answer_container
+              %button{ type: "button", class: "add_answer btn btn-primary", value: "Add Answer"}
+                Add Answer
+          .add_question_container
+            %button{ type: "button", class: "add_question btn btn-primary", value: "Add Question"}
+              Add Question
+            %button{ href: "#", class: "remove_question btn btn-danger", name: "remove_question" }
+              Remove Question
+      %input{type: "submit", value: "Create Quiz!", class: "btn btn-success create_quiz"}

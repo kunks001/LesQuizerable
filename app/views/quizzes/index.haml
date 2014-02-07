@@ -1,7 +1,4 @@
 .col-md-12.admin_banner_image
-  .col-md-4.col-md-offset-1#banner-text-container
-    #banner-text 
-      Have you got what it takes to Learn to Code?
 .col-md-12.dark-geometric
   .col-md-10.col-md-offset-1
     .row
@@ -10,11 +7,6 @@
           Quizzes
 
     - @quizzes.each do |quiz|
-      / .row
-      /   .col-md-12
-      /     %a{href: "quizzes/#{quiz.id}", class: "quiz_link"} 
-      /       %h1.quiz-index-text
-      /         = quiz.title
       .row
         .col-md-6.question-image
           - q = quiz.questions.first
