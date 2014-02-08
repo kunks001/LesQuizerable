@@ -7,18 +7,19 @@
     %link(rel="stylesheet" type="text/css" href="/css/bootstrap.min.css")
     %link(rel="stylesheet" type="text/css" href="/css/application.css")
   %body
-    - if @homepage == true
-      = partial :_home_page_header
-    - else
-      = partial :_header
-    #padding
-    #content
-      - if flash[:errors] && !flash[:errors].empty?
-        Sorry, there were the following problems with the form. 
-        %ul{ id: "errors" }
-        - flash[:errors].each do |error|
-          = error
-      - if flash[:notice]
-        #notice
-          = flash[:notice]
-      = yield
+    .dark-geometric-bg
+      - if @homepage == true
+        = partial :_home_page_header
+      - else
+        = partial :_header
+      #padding
+      #content
+        - if flash[:errors] && !flash[:errors].empty?
+          Sorry, there were the following problems with the form. 
+          %ul{ id: "errors" }
+          - flash[:errors].each do |error|
+            = error
+        - if flash[:notice]
+          #notice
+            = flash[:notice]
+        = yield

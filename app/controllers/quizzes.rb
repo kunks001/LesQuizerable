@@ -35,11 +35,13 @@ class QuizApp < Sinatra::Base
     end
 
     post '/:id/edit' do
+      puts params.inspect
       quiz = Quiz.get(params[:id])
       quiz.update(:title => params[:title])
       hash = params[:question]
       quiz.edit_questions_and_answers(hash,quiz)
       quiz.show_on_homepage(Quiz.all) if params[:displayed] == "on"
+      quiz.take_off_homepage if params[:displayed] == nil
       if quiz.save
         redirect to '/quizzes'
       else

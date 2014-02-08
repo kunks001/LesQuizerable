@@ -1,21 +1,26 @@
-%h2 
-  Edit Quiz
+.col-md-12.admin_banner_image
+.col-md-12.dark-geometric
+  .col-md-10.col-md-offset-1
+    .row
+      %h2
+        .quiz-index-title
+          Edit Quiz
 
-%form{action: "/quizzes/#{@quiz.id}/edit", method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
-  %label Title
-  %input{type: "text", "..." => "", name: "title", value: "#{@quiz.title}"}
-  %label Display Quiz on Landing Page?
-  %input{type: "checkbox", name: "displayed"}
-  - @questions.each do |question|
-    - q_num = 0
-    .question
-      %label Question
-      %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][question_text]", value: "#{question.keys.first.question_text}", class: "question_input"}
-      %input{type: "file", name: "[question][#{question.keys.first.id}]file", value: "", id: "file"}
-      .answer
-        - answers = question.values.flatten!
-        - answers.each do |answer|
-          %label Answers
-          %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][answer][#{answer.id}][response]", value: "#{answer.response}", class: "answer_input"}
-          %input{type: "file", name: "[question][#{question.keys.first.id}][answer][#{answer.id}]file", value: ""}
-  %input{type: "submit", value: "Submit"}
+    %form{action: "/quizzes/#{@quiz.id}/edit", method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
+      %label Title
+      %input{type: "text", "..." => "", name: "title", value: "#{@quiz.title}"}
+      %label Display Quiz on Landing Page?
+      %input{type: "checkbox", name: "displayed"}
+      - @questions.each do |question|
+        - q_num = 0
+        .question
+          %label Question
+          %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][question_text]", value: "#{question.keys.first.question_text}", class: "question_input"}
+          %input{type: "file", name: "[question][#{question.keys.first.id}]file", value: "", id: "file"}
+          .answer
+            - answers = question.values.flatten!
+            - answers.each do |answer|
+              %label Answers
+              %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][answer][#{answer.id}][response]", value: "#{answer.response}", class: "answer_input"}
+              %input{type: "file", name: "[question][#{question.keys.first.id}][answer][#{answer.id}]file", value: ""}
+      %input{type: "submit", value: "Submit"}

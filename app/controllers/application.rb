@@ -6,7 +6,7 @@ class QuizApp < Sinatra::Base
     if @quiz
       haml :"attempts/new"
     else
-      haml :"quizzes/no_quiz"
+      haml :"quizzes/holding-page"
     end
   end
 end

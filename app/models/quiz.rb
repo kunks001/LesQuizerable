@@ -17,6 +17,10 @@ class Quiz
     self.update(displayed: true); self.save
   end
 
+  def take_off_homepage
+    self.update(displayed: false); self.save
+  end
+
   def create_image(object,value)
     ImageUploadHelper::prepare_and_upload_image(value)
     object.image = Image.create(:filename => value["file"][:filename])

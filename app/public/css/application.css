@@ -382,6 +382,7 @@ form ul {
 
 .sign-in-banner-image {
   height: 100%;
+  width: 100%;
   background: url(../images/coding-pingpong.jpg) no-repeat 0 -50 fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -422,3 +423,20 @@ form ul {
   text-decoration: none;
 }
 
+/******************* Holding page *****************/
+
+.dark-geometric-bg {
+  min-width: 100%;
+  min-height: 100%;
+  background: url(../images/dark_geometric.png) repeat 0 0 fixed;
+  margin-top: -40px;
+}
+
+.holding-banner-image {
+  background: url(../images/holding-banner.jpg) no-repeat 0 -100 fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 300px;
+}
