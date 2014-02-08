@@ -8,12 +8,18 @@
           %ul{class: "nav pull-right"}
             - if current_admin
               %li
+                %a.nav{href: "/"}
+                  Home
+              %li
                 %a.nav(href="/quizzes")
                   Quizzes
               %li
                 %a.nav(href="/quizzes/new")
                   New Quiz
-              %li 
+              %li
+                %a.nav(href="/admins")
+                  Admins
+              %li
                 %form{method: "post", action: "/sessions"}
                   %input{type: "hidden", name: "_method", value: "delete"}
                   %input.nav{type: "submit", value: "Sign out", id: "sign_out_button"}

@@ -1,12 +1,23 @@
-- @admins.each do |admin|
-  .admin
-    = admin.email
-    - if (admin == @current_admin) || @current_admin.super_admin
-      .edit
-        %a{ href: "admins/#{admin.id}/edit", class: "edit" } Edit
-    - if @current_admin.super_admin
-      .delete
-        %form{ action: "/admins", method: "post" }
-          %input{ type: "hidden", name: "_method", value: "delete" }
-          %input{ type: "hidden", name: "admin_id", value: "#{admin.id}" }
-          %input{ type: "submit", value: "Delete" }
+.col-md-12.admin_banner_image
+.col-md-12.dark-geometric
+  .col-md-10.col-md-offset-1
+    .row
+      %h2
+        .quiz-index-title
+          Admins
+    - @admins.each do |admin|
+      .admin
+        = admin.email
+        - if (admin == @current_admin) || @current_admin.super_admin
+          .edit
+            %a{ href: "admins/#{admin.id}/edit", class: "edit" } Edit
+        - if @current_admin.super_admin
+          .delete
+            %form{ action: "/admins", method: "post" }
+              %input{ type: "hidden", name: "_method", value: "delete" }
+              %input{ type: "hidden", name: "admin_id", value: "#{admin.id}" }
+              %input{ type: "submit", value: "Delete" }
+  
+    %br
+    %a{href: "/admins/new", class: "btn btn-primary"}
+      Create Admin

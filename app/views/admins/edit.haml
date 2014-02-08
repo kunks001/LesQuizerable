@@ -1,17 +1,25 @@
-- email = @admin.email
+.col-md-12.admin_banner_image
+.col-md-12.dark-geometric
+  .col-md-10.col-md-offset-1
+    .row
+      %h2
+        .quiz-index-title
+          Edit Profile
 
-%h2 Edit Details
+    - email = @admin.email
 
-%form{action: "/admins/#{@admin.id}/edit", method: "POST"}
-  %input{type: "hidden", name: "_method", value: "put"}
-  %label Email
-  %input{"..." => "", name: "email", id: 'email'}
-  %label Password
-  %input{type: 'password', "..." => "", name: "password", id: 'password'}
-  %label Password Confirmation
-  %input{type: 'password', "..." => "", name: "password_confirmation", id: 'password_confirmation'}
-  %br
-  Please type in your current password for authentication
-  %label Current Password
-  %input{type: 'password', "..." => "", name: "current_password", id: 'password'}
-  %input{type: "submit", value: "Submit", id: 'submit'}
+    %h2 Edit Details
+
+    %form{action: "/admins/#{@admin.id}/edit", method: "POST"}
+      %input{type: "hidden", name: "_method", value: "put"}
+      %label Email
+      %input{"..." => "", name: "email", id: 'email'}
+      %label Password
+      %input{type: 'password', "..." => "", name: "password", id: 'password'}
+      %label Password Confirmation
+      %input{type: 'password', "..." => "", name: "password_confirmation", id: 'password_confirmation'}
+      %br
+      Please type in your current password for authentication
+      %label Current Password
+      %input{type: 'password', "..." => "", name: "current_password", id: 'password'}
+      %input{type: "submit", value: "Submit", id: 'submit'}   

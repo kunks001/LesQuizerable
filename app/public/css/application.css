@@ -115,7 +115,7 @@ top: 18px;
 .links_container {
   position: relative;
   margin: 0px 17px 0px 0px;
-  width: 160px;
+  width: 260px;
   float: right;
   /*float: right;*/
   /*display: inline-block;*/
@@ -377,7 +377,7 @@ form ul {
 /******************* Sign in page *****************/
 
 .sign_in_box {
-  padding-top: 90px;
+  padding-top: 200px;
 }
 
 .sign-in-banner-image {
