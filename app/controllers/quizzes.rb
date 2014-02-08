@@ -16,8 +16,8 @@ class QuizApp < Sinatra::Base
 
     post '/new' do
       quiz = Quiz.new(:title => params[:title])
-      hash = params[:question]
-      quiz.save_questions_and_answers(hash,quiz)
+      # quiz.save_questions_and_answers(params[:question],quiz)
+      quiz.add_questions(params[:question],quiz)
       if quiz.save
         quiz.show_on_homepage(Quiz.all) if params[:displayed] == "on"
         redirect to '/quizzes'
@@ -35,11 +35,9 @@ class QuizApp < Sinatra::Base
     end
 
     post '/:id/edit' do
-      puts params.inspect
       quiz = Quiz.get(params[:id])
       quiz.update(:title => params[:title])
-      hash = params[:question]
-      quiz.edit_questions_and_answers(hash,quiz)
+      quiz.edit_questions(params[:question],quiz)
       quiz.show_on_homepage(Quiz.all) if params[:displayed] == "on"
       quiz.take_off_homepage if params[:displayed] == nil
       if quiz.save

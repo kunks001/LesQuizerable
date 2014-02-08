@@ -1,8 +1,13 @@
 module ImageUploadHelper  
   class << self
+    def create_image(object,value)
+      prepare_and_upload_image(value)
+      object.image = Image.create(:filename => value[:filename])
+    end
+
     def prepare_and_upload_image(value)
-      file  = value["file"][:tempfile]
-      filename = value["file"][:filename]
+      file  = value[:tempfile]
+      filename = value[:filename]
       upload(file, filename)
     end
 

@@ -21,67 +21,33 @@ class Quiz
     self.update(displayed: false); self.save
   end
 
-  def create_image(object,value)
-    ImageUploadHelper::prepare_and_upload_image(value)
-    object.image = Image.create(:filename => value["file"][:filename])
-  end
+  def add_questions(questions, quiz)
+    questions.each do |key, value|
+      next if value["question_text"] == ""
 
-  def create_answers(q,answers)
-    answers.each do |key, value|
-      if value["response"] != ""
-        correctness = correct?(value[:correctness])
-        a = Answer.new(:response => value["response"], :correctness => correctness)
-        create_image(a,value) if value["file"]
-        q.answers << a
-      end
+      question_text = value["question_text"]
+      image         = value["file"]
+      answers       = value["answer"]
+
+      question = Question.new(question_text: question_text)
+
+      question.add_image(image) if image
+      question.add_answers(answers)
+
+      quiz.questions << question
     end
   end
 
-  def correct?(value)
-    value == "on" ? c = true : c = false
-  end
-
-  def save_questions_and_answers(hash,quiz)
+  def edit_questions(hash,quiz)
     hash.each do |key, value|
-      if value["question_text"] == ""
-        nil
-      else
-        q = Question.new(question_text: value["question_text"])
-        create_image(q,value) if value["file"]
-        create_answers(q,value["answer"])
-        quiz.questions << q
-      end
+      question        = Question.get(key.to_i)
+      question_text   = value["question_text"]
+      image           = value["file"]
+      answers         = value["answer"]
+
+      question.update(:question_text => question_text)
+      question.update_image(image) if image
+      question.update_answers(answers) if question.save
     end
   end
-
-  def edit_questions_and_answers(hash,quiz)
-    hash.each do |key, value|
-      q = Question.get(key.to_i)
-      q.update(:question_text => value["question_text"])
-      upload_and_update_image(q,value) if value["file"]
-      update_answers(value["answer"]) if q.save
-    end
-  end
-
-  def update_answers(answers)
-    answers.each do |key, value|
-      answer = Answer.get(key.to_i)
-      answer.update(:response => value["response"])
-      upload_and_update_image(answer, value) if value["file"]
-    end
-  end
-
-  def upload_and_update_image(q,value)
-    ImageUploadHelper::prepare_and_upload_image(value)
-    update_or_create_image(q,value)
-  end
-
-  def update_or_create_image(q,value)
-    if q.image
-      q.image.update(:filename => value["file"][:filename])
-    else
-      q.image = Image.create(:filename => value["file"][:filename])
-    end
-  end
-
 end
