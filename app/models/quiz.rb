@@ -24,10 +24,12 @@ class Quiz
 
   def create_answers(q,answers)
     answers.each do |key, value|
-      correctness = correct?(value[:correctness])
-      a = Answer.new(:response => value["response"], :correctness => correctness)
-      create_image(a,value) if value["file"]
-      q.answers << a
+      if value["response"] != ""
+        correctness = correct?(value[:correctness])
+        a = Answer.new(:response => value["response"], :correctness => correctness)
+        create_image(a,value) if value["file"]
+        q.answers << a
+      end
     end
   end
 
@@ -37,10 +39,14 @@ class Quiz
 
   def save_questions_and_answers(hash,quiz)
     hash.each do |key, value|
-      q = Question.new(question_text: value["question_text"])
-      create_image(q,value) if value["file"]
-      create_answers(q,value["answer"])
-      quiz.questions << q
+      if value["question_text"] == ""
+        nil
+      else
+        q = Question.new(question_text: value["question_text"])
+        create_image(q,value) if value["file"]
+        create_answers(q,value["answer"])
+        quiz.questions << q
+      end
     end
   end
 
