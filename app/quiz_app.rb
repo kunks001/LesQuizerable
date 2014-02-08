@@ -40,6 +40,7 @@ class QuizApp < Sinatra::Base
   Dir["./app/helpers/*.rb"].each {|file| require file }
   require_relative 'helpers/application'
   helpers ImageUploadHelper
+  helpers ImageUpdateHelper
   helpers ApplicationHelper
   helpers Sinatra::Jsonp
 
