@@ -14,7 +14,8 @@ require 'json'
 
 class QuizApp < Sinatra::Base
   env = ENV["RACK_ENV"] || "development"
-  @db_url = ENV["DATABASE_URL"] if env == "production"
+  # @db_url = ENV["DATABASE_URL"] if env == "production"
+  @db_url = ENV["HEROKU_POSTGRESQL_COPPER_URL"] if env == "production"
 
   DataMapper.setup(:default, @db_url || "postgres://localhost/bookmark_manager_#{env}")
   Dir["./app/models/*.rb"].each {|file| require file }
