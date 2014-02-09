@@ -12,12 +12,10 @@ module ImageUploadHelper
     end
 
     def upload(file,filename)
-      awskey     = QuizApp.settings.access_key_id
-      awssecret  = QuizApp.settings.secret_access_key
       bucket     = 'MakersQuizApp'
       AWS::S3::Base.establish_connection!(
-        :access_key_id     => awskey,
-        :secret_access_key => awssecret
+        :access_key_id     => ENV['AWS_KEY'],
+        :secret_access_key => ENV['AWS_SECRET']
       )
       ok_response = AWS::S3::S3Object.store(
         filename,
