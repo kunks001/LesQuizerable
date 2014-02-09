@@ -2,12 +2,13 @@
 
 ENV['RACK_ENV'] = 'test'
 
-require File.join(File.dirname(__FILE__), '..', '..', 'lib/quiz_app.rb')
+require File.join(File.dirname(__FILE__), '..', '..', 'app/quiz_app.rb')
 
 require 'capybara'
 require 'capybara/cucumber'
 require 'rspec'
 require 'database_cleaner'
+require 'factory_girl'
 
 Capybara.app = QuizApp
 

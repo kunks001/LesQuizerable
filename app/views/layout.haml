@@ -12,14 +12,5 @@
         = partial :_home_page_header
       - else
         = partial :_header
-      #padding
       #content
-        - if flash[:errors] && !flash[:errors].empty?
-          Sorry, there were the following problems with the form. 
-          %ul{ id: "errors" }
-          - flash[:errors].each do |error|
-            = error
-        - if flash[:notice]
-          #notice
-            = flash[:notice]
         = yield
