@@ -11,6 +11,7 @@ require 'active_support/core_ext/hash'
 require 'sinatra/partial'
 require "sinatra/jsonp"
 require 'json'
+require 'sinatra/redirect_with_flash'
 
 class QuizApp < Sinatra::Base
   env = ENV["RACK_ENV"] || "development"

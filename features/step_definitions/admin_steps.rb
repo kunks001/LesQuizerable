@@ -5,11 +5,11 @@ Given(/^that I am not signed up to the site$/) do
 end
 
 Given(/^that I am a site admin$/) do
-  pending # express the regexp above with the code you wish you had
+  create_admin(admin_details)
 end
 
 Given(/^I am not signed in$/) do
-  pending # express the regexp above with the code you wish you had
+  clear_user_session
 end
 
 
@@ -20,7 +20,7 @@ When(/^I sign in with valid credentials$/) do
 end
 
 When(/^I return to the site$/) do
-  pending # express the regexp above with the code you wish you had
+  visit '/sessions/new'
 end
 
 When(/^I sign in with an invalid password$/) do
@@ -43,11 +43,11 @@ Then(/^I should be signed out$/) do
 end
 
 Then(/^I should see a successful sign in message$/) do
-  pending # express the regexp above with the code you wish you had
+  page.should have_content "Signed in successfully."
 end
 
 Then(/^should be signed in$/) do
-  pending # express the regexp above with the code you wish you had
+  page.should have_link 'Quizzes' || 'Dashboard'
 end
 
 

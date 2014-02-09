@@ -24,6 +24,24 @@ body {
   -khtml-border-radius: 10px; /* for old Konqueror browsers */
 }
 
+.quizzes-flash-container {
+  margin-top: 100px;
+  position: absolute;
+  background-color: rgba(24,247,16,0.4);
+  width: 100%;
+  padding: 10px 15px;
+  line-height: 1em;
+  font-size: 1.3em;
+  font-weight: lighter;
+  color: #fff;
+  text-align: center;
+
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; /* future proofing */
+  -khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
+
 /****************** NAV BAR *********************/
 
 .nav {

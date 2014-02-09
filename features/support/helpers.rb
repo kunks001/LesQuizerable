@@ -10,7 +10,7 @@ def delete_admin
   @admin.destroy unless @admin.nil?
 end
 
-def create_admin
+def create_admin(admin_details)
   FactoryGirl.create(:admin, admin_details)
 end
 
@@ -22,3 +22,8 @@ def sign_in
     click_button 'Sign in'
   end
 end
+
+def clear_user_session
+  page.driver.submit :delete, '/sessions', {}
+end
+  

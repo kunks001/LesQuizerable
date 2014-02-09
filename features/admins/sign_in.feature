@@ -9,13 +9,13 @@ Feature: Sign in
     Then I should see an invalid login message
     And I should be signed out
 
-  # Scenario: Successful sign in
-  #   Given that I am a site admin
-  #   And I am not signed in
-  #   When I sign in with valid credentials
-  #   Then I should see a successful sign in message
-  #   When I return to the site
-  #   Then should be signed in
+  Scenario: Successful sign in
+    Given that I am a site admin
+    And I am not signed in
+    When I sign in with valid credentials
+    Then I should see a successful sign in message
+    When I return to the site
+    Then should be signed in
 
   # Scenario Outline: Admin enters wrong credentials
   #   Given that I am a site admin

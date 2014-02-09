@@ -3,6 +3,5 @@
   %ul{ id: "errors" }
   - flash[:errors].each do |error|
     = error
-  - if flash[:notice]
-    #notice
-    = flash[:notice]
+- if flash[:notice]
+  = flash[:notice]
