@@ -24,11 +24,15 @@ When(/^I return to the site$/) do
 end
 
 When(/^I sign in with an invalid password$/) do
-  pending # express the regexp above with the code you wish you had
+  create_admin(admin_details) 
+  @admin_details = @admin_details.merge(:password => 'wrongpassword')
+  sign_in
 end
 
 When(/^I sign in with an invalid email$/) do
-  pending # express the regexp above with the code you wish you had
+  create_admin(admin_details)
+  @admin_details = @admin_details.merge(:email => 'invalidemail')
+  sign_in
 end
 
 ### THEN ###

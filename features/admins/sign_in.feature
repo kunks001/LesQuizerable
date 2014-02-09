@@ -17,13 +17,13 @@ Feature: Sign in
     When I return to the site
     Then should be signed in
 
-  # Scenario Outline: Admin enters wrong credentials
-  #   Given that I am a site admin
-  #   And I am not signed in
-  #   When I sign in with an invalid <credential>
-  #   Then I should see an invalid login message
-  #   And I should be signed out
-  # Examples:
-  #   |credential|
-  #   |password  |
-  #   |email     |
+  Scenario Outline: Admin enters wrong credentials
+    Given that I am a site admin
+    And I am not signed in
+    When I sign in with an invalid <credential>
+    Then I should see an invalid login message
+    And I should be signed out
+  Examples:
+    |credential|
+    |password  |
+    |email     |

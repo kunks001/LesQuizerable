@@ -17,8 +17,8 @@ end
 def sign_in
   visit '/admins/sign_in'
   within ('#sign-in-form') do
-    fill_in 'email', with: 'example@example.com'
-    fill_in 'password', with: 'foobar'
+    fill_in 'email', with: admin_details[:email]
+    fill_in 'password', with: admin_details[:password]
     click_button 'Sign in'
   end
 end

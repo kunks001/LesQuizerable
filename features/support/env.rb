@@ -8,6 +8,7 @@ require 'capybara'
 require 'capybara/cucumber'
 require 'rspec'
 require 'database_cleaner'
+require 'database_cleaner/cucumber'
 require 'factory_girl'
 
 Capybara.app = QuizApp
