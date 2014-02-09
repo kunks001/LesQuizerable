@@ -11,7 +11,6 @@ require 'active_support/core_ext/hash'
 require 'sinatra/partial'
 require "sinatra/jsonp"
 require 'json'
-require 'sinatra/redirect_with_flash'
 
 class QuizApp < Sinatra::Base
   env = ENV["RACK_ENV"] || "development"
@@ -30,7 +29,7 @@ class QuizApp < Sinatra::Base
 
   register Sinatra::Partial
 
-  use Rack::Flash
+  use Rack::Flash, :sweep => true
   use Rack::MethodOverride
 
   register Sinatra::ConfigFile

@@ -1,7 +1,4 @@
-- if flash[:errors] && !flash[:errors].empty?
-  Sorry, there were the following problems with the form: 
-  %ul{ id: "errors" }
-  - flash[:errors].each do |error|
-    = error
-- if flash[:notice]
-  = flash[:notice]
+- flash_types.select{ |kind| flash.has?(kind) }.each do |kind|
+  - k = kind
+  %div{class: k}
+    = flash[kind]

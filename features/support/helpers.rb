@@ -15,7 +15,7 @@ def create_admin(admin_details)
 end
 
 def sign_in
-  visit '/admins/sign_in'
+  visit '/sessions/new'
   within ('#sign-in-form') do
     fill_in 'email', with: admin_details[:email]
     fill_in 'password', with: admin_details[:password]

@@ -1,15 +1,19 @@
 ### GIVEN ###
 
-Given(/^that I am not signed up to the site$/) do
+Given(/^I am not signed up to the site$/) do
   delete_admin 
 end
 
-Given(/^that I am a site admin$/) do
+Given(/^I am a site admin$/) do
   create_admin(admin_details)
 end
 
 Given(/^I am not signed in$/) do
   clear_user_session
+end
+
+Given(/^I am signed in$/) do
+  sign_in
 end
 
 
@@ -35,6 +39,11 @@ When(/^I sign in with an invalid email$/) do
   sign_in
 end
 
+When(/^I sign out$/) do
+  click_button 'Sign out'
+end
+
+
 ### THEN ###
 
 Then(/^I should see an invalid login message$/) do
@@ -52,6 +61,10 @@ end
 
 Then(/^should be signed in$/) do
   page.should have_link 'Quizzes' || 'Dashboard'
+end
+
+Then(/^I should see a sign out confirmation message$/) do
+  page.should have_content "Signed out successfully"
 end
 
 

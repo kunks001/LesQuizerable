@@ -6,7 +6,7 @@ body {
   line-height: 30px;
 }
 
-.sign-in-flash-container {
+.error {
   margin-top: 100px;
   position: absolute;
   background-color: rgba(236,24,24,0.4);
@@ -24,10 +24,10 @@ body {
   -khtml-border-radius: 10px; /* for old Konqueror browsers */
 }
 
-.quizzes-flash-container {
+.notice {
   margin-top: 100px;
   position: absolute;
-  background-color: rgba(24,247,16,0.4);
+  background-color: rgba(92,184,92,0.4);
   width: 100%;
   padding: 10px 15px;
   line-height: 1em;

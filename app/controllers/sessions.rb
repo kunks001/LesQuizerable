@@ -1,5 +1,4 @@
 class QuizApp < Sinatra::Base
-  helpers Sinatra::RedirectWithFlash
   
   get '/sessions/new' do
     haml :"sessions/new"
@@ -10,16 +9,18 @@ class QuizApp < Sinatra::Base
     admin = Admin.authenticate(email, password)
     if admin
       session[:admin_id] = admin.id
-      redirect to('/quizzes'), :notice => "Signed in successfully."
+      flash[:notice] = "Signed in successfully."
+      redirect to('/quizzes')
     else
-      flash[:errors] = ["The email or password are incorrect"]
-      haml :"sessions/new"
+      flash[:error] = "The email or password are incorrect"
+      redirect to('/sessions/new')
     end
   end
 
   delete '/sessions' do
     session[:admin_id] = nil
-    redirect to '/quizzes'
+    flash[:notice] = "Signed out successfully."
+    redirect to('/sessions/new')
   end
   
 end
