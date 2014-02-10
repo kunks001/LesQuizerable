@@ -39,24 +39,4 @@ class Admin
       nil
     end
   end
-
-  def admin_fields
-    [:email, :password, :password_confirmation]
-  end
-
-  def update_fields_with_auth(params, current_password, current_admin)
-    if Admin.authenticate(current_admin.email, params[:current_password])
-      update_fields_with(changed(params))
-    end
-  end
-
-  def changed(params)
-    admin_fields.each { |f| params.delete(f) if params[f] == "" }
-    params
-  end
-
-  def update_fields_with(params)
-    admin_fields.each { |f| self.update(f => params[f]) if params[f] != nil }
-  end
-
 end

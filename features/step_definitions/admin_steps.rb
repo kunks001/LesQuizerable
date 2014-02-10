@@ -16,6 +16,28 @@ Given(/^I am signed in$/) do
   sign_in
 end
 
+Given(/^I am on the "([^"]*)" page$/) do |page|
+  create_admin
+  id = @admin.id
+  visit path_to(page, id)
+end
+
+Given(/^I fill in "(.*?)" with:$/) do |name, table|
+  with_scope(name) do
+    table.rows.each do |row|
+      fill_in row[0], with: row[1]
+    end
+  end
+end
+
+Then(/^I should see a form "(.*?)" with:$/) do |name, table|
+  with_scope(name) do
+    table.rows.each do |row|
+      page.should have_content row[0]
+    end
+  end
+end
+
 
 ### WHEN ###
 
@@ -43,6 +65,9 @@ When(/^I sign out$/) do
   click_button 'Sign out'
 end
 
+When(/^I click the "(.*?)" button$/) do |button|
+  click_button button
+end
 
 ### THEN ###
 
@@ -65,6 +90,15 @@ end
 
 Then(/^I should see a sign out confirmation message$/) do
   page.should have_content "Signed out successfully"
+end
+
+Then(/^I should see "(.*?)"$/) do |content|
+  page.should have_content content
+end
+
+Then(/^I should be on the "(.*?)" page$/) do |page|
+  id = @admin.id
+  path_to(page, id).should include current_path
 end
 
 

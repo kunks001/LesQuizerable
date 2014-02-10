@@ -10,8 +10,8 @@ def delete_admin
   @admin.destroy unless @admin.nil?
 end
 
-def create_admin(admin_details)
-  FactoryGirl.create(:admin, admin_details)
+def create_admin(info = admin_details)
+  @admin ||= FactoryGirl.create(:admin, info)
 end
 
 def sign_in
@@ -27,3 +27,30 @@ def clear_user_session
   page.driver.submit :delete, '/sessions', {}
 end
   
+def path_to(page_name, id = '')
+  name = page_name.downcase
+  case name
+    when 'home' then
+      ''
+    when 'signin' then
+      '/sessions/new'
+    when 'edit' then
+      "/admins/#{id}/edit"
+    else
+      raise('path to specified is not listed in #path_to')
+  end
+end
+
+def with_scope(locator)
+  locator ? within(*selector_for(locator)) { yield } : yield
+end
+
+def selector_for(locator)
+  case locator
+    when "Edit profile"
+      'form#edit-details'
+    else
+      raise "Can't find mapping from \"#{locator}\" to a selector.\n" +
+            "Now, go and add a mapping in #{__FILE__}"
+  end
+end

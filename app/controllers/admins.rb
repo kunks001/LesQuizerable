@@ -35,16 +35,17 @@ class QuizApp < Sinatra::Base
       haml :"admins/edit"
     end
 
-    put '/:id/edit' do
-      admin = Admin.get!(params[:id])
-      admin.update_fields_with_auth(params, params[:current_password], current_admin)
-      if admin.save
+    post '/:id/edit' do
+      @admin = Admin.first(:id => params[:id])
+
+      if @admin.update(:password => params['password'],
+                        :password_confirmation => params['password_confirmation'])
+
         flash[:notice] = 'Your details have been successfully updated'
-        redirect to('/')
+        redirect to("/admins/#{params[:id]}/edit")
       else
-        flash.now[:errors] = ['Sorry, update failed. Please try again.']
-        @admin = user
-        haml :"admins/edit"
+        flash[:error] = 'Sorry, update failed. Please try again.'
+        redirect to("/admins/#{params[:id]}/edit")
       end
     end
 
