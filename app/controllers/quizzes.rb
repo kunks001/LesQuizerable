@@ -20,6 +20,7 @@ class QuizApp < Sinatra::Base
       quiz.add_questions(params[:question],quiz)
       if quiz.save
         quiz.show_on_homepage(Quiz.all) if params[:displayed] == "on"
+        flash[:notice] = "Quiz created successfully!"
         redirect to '/quizzes'
       else
         flash.now[:errors] = ["Sorry, your Quiz was unable to save. Please try again"]

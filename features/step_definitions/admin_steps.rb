@@ -30,6 +30,17 @@ Given(/^I fill in "(.*?)" with:$/) do |name, table|
   end
 end
 
+Given(/^I fill in the new quiz form with:$/) do |table|
+  data = table.rows.flatten
+  answers = page.all(:css, '.answer_text')
+
+  fill_in 'title', with: data[0]
+  fill_in 'question_text', with: data[1]
+  page.all(:css, '.answer_text')[0].set(data[2])
+  page.all(:css, '.answer_text')[1].set(data[3])
+  page.all(:css, '.answer_text')[2].set(data[4])
+end
+
 Then(/^I should see a form "(.*?)" with:$/) do |name, table|
   with_scope(name) do
     table.rows.each do |row|
