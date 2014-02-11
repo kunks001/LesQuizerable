@@ -52,6 +52,9 @@ def path_to(page_name, id = '')
       "/quizzes/#{id}/edit"
     when 'quizzes' then
       '/quizzes'
+    when "show quiz"
+      id = @quiz.id
+      "/quizzes/#{id}"
     else
       raise('path to specified is not listed in #path_to')
   end

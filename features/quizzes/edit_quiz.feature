@@ -22,12 +22,16 @@ Feature: Editing Quizzes
     And I should see "new answer"
 
   Scenario: Updating a quiz with pictures
-    Given I add the image "question-image.jpg" 
-    And I add the image "answer-image.jpg"
+    Given Given I fill in the edit quiz form with:
+      | title       |
+      | edited quiz |
+    And I add the image "edited-question-image.jpg" 
+    And I add the image "edited-answer-image.jpg"
     When I click the "Submit" button
     Then I should be on the "quizzes" page
     And I should see "Quiz updated successfully!"
-    And I should see the image "question-image.jpg"
+    And I should see the image "edited-question-image.jpg"
     When I click the "edited quiz" link
-    Then I should see the image "question-image.jpg"
-    And I should see the image "answer-image.jpg"
+    Then I should be on the "show quiz" page
+    Then I should see the image "edited-question-image.jpg"
+    And I should see the image "edited-answer-image.jpg"

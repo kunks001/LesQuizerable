@@ -14,17 +14,19 @@ class Question
   end
 
   def add_answers(answers)
-    answers.each do |key, value|
-      next if value["response"] == ""
+    if answers
+      answers.each do |key, value|
+        next if value["response"] == ""
 
-      correctness = value[:correctness]
-      image = value["file"]
-      response = value["response"]
+        correctness = value[:correctness]
+        image = value["file"]
+        response = value["response"]
 
-      answer = Answer.new(:response => response, 
-                          :correctness => check(correctness))
-      answer.add_image(image) if image
-      self.answers << answer
+        answer = Answer.new(:response => response, 
+                            :correctness => check(correctness))
+        answer.add_image(image) if image
+        self.answers << answer
+      end
     end
   end
 
@@ -37,12 +39,14 @@ class Question
   end
 
   def update_answers(answers)
-    answers.each do |key, value|
-      image = value["file"]
+    if answers
+      answers.each do |key, value|
+        image = value["file"]
 
-      answer = Answer.get(key.to_i)
-      answer.update(:response => value["response"])
-      ImageUpdateHelper::update_image(answer, image) if image
+        answer = Answer.get(key.to_i)
+        ImageUpdateHelper::update_image(answer, image) if image
+        answer.update(:response => value["response"]) if answer.save
+      end
     end
   end
 end

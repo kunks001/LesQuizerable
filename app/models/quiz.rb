@@ -45,7 +45,7 @@ class Quiz
       answers         = value["answer"]
 
       ImageUpdateHelper::update_image(question, image) if image
-      question.update(:question_text => question_text)
+      question.update(:question_text => question_text) if question.save
       question.update_answers(answers) if question.save
     end
   end

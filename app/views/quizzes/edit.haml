@@ -17,10 +17,11 @@
           %label Question
           %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][question_text]", value: "#{question.keys.first.question_text}", class: "question_input", id: "question_input"}
           %input{type: "file", name: "[question][#{question.keys.first.id}]file", value: "", id: "file"}
-          .answer
-            - answers = question.values.flatten!
-            - answers.each do |answer|
+          - answers = question.values.flatten!
+          - answers.each do |answer|
+            - index = answers.index(answer)
+            .answer_fields
               %label Answers
               %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][answer][#{answer.id}][response]", value: "#{answer.response}", class: "answer_input"}
-              %input{type: "file", name: "[question][#{question.keys.first.id}][answer][#{answer.id}]file", value: ""}
+              %input{type: "file", name: "[question][#{question.keys.first.id}][answer][#{answer.id}]file", value: "", id: "answer_image_#{index}"}
       %input{type: "submit", value: "Submit"}

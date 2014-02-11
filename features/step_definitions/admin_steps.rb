@@ -60,6 +60,12 @@ Given(/^I add the image "(.*?)"$/) do |image|
     attach_file('file', File.join(File.dirname(__FILE__), "/images/#{image}"))
   elsif image == 'answer-image.jpg'
     attach_file('answer_image', File.join(File.dirname(__FILE__), "/images/#{image}"))
+  elsif image == 'edited-question-image.jpg'
+    attach_file('file', File.join(File.dirname(__FILE__), "/images/#{image}"))
+  elsif image == 'edited-answer-image.jpg'
+    within(page.all(:css, '.answer_fields')[0]) do
+      attach_file('answer_image_0', File.join(File.dirname(__FILE__), "/images/#{image}"))
+    end
   end
 end
 
