@@ -26,7 +26,7 @@
               Settings
             %ul.dropdown-menu
               %li
-                %a{href: "admins/#{current_admin.id}/edit"} Edit Profile
+                %a{href: "/admins/#{current_admin.id}/edit"} Edit Profile
               - if current_admin.super_admin?
                 %li
                   %a{href: "/admins"} Admins

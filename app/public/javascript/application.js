@@ -70,3 +70,8 @@ $(function() {
     $(this).parent().parent().remove('.answer_fields');
   });
 });
+
+$(document).ready(function(){
+  $('input[type=file]').bootstrapFileInput();
+  $('.file-inputs').bootstrapFileInput();
+});

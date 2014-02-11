@@ -7,72 +7,106 @@
           Create Quiz
 
     %form{action: '/quizzes/new', method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data", id: "new-quiz"}
-      %ul
-        %li
-          %label.quiz_title_field Title
-        %li
-          %input{type: "text", "..." => "", name: "title", id: "title"}
-        %li
-          %label.display_quiz_label Display Quiz on Landing Page?
-          %input{type: "checkbox", name: "displayed", class: "display_checkbox"}
+      .row
+        .col-md-10
+          .row
+            %label.quiz_title_field Title
+          .row
+            %input{type: "text", "..." => "", name: "title", id: "title"}
+          .row
+            %label.display_quiz_label Display Quiz on Landing Page?
+            %input{type: "checkbox", name: "displayed", class: "display_checkbox"}
       #questions
         .question_fields
-          .some-div
-            %ul
-              %li
+          .row
+            .col-md-1
+            .col-md-10
+              .row
                 %label Question
-              %li
+              .row
                 %input{type: "text", "..." => "", name: "[question][0][question_text]", class: "question_text", id: "question_text"}
-            .file_input
-              %input{type: "file", name: "[question][0]file", value: "", id: "file"}
-            .answer_fields
-              %ul
-                %li 
-                  %input{type: "text", "..." => "", name: "[question][0][answer][0][response]", class: "answer_text"}
-              .file_input
+                %input{type: "file", name: "[question][0]file", value: "", id: "file"}
+        
+        .answer_fields
+          .row
+            .col-md-2
+            .col-md-10
+              .row.field-margin
+                %input{type: "text", "..." => "", name: "[question][0][answer][0][response]", class: "answer_text"}
+              .row
                 %input{type: "file", name: "[question][0][answer][0][file]", value: "", id: "answer_image"}
-              .correct_answer
-                %label.correct_answer_label 
-                  Correct Answer?
-              .correct_answer_checkbox
-                %input{type: "checkbox", name: "question[0][answer][0][correctness]", class: "checkbox"}
-              .add_answer_container
-                %button{ href: "#", class: "remove_answer btn btn-danger", name: "remove_answer" }
+              .row
+                %ul
+                  %li{style: "float: left;"}
+                    %label.correct_answer_label 
+                  %li{style: "float: left;"}
+                    Correct Answer?
+                  %li{style: "float: left; margin-left: 10px;"}
+                    %input{type: "checkbox", name: "question[0][answer][0][correctness]", class: "checkbox"}
+              .row
+                %button{ href: "#", class: "remove_answer btn btn-danger set-btn-width", name: "remove_answer" }
                   Remove Answer
-            .answer_fields
-              %ul
-                %li
-                  %input{type: "text", "..." => "", name: "[question][0][answer][1][response]", class: "answer_text"}
-              .file_input
+
+        .answer_fields
+          .row
+            .col-md-2
+            .col-md-10
+              .row.field-margin
+                %input{type: "text", "..." => "", name: "[question][0][answer][1][response]", class: "answer_text"}
+              .row
                 %input{type: "file", name: "[question][0][answer][1][file]", value: ""}
-              .correct_answer
-                %label.correct_answer_label 
-                  Correct Answer?
-              .correct_answer_checkbox
-                %input{type: "checkbox", name: "question[0][answer][1][correctness]", class: "checkbox"}
-              .add_answer_container
-                %button{ href: "#", class: "remove_answer btn btn-danger", name: "remove_answer" }
+              .row
+                %ul
+                  %li{style: "float: left;"}
+                    %label.correct_answer_label 
+                  %li{style: "float: left;"}
+                    Set as correct answer
+                  %li{style: "float: left; margin-left: 10px;"}
+                    %input{type: "checkbox", name: "question[0][answer][1][correctness]", class: "checkbox"}
+              .row
+                %button{ href: "#", class: "remove_answer btn btn-danger set-btn-width", name: "remove_answer" }
                   Remove Answer
-            .answer_fields
-              %ul
-                %li
-                  %input{type: "text", "..." => "", name: "[question][0][answer][2][response]", class: "answer_text"}
-              .file_input
+
+        .answer_fields
+          .row
+            .col-md-2
+            .col-md-10
+              .row.field-margin
+                %input{type: "text", "..." => "", name: "[question][0][answer][2][response]", class: "answer_text"}
+              .row
                 %input{type: "file", name: "[question][0][answer][2][file]", value: ""}
-              .correct_answer
-                %label.correct_answer_label 
-                  Correct Answer?
-              .correct_answer_checkbox
-                %input{type: "checkbox", name: "question[0][answer][2][correctness]", class: "checkbox"}
-              .add_answer_container
-                %button{ href: "#", class: "remove_answer btn btn-danger", name: "remove_answer" }
+              .row
+                %ul
+                  %li{style: "float: left;"}
+                    %label.correct_answer_label 
+                  %li{style: "float: left;"}
+                    Set as correct answer
+                  %li{style: "float: left; margin-left: 10px;"}
+                    %input{type: "checkbox", name: "question[0][answer][2][correctness]", class: "checkbox"}
+              .row
+                %button{ href: "#", class: "btn btn-danger set-btn-width", name: "remove_answer" }
                   Remove Answer
-            .add_answer_container
-              %button{ type: "button", class: "add_answer btn btn-primary", value: "Add Answer"}
-                Add Answer
-          .add_question_container
-            %button{ type: "button", class: "add_question btn btn-primary", value: "Add Question"}
-              Add Question
-            %button{ href: "#", class: "remove_question btn btn-danger", name: "remove_question" }
-              Remove Question
-      %input{type: "submit", value: "Create Quiz!", class: "btn btn-success create_quiz"}
+        .answer_fields
+          .row
+            .col-md-2
+            .col-md-10
+              .row.field-margin
+                %button{ type: "button", class: "btn btn-primary set-btn-width adjusted", value: "Add Answer"}
+                  Add Answer
+
+        .question_fields
+          .row
+            .col-md-1
+            .col-md-10
+              .row.field-margin
+                %button{ href: "#", class: "set-btn-width btn btn-danger", name: "remove_question" }
+                  Remove Question
+              .row.field-margin
+                %button{ type: "button", class: "set-btn-width btn btn-primary", value: "Add Question"}
+                  Add Question
+
+      .row
+        .col-md-10
+          .row.field-margin
+            %input{type: "submit", value: "Create Quiz!", class: "set-btn-width btn btn-success"}
+
