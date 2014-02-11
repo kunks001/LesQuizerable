@@ -30,7 +30,7 @@
               - if current_admin.super_admin?
                 %li
                   %a{href: "/admins"} Admins
-          %li
+          %li.sign-out
             %form{method: "post", action: "/sessions"}
               %input{type: "hidden", name: "_method", value: "delete"}
               %input.nav{type: "submit", value: "Sign out", id: "sign_out_button"}

@@ -1,25 +1,56 @@
-.navbar.navbar-fixed-top
-  .white_background
-    %div{class: "navbar-inner"}
-      .container-fluid
-        %nav
-          %a{href:"http://makersacademy.com/", id: "brand"}
-            %img{alt: "Makers Academy", src: "http://www.makersacademy.com/images/logo.png"}
-          %ul{class: "nav pull-right"}
-            %a{href: "http://makersacademy.com/apply", class: "btn btn-apply pull-right top-apply"}
-              Apply
-          .links_container
-            %ul{class: "pull-right"}
-              %li{ class: "visible-desktop"}
-                %a{ href: "http://www.twitter.com/MakersAcademy", target: "_blank"}
-                  .m-icon-twitter
-              %li
-                %a{href: "http://blog.makersacademy.com/"}
-                  BLOG
-              %li
-                %a{href: "http://makersacademy.com/info/faq"}
-                  FAQ
-              - if current_admin
-                %li
-                  %a{href: "/quizzes"} 
-                    QUIZZES
+%nav.navbar.navbar-fixed-top.navbar-default{role: "navigation"}
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href:"http://makersacademy.com/", id: "brand"}
+        %img{alt: "Makers Academy", src: "http://www.makersacademy.com/images/logo.png"}
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse.nav-background
+      %ul.nav.navbar-nav.navbar-right
+        - if current_admin  
+          %li
+            %a{href: "/quizzes/new", class: "red-font"} 
+              DASHBOARD
+        %li
+          %a{href: "http://makersacademy.com/info/faq", class: "red-font"}
+            FAQ
+        %li
+          %a{href: "http://blog.makersacademy.com/", class: "red-font"}
+            BLOG
+        %li
+          %a{ href: "http://www.twitter.com/MakersAcademy", target: "_blank", class: "margin-right-30"}
+            .m-icon-twitter
+        %li
+          %a{href: "http://makersacademy.com/apply", class: "btn btn-apply pull-right top-apply white-font"}
+            Apply
+        
+
+
+/ .navbar.navbar-fixed-top
+/   .white_background
+/     %div{class: "navbar-inner"}
+/       .container-fluid
+/         %nav
+/           %a{href:"http://makersacademy.com/", id: "brand"}
+/             %img{alt: "Makers Academy", src: "http://www.makersacademy.com/images/logo.png"}
+/           %ul{class: "nav pull-right"}
+/             %a{href: "http://makersacademy.com/apply", class: "btn btn-apply pull-right top-apply"}
+/               Apply
+/           .links_container
+/             %ul{class: "pull-right"}
+/               %li{ class: "visible-desktop"}
+/                 %a{ href: "http://www.twitter.com/MakersAcademy", target: "_blank"}
+/                   .m-icon-twitter
+/               %li
+/                 %a{href: "http://blog.makersacademy.com/"}
+/                   BLOG
+/               %li
+/                 %a{href: "http://makersacademy.com/info/faq"}
+/                   FAQ
+/               - if current_admin
+/                 %li
+/                   %a{href: "/quizzes"} 
+/                     QUIZZES
