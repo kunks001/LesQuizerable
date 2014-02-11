@@ -25,33 +25,39 @@ $(document).ready(function() {
 $(document).ready(function() {
   $(".add_question").click(function(event){
     event.preventDefault(); 
-    var Target = $('.question_fields:last');
+
+    var Target = $('#questions .question_fields:last');
     var CloneTarget = $(Target).clone( true );
 
-    CloneTarget.find('input, select').attr('name', function(i, val) {
+    CloneTarget.find('input, select').val('').attr('name', function(i, val) {
         return val.replace(/\d+/, function(n) {
             return ++n;
         });
     });
 
     $('#questions').append(CloneTarget);
+    $('.add_question_fields').appendTo('#questions');
   });
 });
 
 $(document).ready(function() {
   $(".add_answer").click(function(){
     event.preventDefault(); 
-    var Target = $(this).parent().parent().children(".answer_fields").last();
+
+    var Container = $(this).parents().eq(4)
+    var AddAnswerContainer = $(this).parents().eq(3)
+    var Target = $( "#questions .answer_fields:last" );
     var CloneTarget = $(Target).clone( true );
 
-    CloneTarget.find('input, select').attr('name', function(i, val) {
+    CloneTarget.find('input, select').val('').attr('name', function(i, val) {
         return val.replace(/\d+(?=[^\d+]*$)/, function(n) {
             return ++n;
         });
     });
 
-    $(this).parent().parent().append(CloneTarget);
-    $(this).parent().appendTo('.some-div');
+    Container.append(CloneTarget);
+    AddAnswerContainer.appendTo(Container);
+    $('.add_question_fields').appendTo('#questions');
   });
 });
 
@@ -59,19 +65,13 @@ $(document).ready(function() {
 $(function() {
   $('.remove_question').click(function(event) {
     event.preventDefault();
-    $(this).parent().parent().remove('.question_fields');
+    $(this).parents().eq(5).remove();
   });
 });
 
 $(function() {
   $('.remove_answer').click(function(event) {
     event.preventDefault();
-    alert("you sure?");
-    $(this).parent().parent().remove('.answer_fields');
+    $(this).parents().eq(3).remove();
   });
-});
-
-$(document).ready(function(){
-  $('input[type=file]').bootstrapFileInput();
-  $('.file-inputs').bootstrapFileInput();
 });

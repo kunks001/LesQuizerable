@@ -172,6 +172,10 @@ body {
   margin-top: 10px;
 }
 
+.add_question_fields {
+  margin-top: 10px;
+}
+
 form ul {
   margin-bottom: 0px;
 }
@@ -206,6 +210,10 @@ form ul {
   margin-top: 5px;
 }
 
+.add_answer_fields {
+  margin-top: 5px;
+}
+
 .answer_fields label {
   font-size: 20
 }
@@ -234,12 +242,6 @@ form ul {
 .add-answer {
   margin-top: 20px;
   width: 100%;
-}
-
-.add_question {
-  margin-top: 20px;
-  width: 20%;
-  margin-left: 10%;
 }
 
 .create_quiz {
