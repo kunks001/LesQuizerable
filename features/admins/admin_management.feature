@@ -1,18 +1,18 @@
 Feature: Editing my account
-  In order to manage my account settings
-  As I user I would like to have an account page page
-  So I will be able to update my credentials
+  To update my account settings
+  As an existing admin
+  I want to be able to edit my details
 
   Background:
-	  Given I am a site admin
+    Given I am a site admin
     And I am signed in
-    And I am on the "edit" page
+    And I am on the "edit_admin" page
 
   Scenario: The edit page
     Then I should see "Edit Profile"
     And I should see a form "Edit profile" with:
       | Field                 |
-      | Password							|
+      | Password              |
       | Password Confirmation |
 
   Scenario: Updating password
@@ -29,5 +29,5 @@ Feature: Editing my account
       | password              | newpassword         |
       | password_confirmation | differentpassword   |
     When I click the "Submit" button
-    Then I should be on the "edit" page
+    Then I should be on the "edit_admin" page
     Then I should see "Sorry, update failed. Please try again."

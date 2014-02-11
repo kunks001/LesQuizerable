@@ -1,6 +1,6 @@
 Feature: Sign in
+  To access the dashboard
   As an existing admin
-  I want to be able to access the dashboard
   So I want to be able to sign in
 
   Scenario: Admin is not signed up

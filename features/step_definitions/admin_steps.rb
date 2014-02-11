@@ -17,9 +17,7 @@ Given(/^I am signed in$/) do
 end
 
 Given(/^I am on the "([^"]*)" page$/) do |page|
-  create_admin
-  id = @admin.id
-  visit path_to(page, id)
+  visit path_to(page)
 end
 
 Given(/^I fill in "(.*?)" with:$/) do |name, table|
@@ -41,14 +39,21 @@ Given(/^I fill in the new quiz form with:$/) do |table|
   page.all(:css, '.answer_text')[2].set(data[4])
 end
 
-Then(/^I should see a form "(.*?)" with:$/) do |name, table|
-  with_scope(name) do
-    table.rows.each do |row|
-      page.should have_content row[0]
-    end
-  end
+Given(/^Given I fill in the edit quiz form with:$/) do |table|
+  data = table.rows.flatten
+  answers = page.all(:css, '.answer_input')
+
+  fill_in 'title', with: data[0]
+  fill_in 'question_input', with: data[1]
+  page.all(:css, '.answer_input')[0].set(data[2])
+  page.all(:css, '.answer_input')[1].set(data[3])
+  page.all(:css, '.answer_input')[2].set(data[4])
 end
 
+
+Given(/^a quiz already exists$/) do
+  create_quiz
+end
 
 ### WHEN ###
 
@@ -78,6 +83,10 @@ end
 
 When(/^I click the "(.*?)" button$/) do |button|
   click_button button
+end
+
+When(/^I click the "(.*?)" link$/) do |link|
+  click_link link
 end
 
 ### THEN ###
@@ -110,6 +119,14 @@ end
 Then(/^I should be on the "(.*?)" page$/) do |page|
   id = @admin.id
   path_to(page, id).should include current_path
+end
+
+Then(/^I should see a form "(.*?)" with:$/) do |name, table|
+  with_scope(name) do
+    table.rows.each do |row|
+      page.should have_content row[0]
+    end
+  end
 end
 
 
