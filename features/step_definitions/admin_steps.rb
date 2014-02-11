@@ -55,6 +55,15 @@ Given(/^a quiz already exists$/) do
   create_quiz
 end
 
+Given(/^I add the image "(.*?)"$/) do |image|
+  if image == 'question-image.jpg'
+    attach_file('file', File.join(File.dirname(__FILE__), "/images/#{image}"))
+  elsif image == 'answer-image.jpg'
+    attach_file('answer_image', File.join(File.dirname(__FILE__), "/images/#{image}"))
+  end
+end
+
+
 ### WHEN ###
 
 When(/^I sign in with valid credentials$/) do
@@ -127,6 +136,10 @@ Then(/^I should see a form "(.*?)" with:$/) do |name, table|
       page.should have_content row[0]
     end
   end
+end
+
+Then(/^I should see the image "(.*?)"$/) do |image|
+  page.should have_xpath("//img[@src=\"https://s3.amazonaws.com/MakersQuizApp/#{image}\"]")
 end
 
 

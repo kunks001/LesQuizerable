@@ -11,12 +11,23 @@ Feature: Editing Quizzes
 
   Scenario: Editing a quiz
     Given Given I fill in the edit quiz form with:
-      | title     | question     | answer 1   | answer 2   | answer 3   |
-      | New title | new question | new answer | new answer | new answer |
+      | title       | question     | answer 1   | answer 2   | answer 3   |
+      | edited quiz | new question | new answer | new answer | new answer |
     When I click the "Submit" button
     Then I should be on the "quizzes" page
     And I should see "Quiz updated successfully!"
-    And I should see "New title"
-    When I click the "New title" link
+    And I should see "edited quiz"
+    When I click the "edited quiz" link
     Then I should see "new question"
     And I should see "new answer"
+
+  Scenario: Updating a quiz with pictures
+    Given I add the image "question-image.jpg" 
+    And I add the image "answer-image.jpg"
+    When I click the "Submit" button
+    Then I should be on the "quizzes" page
+    And I should see "Quiz updated successfully!"
+    And I should see the image "question-image.jpg"
+    When I click the "edited quiz" link
+    Then I should see the image "question-image.jpg"
+    And I should see the image "answer-image.jpg"
