@@ -1,29 +1,41 @@
-.navbar.navbar-fixed-top
-  .white_background
-    %div{class: "navbar-inner"}
-      .container-fluid
-        %nav
-          %a{href:"http://makersacademy.com/", id: "brand"}
-            %img{alt: "Makers Academy", src: "http://www.makersacademy.com/images/logo.png"}
-          %ul{class: "nav pull-right"}
-            - if current_admin
+%nav.navbar.navbar-fixed-top.navbar-default{role: "navigation"}
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href:"http://makersacademy.com/", id: "brand"}
+        %img{alt: "Makers Academy", src: "http://www.makersacademy.com/images/logo.png"}
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      - if current_admin
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{href: "/"} Home
+          %li.dropdown
+            %a.dropdown-toggle{href: "#", data: {toggle: 'dropdown'} }
+              Quizzes
+            %ul.dropdown-menu
               %li
-                %a.nav{href: "/"}
-                  Home
+                %a{href: "/quizzes"} Quiz index
               %li
-                %a.nav(href="/quizzes")
-                  Quizzes
+                %a{href: "/quizzes/new"} New Quiz
+          %li.dropdown
+            %a.dropdown-toggle{href: "#", data: {toggle: 'dropdown'} }
+              Settings
+            %ul.dropdown-menu
               %li
-                %a.nav(href="/quizzes/new")
-                  New Quiz
-              %li
-                %a.nav(href="/admins")
-                  Admins
-              %li
-                %form{method: "post", action: "/sessions"}
-                  %input{type: "hidden", name: "_method", value: "delete"}
-                  %input.nav{type: "submit", value: "Sign out", id: "sign_out_button"}
-            - else
-              %li
-                %a.nav{href: "/"}
-                  Home
+                %a{href: "admins/#{current_admin.id}/edit"} Edit Profile
+              - if current_admin.super_admin?
+                %li
+                  %a{href: "/admins"} Admins
+          %li
+            %form{method: "post", action: "/sessions"}
+              %input{type: "hidden", name: "_method", value: "delete"}
+              %input.nav{type: "submit", value: "Sign out", id: "sign_out_button"}
+                %i{class: "fa fa-sign-out", title: "Sign out"}
+      - else
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{href: "/"} Home
