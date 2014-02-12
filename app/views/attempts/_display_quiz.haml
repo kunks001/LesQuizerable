@@ -26,9 +26,6 @@
                 = answer.response
               .input
                 %input{type: "radio", name: "answer_ids[#{question.id}]", value: "#{answer.id}" }
-  .col-md-12#show-score-container
-    .submit-quiz-button
-      %input{type: "submit", value: "Submit", class: "btn btn-success", id: "submit_quiz"}
 
 - else
   .row.question-row

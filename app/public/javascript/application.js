@@ -42,11 +42,14 @@ $(document).ready(function() {
     var Target = $('#questions .question_fields:last');
     var CloneTarget = $(Target).clone( true );
 
-    CloneTarget.find('input, select').val('').attr('name', function(i, val) {
+    CloneTarget.find('input, select').attr('name', function(i, val) {
         return val.replace(/\d+/, function(n) {
             return ++n;
         });
     });
+
+    CloneTarget.find('input:text').val('');
+    CloneTarget.find('input:checkbox').attr('checked', false);
 
     $('#questions').append(CloneTarget);
     $('.add_question_fields').appendTo('#questions');
@@ -62,11 +65,14 @@ $(document).ready(function() {
     var Target = $( "#questions .answer_fields:last" );
     var CloneTarget = $(Target).clone( true );
 
-    CloneTarget.find('input, select').val('').attr('name', function(i, val) {
+    CloneTarget.find('input, select').attr('name', function(i, val) {
         return val.replace(/\d+(?=[^\d+]*$)/, function(n) {
             return ++n;
         });
     });
+
+    CloneTarget.find('input:text').val('');
+    CloneTarget.find('input:checkbox').attr('checked', false);
 
     Container.append(CloneTarget);
     AddAnswerContainer.appendTo(Container);

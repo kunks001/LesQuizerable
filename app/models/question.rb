@@ -18,12 +18,12 @@ class Question
       answers.each do |key, value|
         next if value["response"] == ""
 
-        correctness = value[:correctness]
+        correctness = check(value["correctness"])
         image = value["file"]
         response = value["response"]
 
         answer = Answer.new(:response => response, 
-                            :correctness => check(correctness))
+                            :correctness => correctness)
         answer.add_image(image) if image
         self.answers << answer
       end
@@ -35,7 +35,7 @@ class Question
   end
 
   def check(correctness)
-    correctness == "on" ? true : false
+    correctness == "yes"  ? true : false
   end
 
   def update_answers(answers)

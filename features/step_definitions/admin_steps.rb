@@ -50,7 +50,6 @@ Given(/^Given I fill in the edit quiz form with:$/) do |table|
   page.all(:css, '.answer_input')[2].set(data[4])
 end
 
-
 Given(/^a quiz already exists$/) do
   create_quiz
 end
@@ -59,7 +58,7 @@ Given(/^I add the image "(.*?)"$/) do |image|
   if image == 'question-image.jpg'
     attach_file('file', File.join(File.dirname(__FILE__), "/images/#{image}"))
   elsif image == 'answer-image.jpg'
-    attach_file('answer_image', File.join(File.dirname(__FILE__), "/images/#{image}"))
+    attach_file('answer_image_0', File.join(File.dirname(__FILE__), "/images/#{image}"))
   elsif image == 'edited-question-image.jpg'
     attach_file('file', File.join(File.dirname(__FILE__), "/images/#{image}"))
   elsif image == 'edited-answer-image.jpg'

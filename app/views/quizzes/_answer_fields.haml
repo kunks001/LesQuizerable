@@ -5,7 +5,7 @@
       .row.field-margin
         %input{type: "text", "..." => "", name: "[question][0][answer][#{answer_id}][response]", class: "answer_text"}
       .row
-        %input{type: "file", name: "[question][0][answer][#{answer_id}][file]", value: "", id: "answer_image"}
+        %input{type: "file", name: "[question][0][answer][#{answer_id}][file]", value: "", id: "answer_image_#{answer_id}"}
       .row
         %ul
           %li{style: "float: left;"}
@@ -13,7 +13,7 @@
           %li{style: "float: left;"}
             Correct Answer?
           %li{style: "float: left; margin-left: 10px;"}
-            %input{type: "checkbox", name: "question[0][answer][#{answer_id}][correctness]", class: "checkbox"}
+            %input{type: "checkbox", name: "question[0][answer][#{answer_id}][correctness]", class: "checkbox", value: "yes"}
       .row
         %button{ href: "#", class: "remove_answer btn btn-danger set-btn-width", name: "remove_answer" }
           Remove Answer

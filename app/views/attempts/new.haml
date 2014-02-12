@@ -11,7 +11,8 @@
     .background-lining
     .col-md-12.quiz-background
 
-      %form{id: "attempts_form", name: "/attempts/#{@quiz_id}"}
+      - quiz_id = @quiz ? @quiz.id : 'no-thanks'
+      %form{id: "attempts_form", name: "/attempts/#{quiz_id}"}
 
         = partial :"/attempts/_visitor_description"
         = partial :"/attempts/_display_quiz"

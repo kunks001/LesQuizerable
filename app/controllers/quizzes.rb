@@ -15,6 +15,7 @@ class QuizApp < Sinatra::Base
     end
 
     post '/new' do
+      # raise params.inspect
       quiz = Quiz.new(:title => params[:title])
       # quiz.save_questions_and_answers(params[:question],quiz)
       quiz.add_questions(params[:question],quiz)
