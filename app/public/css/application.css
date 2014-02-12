@@ -518,12 +518,16 @@ form ul {
   font-size: 0.8em;
 }
 
-.question-text-black {
-  font-size: 0.9em;
-}
-
 .text-red {
   color: #AF1729;
+}
+
+.q-description {
+  font-size: 1em;
+}
+
+.row {
+  margin-right: 0px;
 }
 
 
