@@ -1,0 +1,28 @@
+.question_fields
+  .row
+    .col-md-1
+    .col-md-10
+      .row
+        %label Question
+      .row
+        %input{type: "text", "..." => "", name: "[question][0][question_text]", class: "question_text", id: "question_text"}
+        %input{type: "file", name: "[question][0]file", value: "", id: "file"}
+  
+  - n = 0
+  - while n <= 3 
+    = partial :"quizzes/_answer_fields", :locals => { answer_id: n }
+    - n += 1
+  
+  .qa-fields
+    .row
+      .col-md-2
+      .col-md-10
+        .row.field-margin
+          %button{ type: "button", class: "btn btn-primary set-btn-width adjusted add_answer", value: "Add Answer"}
+            Add Answer
+    .row
+      .col-md-1
+      .col-md-10
+        .row.field-margin
+          %button{ href: "#", class: "remove_answer btn btn-danger set-btn-width remove_question", value: "Remove Question" }
+            Remove Question

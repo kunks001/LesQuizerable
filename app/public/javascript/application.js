@@ -65,7 +65,7 @@ $(document).ready(function() {
 $(function() {
   $('.remove_question').click(function(event) {
     event.preventDefault();
-    $(this).parents().eq(5).remove();
+    $(this).parents().eq(4).remove();
   });
 });
 
