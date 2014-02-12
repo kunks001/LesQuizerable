@@ -530,4 +530,8 @@ form ul {
   margin-right: 0px;
 }
 
+.reset-margin {
+  margin-right: -15px;
+}
+
 
