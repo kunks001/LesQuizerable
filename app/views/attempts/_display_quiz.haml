@@ -1,10 +1,18 @@
 - if @quiz
+  .row
+    .col-md-12.text-red
+      %h3
+        And now for the Quiz:
 
   - @quiz.questions.each do |question|
     .row.question-row
       .row
         .col-md-12.question-text
           = question.question_text
+      .row
+        .col-md-12.question-text.question-text-black
+          %label.answer-response
+            = question.description
       .col-md-6
         - if question.image
           - image = question.image.filename

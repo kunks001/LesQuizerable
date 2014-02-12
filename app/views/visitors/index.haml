@@ -1,0 +1,35 @@
+.col-md-12.admin_banner_image
+.col-md-12.dark-geometric
+  .col-md-10.col-md-offset-1
+    .row
+      %h2
+        .quiz-index-title
+          Visitors
+
+    - if @visitors != []
+      .background-lining
+      .col-md-12.quiz-background.visitor-background
+        %table.table.table-bordered.table-hover
+          %tr
+            %td
+              Name
+            %td
+              Email
+            %td
+              Description
+            %td
+              Date/time visited
+            %td
+              Would like to hear more?
+          - @visitors.each do |visitor|
+            %tr
+              %td
+                = visitor.name
+              %td
+                = visitor.email
+              %td
+                = visitor.description
+              %td
+                = visitor.created_at
+              %td
+                = visitor.contact

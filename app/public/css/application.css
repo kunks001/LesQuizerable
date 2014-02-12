@@ -329,6 +329,7 @@ form ul {
   padding-top: 2.5em;
   font-size: 2em;
   color: #AF1729;
+  margin-bottom: 100px;
 }
 
 .edit_button {
@@ -500,3 +501,29 @@ form ul {
   width: 150px;
   padding: 6px 12px;
 }
+
+.visitor-background {
+  min-height: 200px;
+}
+
+#edit-quiz input {
+  width: 100%;
+}
+
+.footer {
+  height: 100px;
+}
+
+.small-size {
+  font-size: 0.8em;
+}
+
+.question-text-black {
+  font-size: 0.9em;
+}
+
+.text-red {
+  color: #AF1729;
+}
+
+

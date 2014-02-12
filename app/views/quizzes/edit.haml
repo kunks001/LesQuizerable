@@ -6,21 +6,51 @@
         .quiz-index-title
           Edit Quiz
 
-    %form{action: "/quizzes/#{@quiz.id}/edit", method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data"}
-      %label Title
-      %input{type: "text", "..." => "", name: "title", value: "#{@quiz.title}", class: 'title'}
-      %label Display Quiz on Landing Page?
-      %input{type: "checkbox", name: "displayed"}
+    %form{action: "/quizzes/#{@quiz.id}/edit", method: "POST", :"accept-charset" => "utf-8", enctype: "multipart/form-data", id: "edit-quiz"}
+      .row
+        .col-md-10
+          .row
+            %label.quiz_title_field Title
+          .row
+            %input{type: "text", "..." => "", name: "title", value: "#{@quiz.title}", class: 'title'}
+          .row
+            %label Display Quiz on Landing Page?
+            %input{type: "checkbox", name: "displayed"}
       - @questions.each do |question|
-        .question
-          %label Question
-          %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][question_text]", value: "#{question.keys.first.question_text}", class: "question_input", id: "question_input"}
-          %input{type: "file", name: "[question][#{question.keys.first.id}]file", value: "", id: "file"}
+        .question_fields
+          .row
+            .col-md-1
+            .col-md-10
+              .row
+                %label Question:
+              .row
+                %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][question_text]", value: "#{question.keys.first.question_text}", class: "question_input", id: "question_input"}
+                Additional information:
+                %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][description]", class: "question_text", id: "question_text", value: "#{question.keys.first.description}"}
+                %input{type: "file", name: "[question][#{question.keys.first.id}]file", value: "", id: "file"}
           - answers = question.values.flatten!
           - answers.each do |answer|
             - index = answers.index(answer)
             .answer_fields
-              %label Answers
-              %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][answer][#{answer.id}][response]", value: "#{answer.response}", class: "answer_input"}
-              %input{type: "file", name: "[question][#{question.keys.first.id}][answer][#{answer.id}]file", value: "", id: "answer_image_#{index}"}
-      %input{type: "submit", value: "Submit"}
+              .row
+                .col-md-2
+                .col-md-10
+                  .row.field-margin
+                    %input{type: "text", "..." => "", name: "[question][#{question.keys.first.id}][answer][#{answer.id}][response]", value: "#{answer.response}", class: "answer_text"}
+                  .row
+                    %input{type: "file", name: "[question][#{question.keys.first.id}][answer][#{answer.id}]file", value: "", id: "answer_image_#{index}"}
+                  .row
+                    %ul
+                      %li{style: "float: left;"}
+                        %label.correct_answer_label 
+                      %li{style: "float: left;"}
+                        Correct Answer?
+                      %li{style: "float: left; margin-left: 10px;"}
+                        %input{type: "checkbox", name: "question[0][answer][#{answer.id}][correctness]", class: "checkbox", value: "yes"}
+      .row
+        .col-md-10
+          .row.field-margin
+            %button{type: "submit", value: "Submit", class: "set-btn-width btn btn-success"}
+              Submit
+
+  .col-md-12.footer

@@ -28,8 +28,10 @@ class Quiz
       question_text = value["question_text"]
       image         = value["file"]
       answers       = value["answer"]
+      description   = value["description"]
 
-      question = Question.new(question_text: question_text)
+      question = Question.new(question_text: question_text,
+                              description: description)
 
       question.add_image(image) if image
       question.add_answers(answers)
@@ -43,9 +45,11 @@ class Quiz
       question_text   = value["question_text"]
       image           = value["file"]
       answers         = value["answer"]
+      description   = value["description"]
 
       ImageUpdateHelper::update_image(question, image) if image
-      question.update(:question_text => question_text) if question.save
+      question.update(question_text: question_text,
+                      description: description) if question.save
       question.update_answers(answers) if question.save
     end
   end

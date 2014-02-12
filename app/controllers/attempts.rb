@@ -34,7 +34,8 @@ class QuizApp < Sinatra::Base
     visitor = Visitor.new(:email => params[:email],
                           :name => params[:name],
                           :description => params[:description],
-                          :contact => c
+                          :contact => c,
+                          :created_at => Time.now
                           )
     if visitor.save
       score = "Thanks!"

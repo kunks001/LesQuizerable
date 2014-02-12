@@ -3,9 +3,11 @@
     .col-md-1
     .col-md-10
       .row
-        %label Question
+        %label Question:
       .row
         %input{type: "text", "..." => "", name: "[question][0][question_text]", class: "question_text", id: "question_text"}
+        Additional information:
+        %input{type: "text", "..." => "", name: "[question][0][description]", class: "question_text", id: "question_text"}
         %input{type: "file", name: "[question][0]file", value: "", id: "file"}
   
   - n = 0

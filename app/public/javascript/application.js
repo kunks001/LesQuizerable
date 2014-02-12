@@ -7,6 +7,12 @@ $(document).ready(function() {
     // var Data = $("#attempts_form").serialize()
     // console.log(Data)
 
+    var $divs = $('#show-score'),
+        $buttons = $('button'),
+        $hb = $('html, body'),
+        $this = $(this),
+        index = $buttons.index(this);
+
     $.ajax({
       url: $form.attr('name'),
       dataType: "json",
@@ -16,6 +22,7 @@ $(document).ready(function() {
       // window.location.reload();
         // alert( msg )
         document.getElementById('show-score').innerHTML = score
+        $hb.animate({scrollTop: $divs.eq(index).offset().top + 'px'});
       },
       error: function(){
         alert("You've got to answer some questions first!")

@@ -6,39 +6,45 @@
         .quiz-index-title
           = @quiz.title
 
-    - @quiz.questions.each do |question|
-      .row.question-row
-        .row
-          .col-md-12.question-text
-            = question.question_text
-        .col-md-6
-          - if question.image
-            - image = question.image.filename
-            %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
-        .col-md-6
-          - question.answers.each do |answer|
-            .show_answer
-              - if answer.image
-                .col-md-6.answer-input
-                  .answer-image
-                    - image = answer.image.filename
-                    %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
-                  %label.answer-response
-                    = answer.response
-                  %label.answer-correctness
-                    = answer.correctness
-              - else
-                .col-md-12.answer-input
-                  %label.answer-response
-                    = answer.response
-                  %label.answer-correctness
-                    = answer.correctness
+    .background-lining
+    .col-md-12.quiz-background
+      - @quiz.questions.each do |question|
+        .row.question-row
+          .row
+            .col-md-12.question-text
+              = question.question_text
+          .row
+            .col-md-12.question-text.question-text-black
+              %label.answer-response
+                = question.description
+          .col-md-6
+            - if question.image
+              - image = question.image.filename
+              %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
+          .col-md-6
+            - question.answers.each do |answer|
+              .show_answer
+                - if answer.image
+                  .col-md-6.answer-input
+                    .answer-image
+                      - image = answer.image.filename
+                      %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
+                    %label.answer-response
+                      = answer.response
+                    %label.answer-correctness
+                      = answer.correctness
+                - else
+                  .col-md-12.answer-input
+                    %label.answer-response
+                      = answer.response
+                    %label.answer-correctness
+                      = answer.correctness
 
-    .edit_and_delete_buttons  
-      .edit_button
-        %a{ href: "/quizzes/#{@quiz.id}/edit", class: "edit btn btn-primary" } Edit Quiz
-      .delete_button
-        %form{method: "post", action: "/quizzes"}
-          %input{type: "hidden", name: "_method", value: "delete"}
-          %input{type: "hidden", name: "quiz_id", value: "#{@quiz.id}"}
-          %input{type: "submit", value: "Delete Quiz", class: "btn btn-danger" }
+      .edit_and_delete_buttons  
+        .edit_button
+          %a{ href: "/quizzes/#{@quiz.id}/edit", class: "edit btn btn-primary" } Edit Quiz
+        .delete_button
+          %form{method: "post", action: "/quizzes"}
+            %input{type: "hidden", name: "_method", value: "delete"}
+            %input{type: "hidden", name: "quiz_id", value: "#{@quiz.id}"}
+            %input{type: "submit", value: "Delete Quiz", class: "btn btn-danger" }

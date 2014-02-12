@@ -8,6 +8,7 @@ class Question
 
   property :id, Serial
   property :question_text, Text
+  property :description, Text
 
   def correct_answer
     answers.select { |a| a.correctness }
