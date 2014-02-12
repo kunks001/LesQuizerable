@@ -34,42 +34,22 @@ end
 def create_question(info = quiz_details)
   @quiz ||= FactoryGirl.create(:question, info)
 end
-  
-def path_to(page_name, id = '')
-  name = page_name.downcase
-  case name
-    when 'home' then
-      ''
-    when 'signin' then
-      '/sessions/new'
-    when 'edit_admin' then
-      id = @admin.id
-      "/admins/#{id}/edit"
-    when 'new quiz' then
-      '/quizzes/new'
-    when 'edit_quiz' then
-      id = @quiz.id
-      "/quizzes/#{id}/edit"
-    when 'quizzes' then
-      '/quizzes'
-    when "show quiz"
-      id = @quiz.id
-      "/quizzes/#{id}"
-    else
-      raise('path to specified is not listed in #path_to')
-  end
-end
 
 def with_scope(locator)
   locator ? within(*selector_for(locator)) { yield } : yield
 end
 
-def selector_for(locator)
-  case locator
-    when "Edit profile" then
-      return 'form#edit-details'
-    else
-      raise "Can't find mapping from \"#{locator}\" to a selector.\n" +
-            "Now, go and add a mapping in #{__FILE__}"
+def attach_(image)
+  case image
+    when 'question-image.jpg' then
+      attach_file('file', File.join(File.dirname(__FILE__), "/images/#{image}"))
+    when 'answer-image.jpg' then
+      attach_file('answer_image_0', File.join(File.dirname(__FILE__), "/images/#{image}"))
+    when 'edited-question-image.jpg' then
+      attach_file('file', File.join(File.dirname(__FILE__), "/images/#{image}"))
+    when'edited-answer-image.jpg' then
+      within(page.all(:css, '.answer_fields')[0]) do
+      attach_file('answer_image_0', File.join(File.dirname(__FILE__), "/images/#{image}"))
+    end
   end
 end
