@@ -1,0 +1,37 @@
+- if @quiz
+
+  - @quiz.questions.each do |question|
+    .row.question-row
+      .row
+        .col-md-12.question-text
+          = question.question_text
+      .col-md-6
+        - if question.image
+          - image = question.image.filename
+          %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
+      .col-md-6
+        - question.answers.each do |answer|
+          - if answer.image
+            .col-md-6.answer-input
+              .answer-image
+                - image = answer.image.filename
+                %img{src: "https://s3.amazonaws.com/MakersQuizApp/#{image}"}
+              %label.answer-response
+                = answer.response
+              .input
+                %input{type: "radio", name: "answer_ids[#{question.id}]", value: "#{answer.id}" }
+          - else
+            .col-md-12.answer-input
+              %label.answer-response
+                = answer.response
+              .input
+                %input{type: "radio", name: "answer_ids[#{question.id}]", value: "#{answer.id}" }
+  .col-md-12#show-score-container
+    .submit-quiz-button
+      %input{type: "submit", value: "Submit", class: "btn btn-success", id: "submit_quiz"}
+
+- else
+  .row.question-row
+    .row
+      .col-md-12.question-text
+        Sorry, no quizzes are available right now.

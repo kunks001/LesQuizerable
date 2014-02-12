@@ -1,0 +1,24 @@
+.row.question-row
+  .row
+    .col-md-12.question-text
+      Who are you*
+      %div
+        %label.answer-response
+          a. An entrepreneur who wants to learn to build their own prototypes
+        .input
+          %input{type: "checkbox", name: "description", value: 'entrepreneur', onClick: "checkedRadioButton(this)" }
+      %div
+        %label.answer-response
+          b. A developer/CS grad who wants to learn Ruby, Rails and modern techniques like Agile, TDD and Version Controlling using Git
+        .input
+          %input{type: "checkbox", name: "description", value: 'developer', onClick: "checkedRadioButton(this)" }
+      %div
+        %label.answer-response
+          c. A tech-industry worker who doesn’t know how to code and would like to learn
+        .input
+          %input{type: "checkbox", name: "description", value: 'tech worker', onClick: "checkedRadioButton(this)" }
+      %div
+        %label.answer-response
+          d. A regular person interested in a career as a developer
+        .input
+          %input{type: "checkbox", name: "description", value: 'regular joe', onClick: "checkedRadioButton(this)" }
